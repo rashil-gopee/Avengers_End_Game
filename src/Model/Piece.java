@@ -9,7 +9,7 @@ public abstract class Piece {
     public Piece(int stealth, int attackingPower, int attackingDistance) {
         this.stealth = stealth;
         this.attackingPower = attackingPower;
-        this.attackingDistance = attackingDistance
+        this.attackingDistance = attackingDistance;
     }
 
     public int getStealth() {
