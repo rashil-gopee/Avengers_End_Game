@@ -5,6 +5,8 @@ public class Hexagon {
     private int positionX;
     private int positionY;
 
+    private Piece piece;
+
     public int getPositionX() {
         return positionX;
     }
@@ -20,4 +22,19 @@ public class Hexagon {
     public void setPositionY(int positionY) {
         this.positionY = positionY;
     }
+
+    public Hexagon(int positionX, int positionY) {
+        this.positionX = positionX;
+        this.positionY = positionY;
+        this.piece = null;
+    }
+
+    public Piece getPiece() {
+        return piece;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
 }

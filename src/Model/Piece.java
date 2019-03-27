@@ -1,15 +1,16 @@
 package Model;
 
 public abstract class Piece {
-    public int stealth;
-    public int attackingPower;
-    public int attackingDistance;
-    public Hexagon position;
+    private int stealth;
+    private int attackingPower;
+    private int attackingDistance;
+    private Player owner;
 
-    public Piece(int stealth, int attackingPower, int attackingDistance) {
+    public Piece(int stealth, int attackingPower, int attackingDistance, Player owner) {
         this.stealth = stealth;
         this.attackingPower = attackingPower;
         this.attackingDistance = attackingDistance;
+        this.owner = owner;
     }
 
     public int getStealth() {
@@ -36,12 +37,13 @@ public abstract class Piece {
         this.attackingDistance = attackingDistance;
     }
 
-    public void move(Hexagon hexagon) {
-
+    public Player getOwner() {
+        return owner;
     }
 
-    public void attack (Hexagon hexagon) {
-
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
+
 
 }
