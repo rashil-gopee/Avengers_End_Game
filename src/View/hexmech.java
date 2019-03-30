@@ -1,6 +1,11 @@
 package View;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.lang.reflect.Method;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /* This is a companion class to AvengersGameView.java. It handles all of the mechanics related to hexagon grids. */
@@ -117,10 +122,12 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
 		Polygon poly = hex(x,y);
+
 		g2.setColor(AvengersGameView.COLOURCELL);
 		//g2.fillPolygon(hexmech.hex(x,y));
 		g2.fillPolygon(poly);
 		g2.setColor(AvengersGameView.COLOURGRID);
+
 		g2.drawPolygon(poly);
 	}
 
@@ -137,24 +144,43 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 	  The colour is set by AvengersGameView.COLOURONE and AvengersGameView.COLOURTWO.
 	  The value of n is converted to letter and drawn in the hexagon.
 *****************************************************************************/
-	public static void fillHex(int i, int j, int n, Graphics2D g2) {
-		char c='o';
+	public static void fillHex(int i, int j, int n, Graphics2D g2){
+		char c;
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
 		if (n < 0) {
 			g2.setColor(AvengersGameView.COLOURONE);
+
 			g2.fillPolygon(hex(x,y));
 			g2.setColor(AvengersGameView.COLOURONETXT);
+
 			c = (char)(-n);
 			g2.drawString(""+c, x+r+BORDERS, y+r+BORDERS+4); //FIXME: handle XYVertex
+
 			//g2.drawString(x+","+y, x+r+BORDERS, y+r+BORDERS+4);
 		}
 		if (n > 0) {
-			g2.setColor(AvengersGameView.COLOURTWO);
+			g2.setBackground(AvengersGameView.COLOURONE);
 			g2.fillPolygon(hex(x,y));
+			try {
+				URL url = new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png");
+				Image bi = ImageIO.read(url);
+
+//			Image img = Toolkit.getDefaultToolkit().createImage("background.jpg");
+				g2.setClip(hex(x,y));
+				g2.drawImage(bi.getScaledInstance(60, 60, Image.SCALE_DEFAULT), x, y, null);
+//				g2.drawImage(bi, x+r, y+r, null);
+			}
+			catch (Exception e){
+				e.printStackTrace();
+			}
+
+//			g2.setColor(AvengersGameView.COLOURTWO);
+
 			g2.setColor(AvengersGameView.COLOURTWOTXT);
-			c = (char)n;
-			g2.drawString(""+c, x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
+
+
+			g2.drawString(Integer.toString(n) , x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
 			//g2.drawString(i+","+j, x+r+BORDERS, y+r+BORDERS+4);
 		}
 	}
@@ -221,4 +247,6 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 		p.y=y;
 		return p;
 	}
+
+
 }

@@ -1,25 +1,19 @@
 package Model;
 
+import java.awt.*;
+
 public abstract class Piece {
     private int stealth;
     private int attackingPower;
     private int attackingDistance;
-
-    public int getDisplayText() {
-        return displayText;
-    }
-
-    public void setDisplayText(int displayText) {
-        this.displayText = displayText;
-    }
-
-    private int displayText;
+    private Image image;
     private Player owner;
 
-    public Piece(int stealth, int attackingPower, int attackingDistance, Player owner) {
+    public Piece(int stealth, int attackingPower, int attackingDistance, Image image, Player owner) {
         this.stealth = stealth;
         this.attackingPower = attackingPower;
         this.attackingDistance = attackingDistance;
+        this.image = image;
         this.owner = owner;
     }
 
@@ -55,5 +49,11 @@ public abstract class Piece {
         this.owner = owner;
     }
 
+    public Image getImage() {
+        return image;
+    }
 
+    public void setImage(Image image) {
+        this.image = image;
+    }
 }

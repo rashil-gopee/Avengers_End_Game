@@ -1,5 +1,6 @@
 package View;
 
+import Controller.HexagonController;
 import Model.Board;
 import Model.Hexagon;
 
@@ -37,7 +38,8 @@ public class AvengersGameView
 
 	//constants and global variables
 	final static Color COLOURBACK =  Color.WHITE;
-	final static Color COLOURCELL =  Color.ORANGE;	 
+	final static Color COLOURCELL =  Color.ORANGE;
+
 	final static Color COLOURGRID =  Color.BLACK;	 
 	final static Color COLOURONE = new Color(255,255,255,200);
 	final static Color COLOURONETXT = Color.BLUE;
@@ -52,18 +54,10 @@ public class AvengersGameView
 //	int[][] board = new int[BSIZE][BSIZE];
 
 	void initGame(){
-
 		hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
 
 		hexmech.setHeight(HEXSIZE); //Either setHeight or setSize must be run to initialize the hex
 		hexmech.setBorders(BORDERS);
-
-
-
-		//set up board here
-		board.getHexagons()[3][3].setDisplayText((int)'A');
-		board.getHexagons()[4][3].setDisplayText((int)'Q');
-		board.getHexagons()[4][4].setDisplayText(-(int)'B');
 	}
 
 	private void createAndShowGUI()
@@ -115,7 +109,10 @@ public class AvengersGameView
 				for (int j=0;j<BSIZE;j++) {					
 					//if (board[i][j] < 0) hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					//if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO, board[i][j],g2);
-					hexmech.fillHex(i,j,board.getHexagons()[i][j].getDisplayText(),g2);
+					if (board.getHexagon(i, j).getPiece() == null)
+					hexmech.fillHex(i,j,0 ,g2);
+					else
+						hexmech.fillHex(i,j,board.getHexagon(i, j).getPiece().getStealth() ,g2);
 				}
 			}
 
@@ -124,8 +121,8 @@ public class AvengersGameView
 		}
 
 		class MyMouseListener extends MouseAdapter	{	//inner class inside DrawingPanel 
-			public void mouseClicked(MouseEvent e) { 
-				int x = e.getX(); 
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX();
 				int y = e.getY(); 
 				//mPt.x = x;
 				//mPt.y = y;
@@ -142,12 +139,25 @@ public class AvengersGameView
 
 				//What do you want to do when a hexagon is clicked?
 //				board.getHexagons()[p.x][p.y].setDisplayText((int)'X');
-				if (selectedHex != null)
-					selectedHex.setDisplayText(0);
-
-				selectedHex = board.getHexagons()[p.x][p.y];
-				selectedHex.setDisplayText((int)'X');
-
+				if(e.getButton() == MouseEvent.BUTTON1) {
+					System.out.println("Left Click!");
+					if (selectedHex != null && selectedHex != board.getHexagon(p.x, p.y)) {
+						Hexagon targetedHex = board.getHexagon(p.x, p.y);
+						HexagonController hexagonController = new HexagonController();
+						hexagonController.moveHexagaon(targetedHex, targetedHex);
+						selectedHex = null;
+					}
+					else {
+						selectedHex = board.getHexagon(p.x, p.y);
+					}
+				}
+				else if(e.getButton() == MouseEvent.BUTTON2) {
+					System.out.println("Middle Click!");
+				}
+				else if(e.getButton() == MouseEvent.BUTTON3) {
+					System.out.println("Right Click!");
+					selectedHex = null;
+				}
 				repaint();
 			}		 
 		} //end of MyMouseListener class 
