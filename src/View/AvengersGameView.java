@@ -13,9 +13,9 @@ import java.awt.event.*;
 
  ***********************************/
 
-public class hexgame
+public class AvengersGameView
 {
-  private hexgame() {
+  private AvengersGameView() {
 		initGame();
 		createAndShowGUI();
 	}
@@ -24,7 +24,7 @@ public class hexgame
 	{
 		SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-				new hexgame();
+				new AvengersGameView();
 				}
 				});
 	}
