@@ -1,5 +1,8 @@
 package View;
 
+import Model.Board;
+import Model.Hexagon;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*; 
@@ -15,6 +18,9 @@ import java.awt.event.*;
 
 public class AvengersGameView
 {
+	private Hexagon selectedHex;
+	private Board board = new Board();
+
   private AvengersGameView() {
 		initGame();
 		createAndShowGUI();
@@ -43,7 +49,7 @@ public class AvengersGameView
 	final static int BORDERS = 15;  
 	final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS*3; //screen size (vertical dimension).
 
-	int[][] board = new int[BSIZE][BSIZE];
+//	int[][] board = new int[BSIZE][BSIZE];
 
 	void initGame(){
 
@@ -52,16 +58,12 @@ public class AvengersGameView
 		hexmech.setHeight(HEXSIZE); //Either setHeight or setSize must be run to initialize the hex
 		hexmech.setBorders(BORDERS);
 
-		for (int i=0;i<BSIZE;i++) {
-			for (int j=0;j<BSIZE;j++) {
-				board[i][j]=EMPTY;
-			}
-		}
+
 
 		//set up board here
-		board[3][3] = (int)'A';
-		board[4][3] = (int)'Q';
-		board[4][4] = -(int)'B';
+		board.getHexagons()[3][3].setDisplayText((int)'A');
+		board.getHexagons()[4][3].setDisplayText((int)'Q');
+		board.getHexagons()[4][4].setDisplayText(-(int)'B');
 	}
 
 	private void createAndShowGUI()
@@ -113,7 +115,7 @@ public class AvengersGameView
 				for (int j=0;j<BSIZE;j++) {					
 					//if (board[i][j] < 0) hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
 					//if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO, board[i][j],g2);
-					hexmech.fillHex(i,j,board[i][j],g2);
+					hexmech.fillHex(i,j,board.getHexagons()[i][j].getDisplayText(),g2);
 				}
 			}
 
@@ -139,7 +141,13 @@ public class AvengersGameView
 				} */
 
 				//What do you want to do when a hexagon is clicked?
-				board[p.x][p.y] = (int)'X';
+//				board.getHexagons()[p.x][p.y].setDisplayText((int)'X');
+				if (selectedHex != null)
+					selectedHex.setDisplayText(0);
+
+				selectedHex = board.getHexagons()[p.x][p.y];
+				selectedHex.setDisplayText((int)'X');
+
 				repaint();
 			}		 
 		} //end of MyMouseListener class 

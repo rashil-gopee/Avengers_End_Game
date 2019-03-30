@@ -2,31 +2,17 @@ package Model;
 
 public class Hexagon {
 
-    private int positionX;
-    private int positionY;
-
     private Piece piece;
+    private int displayText;
 
-    public int getPositionX() {
-        return positionX;
-    }
-
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    public int getPositionY() {
-        return positionY;
-    }
-
-    public void setPositionY(int positionY) {
-        this.positionY = positionY;
-    }
-
-    public Hexagon(int positionX, int positionY) {
-        this.positionX = positionX;
-        this.positionY = positionY;
+    public Hexagon() {
         this.piece = null;
+        this.displayText = 0;
+    }
+
+    public Hexagon(Piece piece){
+        this.piece = piece;
+        this.displayText = (int) 'P';
     }
 
     public Piece getPiece() {
@@ -37,4 +23,11 @@ public class Hexagon {
         this.piece = piece;
     }
 
+    public int getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(int displayText) {
+        this.displayText = displayText;
+    }
 }

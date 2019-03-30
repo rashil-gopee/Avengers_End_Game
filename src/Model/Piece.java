@@ -4,6 +4,16 @@ public abstract class Piece {
     private int stealth;
     private int attackingPower;
     private int attackingDistance;
+
+    public int getDisplayText() {
+        return displayText;
+    }
+
+    public void setDisplayText(int displayText) {
+        this.displayText = displayText;
+    }
+
+    private int displayText;
     private Player owner;
 
     public Piece(int stealth, int attackingPower, int attackingDistance, Player owner) {
