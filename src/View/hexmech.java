@@ -1,5 +1,7 @@
 package View;
 
+import Model.Hexagon;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.FileOutputStream;
@@ -144,32 +146,22 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 	  The colour is set by AvengersGameView.COLOURONE and AvengersGameView.COLOURTWO.
 	  The value of n is converted to letter and drawn in the hexagon.
 *****************************************************************************/
-	public static void fillHex(int i, int j, int n, Graphics2D g2){
+	public static void fillHex(int i, int j, Hexagon hexagon, Graphics2D g2){
 		char c;
 		int x = i * (s+t);
 		int y = j * h + (i%2) * h/2;
-		if (n < 0) {
+
+		if (hexagon.getPiece() == null) {
+//			g2.setColor(AvengersGameView.COLOURONETXT);
 			g2.setColor(AvengersGameView.COLOURONE);
-
-			g2.fillPolygon(hex(x,y));
+			g2.drawString("", x+r+BORDERS, y+r+BORDERS+4); //FIXME: handle XYVertex
 			g2.setColor(AvengersGameView.COLOURONETXT);
-
-			c = (char)(-n);
-			g2.drawString(""+c, x+r+BORDERS, y+r+BORDERS+4); //FIXME: handle XYVertex
-
-			//g2.drawString(x+","+y, x+r+BORDERS, y+r+BORDERS+4);
 		}
-		if (n > 0) {
-			g2.setBackground(AvengersGameView.COLOURONE);
+		else {
 			g2.fillPolygon(hex(x,y));
 			try {
-				URL url = new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png");
-				Image bi = ImageIO.read(url);
-
-//			Image img = Toolkit.getDefaultToolkit().createImage("background.jpg");
 				g2.setClip(hex(x,y));
-				g2.drawImage(bi.getScaledInstance(60, 60, Image.SCALE_DEFAULT), x, y, null);
-//				g2.drawImage(bi, x+r, y+r, null);
+				g2.drawImage(hexagon.getPiece().getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT), x, y, null);
 			}
 			catch (Exception e){
 				e.printStackTrace();
@@ -180,7 +172,7 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 			g2.setColor(AvengersGameView.COLOURTWOTXT);
 
 
-			g2.drawString(Integer.toString(n) , x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
+			g2.drawString(Integer.toString(hexagon.getPiece().getStealth()) , x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
 			//g2.drawString(i+","+j, x+r+BORDERS, y+r+BORDERS+4);
 		}
 	}

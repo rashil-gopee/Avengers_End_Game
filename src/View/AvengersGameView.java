@@ -106,18 +106,10 @@ public class AvengersGameView
 			}
 			//fill in hexes
 			for (int i=0;i<BSIZE;i++) {
-				for (int j=0;j<BSIZE;j++) {					
-					//if (board[i][j] < 0) hexmech.fillHex(i,j,COLOURONE,-board[i][j],g2);
-					//if (board[i][j] > 0) hexmech.fillHex(i,j,COLOURTWO, board[i][j],g2);
-					if (board.getHexagon(i, j).getPiece() == null)
-					hexmech.fillHex(i,j,0 ,g2);
-					else
-						hexmech.fillHex(i,j,board.getHexagon(i, j).getPiece().getStealth() ,g2);
+				for (int j=0;j<BSIZE;j++) {
+					hexmech.fillHex(i,j, board.getHexagon(i, j), g2);
 				}
 			}
-
-			//g.setColor(Color.RED);
-			//g.drawLine(mPt.x,mPt.y, mPt.x,mPt.y);
 		}
 
 		class MyMouseListener extends MouseAdapter	{	//inner class inside DrawingPanel 
@@ -141,14 +133,14 @@ public class AvengersGameView
 //				board.getHexagons()[p.x][p.y].setDisplayText((int)'X');
 				if(e.getButton() == MouseEvent.BUTTON1) {
 					System.out.println("Left Click!");
-					if (selectedHex != null && selectedHex != board.getHexagon(p.x, p.y)) {
-						Hexagon targetedHex = board.getHexagon(p.x, p.y);
-						HexagonController hexagonController = new HexagonController();
-						hexagonController.moveHexagaon(targetedHex, targetedHex);
-						selectedHex = null;
+					if (selectedHex == null) {
+						selectedHex = board.getHexagon(p.x, p.y);
 					}
 					else {
-						selectedHex = board.getHexagon(p.x, p.y);
+						Hexagon targetedHex = board.getHexagon(p.x, p.y);
+						HexagonController hexagonController = new HexagonController();
+						hexagonController.moveHexagaon(selectedHex, targetedHex);
+						selectedHex = null;
 					}
 				}
 				else if(e.getButton() == MouseEvent.BUTTON2) {
