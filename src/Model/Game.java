@@ -1,22 +1,23 @@
 package Model;
 
-import View.AvengersGameView;
-
 import java.util.ArrayList;
 
 public class Game {
     private Board board;
     private ArrayList<Player> players;
-    int playerTurn;
+    private int playerTurn;
 
     public Board getBoard() {
         return board;
     }
 
-    public Game(ArrayList playerList){
-        this.players = playerList;
+    public Game(int numOfPlayers){
+        this.players = new ArrayList<>();
+        for (int i =0; i <= numOfPlayers; i++) {
+            this.players.add(new Player("Player " + i +1 ));
+        }
         this.board=new Board(players);
-        playerTurn=0;
+        playerTurn = 0;
     }
 
     public Player getPlayer() {
@@ -29,5 +30,9 @@ public class Game {
 
     public void setPlayerTurn(int playerTurn) {
         this.playerTurn = playerTurn;
+    }
+
+    public ArrayList<Player> getPlayers(){
+        return players;
     }
 }

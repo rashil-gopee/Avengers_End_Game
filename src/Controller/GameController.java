@@ -4,56 +4,39 @@ import Model.Game;
 import Model.Hexagon;
 
 public class GameController {
-    Hexagon selectedHexagon;
-    Game game;
-    public GameController(Game game) {
-        this.game=game;
+    private Game game;
+
+    public GameController(){
+        game = game = new Game(2);
     }
 
     public Game getGame() {
         return game;
     }
 
-    public void leftClick(int x, int y) {
-        if (selectedHexagon == null) {
-            selectedHexagon = game.getBoard().getHexagon(x, y);
+    public void movePiece(Hexagon source, Hexagon target) {
+        if (target.getPiece() == null && source.getPiece() !=null && source.getPiece().isOwner(game.getPlayer())) {
+            boolean move= source.getPiece().move(source, target);
 
-            if(selectedHexagon.getPiece()==null|| !selectedHexagon.getPiece().isOwner(game.getPlayer()))
-                selectedHexagon=null;
-        }
-        else {
-            Hexagon targetedHex = game.getBoard().getHexagon(x, y);
-            boolean move=selectedHexagon.getPiece().move(selectedHexagon, targetedHex);
-            if(move)
+            if(move) {
                 changePlayerTurn();
-
-            selectedHexagon = null;
+            }
         }
     }
 
     private void changePlayerTurn() {
-        if(game.getPlayerTurn()==0)
-            game.setPlayerTurn(1);
-        else
+        if (game.getPlayerTurn() == (game.getPlayers().size() - 1)){
             game.setPlayerTurn(0);
-
+        }
+        else
+            game.setPlayerTurn(game.getPlayerTurn() + 1);
     }
 
-    public void rightClick(int x, int y) {
-        if(selectedHexagon==null)
-        {
-            return;
-        }
-        else{
-            Hexagon targetedHex = game.getBoard().getHexagon(x, y);
-            if(targetedHex.getPiece()==null)
-                return;
-
-            boolean attack=selectedHexagon.getPiece().attack(selectedHexagon,targetedHex);
-            if(attack)
+    public void attackPiece(Hexagon source, Hexagon targetedHex) {
+        if (source.getPiece() != null && targetedHex.getPiece() !=null) {
+            boolean attack=source.getPiece().attack(source,targetedHex);
+            if (attack)
                 changePlayerTurn();
-
-            selectedHexagon = null;
         }
     }
 }

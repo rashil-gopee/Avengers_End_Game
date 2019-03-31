@@ -1,6 +1,7 @@
 package View;
 
 import Controller.GameController;
+import Model.Hexagon;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,10 +10,12 @@ import java.awt.event.*;
 
 public class AvengersGameView
 {
-	GameController gameController;
+//	private Game game;
+	private GameController gameController;
+	private Hexagon selectedHex;
 
-  public AvengersGameView(GameController gameController) {
-	  	this.gameController=gameController;
+  public AvengersGameView() {
+  		this.gameController = new GameController();
 		initGame();
 		createAndShowGUI();
 	}
@@ -101,14 +104,28 @@ public class AvengersGameView
 				if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
 
 				if(e.getButton() == MouseEvent.BUTTON1) {
-					System.out.println("Left Click!");
-					gameController.leftClick(p.x, p.y);
+//					System.out.println("Left Click!");
+//					gameController.leftClick(game.getBoard().getHexagon(p.x, p.y));
+					if (selectedHex == null) {
+						selectedHex = gameController.getGame().getBoard().getHexagon(p.x, p.y);
+					}
+					else {
+						Hexagon targetedHex  = gameController.getGame().getBoard().getHexagon(p.x, p.y);
+						gameController.movePiece(selectedHex, targetedHex);
+						selectedHex = null;
+					}
+
 				}
+
 				else if(e.getButton() == MouseEvent.BUTTON3) {
 					System.out.println("Right Click!");
-                    gameController.rightClick(p.x, p.y);
 
+					if (selectedHex != null) {
+						Hexagon targetedHex = gameController.getGame().getBoard().getHexagon(p.x, p.y);
+						gameController.attackPiece(selectedHex, targetedHex);
+					}
                 }
+
 				repaint();
 			}		 
 		}
