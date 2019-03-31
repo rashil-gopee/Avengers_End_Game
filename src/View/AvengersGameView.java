@@ -25,15 +25,12 @@ public class AvengersGameView
 	final static Color COLOURGRID =  Color.BLACK;	 
 	final static Color COLOURONE = new Color(255,255,255,200);
 	final static Color COLOURONETXT = Color.BLUE;
-	final static Color COLOURTWO = new Color(0,0,0,200);
 	final static Color COLOURTWOTXT = new Color(255,100,255);
-	final static int EMPTY = 0;
 	final static int BSIZE = 10; //board size.
 	final static int HEXSIZE = 60;	//hex size in pixels
 	final static int BORDERS = 15;  
 	final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS*3; //screen size (vertical dimension).
 
-//	int[][] board = new int[BSIZE][BSIZE];
 
 	void initGame(){
 		hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
@@ -52,8 +49,6 @@ public class AvengersGameView
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		Container content = frame.getContentPane();
 		content.add(panel);
-		//this.add(panel);  -- cannot be done in a static context
-		//for hexes in the FLAT orientation, the height of a 10x10 grid is 1.1764 * the width. (from h / (s+t))
 		frame.setSize( (int)(SCRSIZE/1.23), SCRSIZE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo( null );

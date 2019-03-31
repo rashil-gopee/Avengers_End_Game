@@ -43,4 +43,11 @@ public abstract class Piece {
     public abstract void move(Hexagon source,Hexagon target);
 
     public abstract void attack(Hexagon hexagon);
+
+    public boolean isOwner(Player player)
+    {
+        if(owner.equals(player))
+            return true;
+        return false;
+    }
 }

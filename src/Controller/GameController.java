@@ -18,13 +18,24 @@ public class GameController {
         if (selectedHexagon == null) {
             selectedHexagon = game.getBoard().getHexagon(x, y);
 
-            if(selectedHexagon.getPiece()==null)
+            if(selectedHexagon.getPiece()==null|| !selectedHexagon.getPiece().isOwner(game.getPlayer()))
                 selectedHexagon=null;
         }
         else {
             Hexagon targetedHex = game.getBoard().getHexagon(x, y);
-            selectedHexagon.getPiece().move(selectedHexagon,targetedHex);
+            if(targetedHex.getPiece()==null) {
+                selectedHexagon.getPiece().move(selectedHexagon, targetedHex);
+                changePlayerTurn();
+            }
             selectedHexagon = null;
         }
+    }
+
+    private void changePlayerTurn() {
+        if(game.getPlayerTurn()==0)
+        game.setPlayerTurn(1);
+        else
+            game.setPlayerTurn(0);
+
     }
 }
