@@ -12,7 +12,13 @@ public class CaptainMarvel extends Attacker {
         super(100, 10, 3, ImageIO.read(new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png")), owner);
     }
 
-    public void move(Hexagon hexagon) {
+    public void move(Hexagon source,Hexagon target) {
+        System.out.println("Move Captain Marvel");
+        System.out.println(target.getPiece());
+        if(target.getPiece()==null) {
+            target.setPiece(source.getPiece());
+            source.setPiece(null);
+        }
 
     }
 

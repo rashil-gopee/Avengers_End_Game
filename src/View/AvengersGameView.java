@@ -1,40 +1,26 @@
 package View;
 
+import Controller.GameController;
 import Controller.HexagonController;
 import Model.Board;
+import Model.Game;
 import Model.Hexagon;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*; 
 
-/**********************************
-  This is the main class of a Java program to play a game based on hexagonal tiles.
-  The mechanism of handling hexes is in the file hexmech.java.
-
-  Written by: M.H.
-  Date: December 2012
-
- ***********************************/
 
 public class AvengersGameView
 {
-	private Hexagon selectedHex;
-	private Board board = new Board();
+	GameController gameController;
 
-  private AvengersGameView() {
+  public AvengersGameView(GameController gameController) {
+	  	this.gameController=gameController;
 		initGame();
 		createAndShowGUI();
 	}
 
-	public static void main(String[] args)
-	{
-		SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-				new AvengersGameView();
-				}
-				});
-	}
 
 	//constants and global variables
 	final static Color COLOURBACK =  Color.WHITE;
@@ -66,7 +52,7 @@ public class AvengersGameView
 
 
 		//JFrame.setDefaultLookAndFeelDecorated(true);
-		JFrame frame = new JFrame("Hex Testing 4");
+		JFrame frame = new JFrame("Avengers End Game");
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		Container content = frame.getContentPane();
 		content.add(panel);
@@ -107,7 +93,7 @@ public class AvengersGameView
 			//fill in hexes
 			for (int i=0;i<BSIZE;i++) {
 				for (int j=0;j<BSIZE;j++) {
-					hexmech.fillHex(i,j, board.getHexagon(i, j), g2);
+					hexmech.fillHex(i,j, gameController.getGame().getBoard().getHexagon(i, j), g2);
 				}
 			}
 		}
@@ -121,37 +107,16 @@ public class AvengersGameView
 				Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
 				if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
 
-				//DEBUG: colour in the hex which is supposedly the one clicked on
-				//clear the whole screen first.
-				/* for (int i=0;i<BSIZE;i++) {
-					for (int j=0;j<BSIZE;j++) {
-						board[i][j]=EMPTY;
-					}
-				} */
-
-				//What do you want to do when a hexagon is clicked?
-//				board.getHexagons()[p.x][p.y].setDisplayText((int)'X');
 				if(e.getButton() == MouseEvent.BUTTON1) {
 					System.out.println("Left Click!");
-					if (selectedHex == null) {
-						selectedHex = board.getHexagon(p.x, p.y);
-					}
-					else {
-						Hexagon targetedHex = board.getHexagon(p.x, p.y);
-						HexagonController hexagonController = new HexagonController();
-						hexagonController.moveHexagaon(selectedHex, targetedHex);
-						selectedHex = null;
-					}
+					gameController.leftClick(p.x, p.y);
 				}
-				else if(e.getButton() == MouseEvent.BUTTON2) {
-					System.out.println("Middle Click!");
-				}
-				else if(e.getButton() == MouseEvent.BUTTON3) {
-					System.out.println("Right Click!");
-					selectedHex = null;
-				}
+//				else if(e.getButton() == MouseEvent.BUTTON3) {
+//					System.out.println("Right Click!");
+//					selectedHex = null;
+//				}
 				repaint();
 			}		 
-		} //end of MyMouseListener class 
-	} // end of DrawingPanel class
+		}
+	}
 }

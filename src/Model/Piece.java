@@ -21,24 +21,12 @@ public abstract class Piece {
         return stealth;
     }
 
-    public void setStealth(int stealth) {
-        this.stealth = stealth;
-    }
-
     public int getAttackingPower() {
         return attackingPower;
     }
 
-    public void setAttackingPower(int attackingPower) {
-        this.attackingPower = attackingPower;
-    }
-
     public int getAttackingDistance() {
         return attackingDistance;
-    }
-
-    public void setAttackingDistance(int attackingDistance) {
-        this.attackingDistance = attackingDistance;
     }
 
     public Player getOwner() {
@@ -52,8 +40,7 @@ public abstract class Piece {
     public Image getImage() {
         return image;
     }
+    public abstract void move(Hexagon source,Hexagon target);
 
-    public void setImage(Image image) {
-        this.image = image;
-    }
+    public abstract void attack(Hexagon hexagon);
 }
