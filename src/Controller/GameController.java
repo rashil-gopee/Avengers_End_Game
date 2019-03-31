@@ -19,24 +19,16 @@ public class GameController {
             boolean move= source.getPiece().move(source, target);
 
             if(move) {
-                changePlayerTurn();
+                game.changePlayerTurn();
             }
         }
-    }
-
-    private void changePlayerTurn() {
-        if (game.getPlayerTurn() == (game.getPlayers().size() - 1)){
-            game.setPlayerTurn(0);
-        }
-        else
-            game.setPlayerTurn(game.getPlayerTurn() + 1);
     }
 
     public void attackPiece(Hexagon source, Hexagon targetedHex) {
         if (source.getPiece() != null && targetedHex.getPiece() !=null) {
             boolean attack=source.getPiece().attack(source,targetedHex);
             if (attack)
-                changePlayerTurn();
+                game.changePlayerTurn();
         }
     }
 }

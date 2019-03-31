@@ -90,6 +90,7 @@ public class AvengersGameView
 					hexmech.fillHex(i,j, gameController.getGame().getBoard().getHexagon(i, j), g2);
 				}
 			}
+
             g2.drawString("Attacker",350,500);
 
         }

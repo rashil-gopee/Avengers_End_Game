@@ -35,4 +35,12 @@ public class Game {
     public ArrayList<Player> getPlayers(){
         return players;
     }
+
+    public void changePlayerTurn() {
+        if (playerTurn == (players.size() - 2)){
+            playerTurn = 0;
+        }
+        else
+            playerTurn = playerTurn + 1;
+    }
 }
