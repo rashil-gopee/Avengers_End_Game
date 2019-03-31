@@ -1,18 +1,23 @@
 package Model;
 
 public class Hexagon {
-
+    int x;
+    int y;
     private Piece piece;
-    private int displayText;
 
-    public Hexagon() {
+    public Hexagon(int x,int y) {
+        this.x=x;
+        this.y=y;
         this.piece = null;
-        this.displayText = 0;
     }
 
-    public Hexagon(Piece piece){
-        this.piece = piece;
-        this.displayText = (int) 'P';
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public Piece getPiece() {
@@ -23,11 +28,5 @@ public class Hexagon {
         this.piece = piece;
     }
 
-    public int getDisplayText() {
-        return displayText;
-    }
 
-    public void setDisplayText(int displayText) {
-        this.displayText = displayText;
-    }
 }

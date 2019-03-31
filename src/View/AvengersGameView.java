@@ -1,10 +1,6 @@
 package View;
 
 import Controller.GameController;
-import Controller.HexagonController;
-import Model.Board;
-import Model.Game;
-import Model.Hexagon;
 
 import java.awt.*;
 import javax.swing.*;

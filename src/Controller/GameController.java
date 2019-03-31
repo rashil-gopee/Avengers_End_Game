@@ -17,6 +17,7 @@ public class GameController {
     public void leftClick(int x, int y) {
         if (selectedHexagon == null) {
             selectedHexagon = game.getBoard().getHexagon(x, y);
+
             if(selectedHexagon.getPiece()==null)
                 selectedHexagon=null;
         }

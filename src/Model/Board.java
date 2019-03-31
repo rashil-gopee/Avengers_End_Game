@@ -14,10 +14,9 @@ import java.util.ArrayList;
 
 public class Board {
     final static int BSIZE = 10; //board size.
-    //private ArrayList<Player> players;
-    AvengersGameView view;
+    private Hexagon[][] hexagons;
+
     public Board(ArrayList<Player> players)  {
-        //view=new AvengersGameView();
         hexagons = new Hexagon[BSIZE][BSIZE];
 
         try {
@@ -31,33 +30,23 @@ public class Board {
             Piece ultron=new Ultron(players.get(1));
             for (int i = 0; i < BSIZE; i++) {
                 for (int j = 0; j < BSIZE; j++) {
-                        hexagons[i][j] = new Hexagon();
+                        hexagons[i][j] = new Hexagon(i,j);
                 }
             }
-            hexagons[0][0]=new Hexagon(blankPanther);
-            hexagons[2][0]=new Hexagon(captainMarvel);
-            hexagons[4][0]=new Hexagon(drStrange);
-            hexagons[6][0]=new Hexagon(ironMan);
+            hexagons[0][0].setPiece(blankPanther);
+            hexagons[2][0].setPiece(captainMarvel);
+            hexagons[4][0].setPiece(drStrange);
+            hexagons[6][0].setPiece(ironMan);
 
-            hexagons[1][9]=new Hexagon(killMonger);
-            hexagons[3][9]=new Hexagon(loki);
-            hexagons[5][9]=new Hexagon(thanos);
-            hexagons[7][9]=new Hexagon(ultron);
+            hexagons[1][9].setPiece(killMonger);
+            hexagons[3][9].setPiece(loki);
+            hexagons[5][9].setPiece(thanos);
+            hexagons[7][9].setPiece(ultron);
         }
         catch (Exception e){
             e.printStackTrace();
         }
     }
-
-    public Hexagon[][] getHexagons() {
-        return hexagons;
-    }
-
-    public void setHexagons(Hexagon[][] board) {
-        this.hexagons = board;
-    }
-
-    private Hexagon[][] hexagons;
 
     public Hexagon getHexagon(int i, int j) {
         return hexagons[i][j];
