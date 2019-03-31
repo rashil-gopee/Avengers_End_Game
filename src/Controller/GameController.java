@@ -15,12 +15,23 @@ public class GameController {
     }
 
     public void movePiece(Hexagon source, Hexagon target) {
+//        System.out.println(source);
+//        System.out.println(target);
+//
+//        System.out.println(target.getPiece() == null);
+//        System.out.println(source.getPiece() !=null);
+
+//        if (source.getPiece() != null)
+//            System.out.println(source.getPiece().isOwner(game.getPlayer()));
+
         if (target.getPiece() == null && source.getPiece() !=null && source.getPiece().isOwner(game.getPlayer())) {
+            System.out.println("Entered");
             boolean move= source.getPiece().move(source, target);
 
             if(move) {
                 game.changePlayerTurn();
             }
+        }
         }
     }
 

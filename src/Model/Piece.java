@@ -49,24 +49,23 @@ public abstract class Piece {
         {
             return false;
         }
-        int stealthLeft=target.getPiece().damage(attackingPower);
-        if(stealthLeft==0)
+        target.getPiece().stealth = target.getPiece().stealth - source.getPiece().stealth;
+        if(target.getPiece().stealth <= 0)
             target.setPiece(null);
         return true;
     }
 
     public boolean isOwner(Player player)
     {
-        if(owner.equals(player))
-            return true;
-        return false;
+        return owner.equals(player);
     }
-    public int damage(int attack)
-    {
-        if(stealth>attack)
-            stealth=stealth-attack;
-        else
-            stealth=0;
-        return stealth;
-    }
+
+//    public int damage(int attack)
+//    {
+//        if(stealth>attack)
+//            stealth=stealth-attack;
+//        else
+//            stealth=0;
+//        return stealth;
+//    }
 }
