@@ -26,12 +26,11 @@ public class GameController {
 
         if (target.getPiece() == null && source.getPiece() !=null && source.getPiece().isOwner(game.getPlayer())) {
             System.out.println("Entered");
-            boolean move= source.getPiece().move(source, target);
+            boolean move = source.getPiece().move(source, target);
 
-            if(move) {
+            if (move) {
                 game.changePlayerTurn();
             }
-        }
         }
     }
 
