@@ -46,6 +46,9 @@ public class GameController {
         }
         else{
             Hexagon targetedHex = game.getBoard().getHexagon(x, y);
+            if(targetedHex.getPiece()==null)
+                return;
+
             boolean attack=selectedHexagon.getPiece().attack(selectedHexagon,targetedHex);
             if(attack)
                 changePlayerTurn();
