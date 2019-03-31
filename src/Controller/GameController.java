@@ -23,17 +23,17 @@ public class GameController {
         }
         else {
             Hexagon targetedHex = game.getBoard().getHexagon(x, y);
-            if(targetedHex.getPiece()==null) {
-                selectedHexagon.getPiece().move(selectedHexagon, targetedHex);
+            boolean move=selectedHexagon.getPiece().move(selectedHexagon, targetedHex);
+            if(move)
                 changePlayerTurn();
-            }
+
             selectedHexagon = null;
         }
     }
 
     private void changePlayerTurn() {
         if(game.getPlayerTurn()==0)
-        game.setPlayerTurn(1);
+            game.setPlayerTurn(1);
         else
             game.setPlayerTurn(0);
 

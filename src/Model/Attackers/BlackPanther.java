@@ -15,21 +15,18 @@ public class BlackPanther extends Attacker {
             super(100, 7, 1, ImageIO.read(new URL("https://blogs.lcms.org/wp-content/uploads/2018/02/Black-Panther-770x514.jpg")), owner);
     }
 
-    public void move(Hexagon source,Hexagon target) {
+    public boolean move(Hexagon source,Hexagon target) {
         System.out.println("Move Black Panther");
-        System.out.println(target.getPiece());
-        System.out.println("x "+abs(source.getX()-target.getX()));
-        System.out.println("y "+abs(source.getY()-target.getY()));
-
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {
-            return;
+            return false;
         }
         if(target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);
+            return true;
         }
-
+        return false;
     }
 
     public void attack(Hexagon hexagon) {

@@ -40,7 +40,7 @@ public abstract class Piece {
     public Image getImage() {
         return image;
     }
-    public abstract void move(Hexagon source,Hexagon target);
+    public abstract boolean move(Hexagon source,Hexagon target);
 
     public abstract void attack(Hexagon hexagon);
 

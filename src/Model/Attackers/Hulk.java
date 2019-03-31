@@ -14,17 +14,19 @@ public class Hulk extends Attacker {
         super(100, 7, 1, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/5/59/Hulk_%28comics_character%29.png")), owner);
     }
 
-    public void move(Hexagon source, Hexagon target) {
+    public boolean move(Hexagon source, Hexagon target) {
         System.out.println("Move Hulk");
 
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {
-            return;
+            return false;
         }
         if(target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);
+            return true;
         }
+        return false;
 
     }
 
