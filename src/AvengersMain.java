@@ -1,15 +1,5 @@
 import Controller.GameController;
-import Model.Attacker;
-import Model.Attackers.BlackPanther;
-import Model.Attackers.CaptainMarvel;
-import Model.Attackers.DrStrange;
-import Model.Attackers.IronMan;
-import Model.Defenders.KillMonger;
-import Model.Defenders.Loki;
-import Model.Defenders.Thanos;
-import Model.Defenders.Ultron;
 import Model.Game;
-import Model.Piece;
 import Model.Player;
 import View.AvengersGameView;
 
