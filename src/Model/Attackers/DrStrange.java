@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 
 public class DrStrange extends Attacker {
     public DrStrange(Player owner) throws Exception {
-        super(100, 5, 2, ImageIO.read(new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png")), owner);
+        super(100, 5, 2, ImageIO.read(new URL("https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/12/doctor-strange-2-benedict-cumberbatch.jpg?itok=jeAJwK4P")), owner);
     }
 
     public void move(Hexagon source,Hexagon target) {

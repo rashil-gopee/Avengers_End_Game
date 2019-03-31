@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 
 public class CaptainMarvel extends Attacker {
     public CaptainMarvel(Player owner) throws Exception {
-        super(100, 4, 2, ImageIO.read(new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png")), owner);
+        super(100, 4, 2, ImageIO.read(new URL("https://cdn.vox-cdn.com/thumbor/ZgSb4yv1qtN9vYVfCgSSgnBDWMs=/0x0:1233x1000/1200x800/filters:focal(626x149:822x345)/cdn.vox-cdn.com/uploads/chorus_image/image/63199739/MV5BN2M1NjBmYTAtYmM0OC00Yzk5LWFiMjAtZmFiMjc4YmQ4MmE2XkEyXkFqcGdeQXVyNjczOTE0MzM_._V1_SY1000_CR0_0_1233_1000_AL_.0.jpg")), owner);
     }
 
     public void move(Hexagon source,Hexagon target) {

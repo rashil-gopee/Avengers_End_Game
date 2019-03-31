@@ -7,13 +7,22 @@ import Model.Player;
 import javax.imageio.ImageIO;
 import java.net.URL;
 
+import static java.lang.Math.abs;
+
 public class Loki extends Defender {
     public Loki(Player owner) throws Exception{
-        super(100, 10, 3, ImageIO.read(new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png")), owner);
+        super(100, 5, 2, ImageIO.read(new URL("https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/loki_8.jpg?itok=hrqRLL8M")), owner);
     }
 
     public void move(Hexagon source,Hexagon target) {
-
+        if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
+        {
+            return;
+        }
+        if(target.getPiece()==null) {
+            target.setPiece(source.getPiece());
+            source.setPiece(null);
+        }
     }
 
     public void attack(Hexagon hexagon) {

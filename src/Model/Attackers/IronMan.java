@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 
 public class IronMan extends Attacker {
     public IronMan(Player owner) throws Exception {
-        super(100, 9, 1, ImageIO.read(new URL("http://www.pngall.com/wp-content/uploads/2016/06/Superman-Logo-Free-Download-PNG.png")), owner);
+        super(100, 9, 1, ImageIO.read(new URL("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/3/39/AoU_Iron_Man_Mk43_art.png/revision/latest?cb=20150310052243")), owner);
     }
 
     public void move(Hexagon source,Hexagon target) {
