@@ -28,8 +28,8 @@ public class AvengersGameView
 	final static Color COLOURTWOTXT = new Color(255,100,255);
 	final static int BSIZE = 10; //board size.
 	final static int HEXSIZE = 60;	//hex size in pixels
-	final static int BORDERS = 15;  
-	final static int SCRSIZE = HEXSIZE * (BSIZE + 1) + BORDERS*3; //screen size (vertical dimension).
+	final static int BORDERS = 10;
+	final static int SCRSIZE = HEXSIZE * (BSIZE + 10) + BORDERS*3; //screen size (vertical dimension).
 
 
 	void initGame(){
@@ -42,13 +42,13 @@ public class AvengersGameView
 	private void createAndShowGUI()
 	{
 		DrawingPanel panel = new DrawingPanel();
-
-
 		//JFrame.setDefaultLookAndFeelDecorated(true);
 		JFrame frame = new JFrame("Avengers End Game");
 		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		Container content = frame.getContentPane();
-		content.add(panel);
+		JLabel lab1 = new JLabel("User Name", JLabel.LEFT);
+        content.add(lab1);
+        content.add(panel);
 		frame.setSize( (int)(SCRSIZE/1.23), SCRSIZE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo( null );
@@ -87,7 +87,9 @@ public class AvengersGameView
 					hexmech.fillHex(i,j, gameController.getGame().getBoard().getHexagon(i, j), g2);
 				}
 			}
-		}
+            g2.drawString("Attacker",350,500);
+
+        }
 
 		class MyMouseListener extends MouseAdapter	{	//inner class inside DrawingPanel 
 			public void mouseClicked(MouseEvent e) {
@@ -102,10 +104,11 @@ public class AvengersGameView
 					System.out.println("Left Click!");
 					gameController.leftClick(p.x, p.y);
 				}
-//				else if(e.getButton() == MouseEvent.BUTTON3) {
-//					System.out.println("Right Click!");
-//					selectedHex = null;
-//				}
+				else if(e.getButton() == MouseEvent.BUTTON3) {
+					System.out.println("Right Click!");
+                    gameController.rightClick(p.x, p.y);
+
+                }
 				repaint();
 			}		 
 		}

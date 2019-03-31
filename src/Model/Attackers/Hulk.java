@@ -11,12 +11,11 @@ import static java.lang.Math.abs;
 
 public class Hulk extends Attacker {
     public Hulk(Player owner) throws Exception{
-        super(100, 7, 1, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/5/59/Hulk_%28comics_character%29.png")), owner);
+        super(20, 7, 1, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/5/59/Hulk_%28comics_character%29.png")), owner);
     }
 
     public boolean move(Hexagon source, Hexagon target) {
         System.out.println("Move Hulk");
-
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {
             return false;
@@ -30,7 +29,5 @@ public class Hulk extends Attacker {
 
     }
 
-    public void attack(Hexagon hexagon) {
 
-    }
 }

@@ -12,7 +12,7 @@ import static java.lang.Math.abs;
 public class BlackDwarf extends Defender {
 
     public BlackDwarf(Player owner) throws Exception {
-        super(100, 4, 2, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg")), owner);
+        super(20, 4, 2, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg")), owner);
     }
 
     public boolean move(Hexagon source, Hexagon target) {
@@ -28,7 +28,5 @@ public class BlackDwarf extends Defender {
         return false;
     }
 
-    public void attack(Hexagon hexagon) {
 
-    }
 }

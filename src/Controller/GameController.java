@@ -38,4 +38,19 @@ public class GameController {
             game.setPlayerTurn(0);
 
     }
+
+    public void rightClick(int x, int y) {
+        if(selectedHexagon==null)
+        {
+            return;
+        }
+        else{
+            Hexagon targetedHex = game.getBoard().getHexagon(x, y);
+            boolean attack=selectedHexagon.getPiece().attack(selectedHexagon,targetedHex);
+            if(attack)
+                changePlayerTurn();
+
+            selectedHexagon = null;
+        }
+    }
 }

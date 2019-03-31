@@ -2,6 +2,8 @@ package Model;
 
 import java.awt.*;
 
+import static java.lang.Math.abs;
+
 public abstract class Piece {
     private int stealth;
     private int attackingPower;
@@ -42,12 +44,29 @@ public abstract class Piece {
     }
     public abstract boolean move(Hexagon source,Hexagon target);
 
-    public abstract void attack(Hexagon hexagon);
+    public  boolean attack(Hexagon source,Hexagon target){
+        if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
+        {
+            return false;
+        }
+        int stealthLeft=target.getPiece().damage(attackingPower);
+        if(stealthLeft==0)
+            target.setPiece(null);
+        return true;
+    }
 
     public boolean isOwner(Player player)
     {
         if(owner.equals(player))
             return true;
         return false;
+    }
+    public int damage(int attack)
+    {
+        if(stealth>attack)
+            stealth=stealth-attack;
+        else
+            stealth=0;
+        return stealth;
     }
 }

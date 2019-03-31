@@ -12,7 +12,7 @@ import static java.lang.Math.abs;
 
 public class BlackPanther extends Attacker {
     public BlackPanther(Player owner) throws Exception{
-            super(100, 7, 1, ImageIO.read(new URL("https://blogs.lcms.org/wp-content/uploads/2018/02/Black-Panther-770x514.jpg")), owner);
+            super(20, 7, 1, ImageIO.read(new URL("https://blogs.lcms.org/wp-content/uploads/2018/02/Black-Panther-770x514.jpg")), owner);
     }
 
     public boolean move(Hexagon source,Hexagon target) {
@@ -29,7 +29,5 @@ public class BlackPanther extends Attacker {
         return false;
     }
 
-    public void attack(Hexagon hexagon) {
 
-    }
 }

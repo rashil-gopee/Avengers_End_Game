@@ -138,7 +138,6 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 		int y = j * h + (i%2) * h/2;
 
 		if (hexagon.getPiece() == null) {
-//			g2.setColor(AvengersGameView.COLOURONETXT);
 			g2.setColor(AvengersGameView.COLOURONE);
 			g2.drawString("", x+r+BORDERS, y+r+BORDERS+4); //FIXME: handle XYVertex
 			g2.setColor(AvengersGameView.COLOURONETXT);
@@ -153,13 +152,9 @@ The hexagon is drawn in the colour specified in hexgame.COLOURELL.
 				e.printStackTrace();
 			}
 
-//			g2.setColor(AvengersGameView.COLOURTWO);
-
 			g2.setColor(AvengersGameView.COLOURTWOTXT);
 
-
 			g2.drawString(Integer.toString(hexagon.getPiece().getStealth()) , x+r+BORDERS, y+r+BORDERS+4); //FIXME handle XYVertex
-			//g2.drawString(i+","+j, x+r+BORDERS, y+r+BORDERS+4);
 		}
 	}
 

@@ -11,7 +11,7 @@ import static java.lang.Math.abs;
 
 public class KillMonger extends Defender {
     public KillMonger(Player owner) throws Exception {
-        super(100, 4, 2, ImageIO.read(new URL("https://pixel.nymag.com/imgs/daily/vulture/2018/09/17/17-killmonger-movie.w700.h700.jpg")), owner);
+        super(20, 4, 2, ImageIO.read(new URL("https://pixel.nymag.com/imgs/daily/vulture/2018/09/17/17-killmonger-movie.w700.h700.jpg")), owner);
     }
 
     public boolean move(Hexagon source,Hexagon target) {
@@ -27,7 +27,5 @@ public class KillMonger extends Defender {
         return false;
     }
 
-    public void attack(Hexagon hexagon) {
 
-    }
 }
