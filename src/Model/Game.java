@@ -13,8 +13,8 @@ public class Game {
 
     public Game(int numOfPlayers){
         this.players = new ArrayList<>();
-        for (int i =0; i <= numOfPlayers; i++) {
-            this.players.add(new Player("Player " + i +1 ));
+        for (int i =0; i < numOfPlayers; i++) {
+            this.players.add(new Player("Player " + i + 1 ));
         }
         this.board=new Board(players);
         playerTurn = 0;
@@ -37,7 +37,7 @@ public class Game {
     }
 
     public void changePlayerTurn() {
-        if (playerTurn == (players.size() - 2)){
+        if (playerTurn == (players.size() - 1)){
             playerTurn = 0;
         }
         else
