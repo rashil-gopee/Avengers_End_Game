@@ -21,6 +21,8 @@ public class BlackPanther extends Attacker {
         {
             return false;
         }
+        if(abs(source.getX()-target.getX())==0)
+            return false;
         if(target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);

@@ -20,6 +20,10 @@ public class Hulk extends Attacker {
         {
             return false;
         }
+        if((source.getY()-target.getY())>0)
+        {
+            return false;
+        }
         if(target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);
