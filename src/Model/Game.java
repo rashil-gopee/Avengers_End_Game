@@ -3,16 +3,14 @@ package Model;
 import java.util.ArrayList;
 
 public class Game {
+    private static Game instance = null;
+
     private Board board;
     private ArrayList<Player> players;
     private int playerTurn;
-    Hexagon selectedHexagon;
-    public Board getBoard() {
-        return board;
-    }
+    private Hexagon selectedHexagon;
 
-
-    public Game(int numOfPlayers){
+    private Game(int numOfPlayers){
         this.players = new ArrayList<>();
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
@@ -21,15 +19,15 @@ public class Game {
         playerTurn = 0;
     }
 
-    public Hexagon getSelectedHexagon() {
-        return selectedHexagon;
+    public static Game getInstance(int numOfPlayers){
+        if (instance == null){
+            instance = new Game(numOfPlayers);
+        }
+        return instance;
     }
 
-    public void setSelectedHexagon(Hexagon selectedHexagon) {
-        if(selectedHexagon==null||selectedHexagon.getPiece()!=null&&selectedHexagon.getPiece().isOwner(players.get(playerTurn))) {
-            this.selectedHexagon = selectedHexagon;
-            return;
-        }
+    public Board getBoard() {
+        return board;
     }
 
     public Player getPlayer() {
@@ -46,6 +44,15 @@ public class Game {
 
     public ArrayList<Player> getPlayers(){
         return players;
+    }
+
+    public Hexagon getSelectedHexagon() {
+        return selectedHexagon;
+    }
+
+    public void setSelectedHexagon(Hexagon selectedHexagon) {
+        if(selectedHexagon==null||selectedHexagon.getPiece()!=null&&selectedHexagon.getPiece().isOwner(players.get(playerTurn)))
+            this.selectedHexagon = selectedHexagon;
     }
 
     public void changePlayerTurn() {
