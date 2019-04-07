@@ -5,9 +5,8 @@ import javax.swing.*;
 
 public class AvengersMain {
 
-    public static Game game;
-
     public static void main(String args[]) throws Exception {
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new AvengersGameView();

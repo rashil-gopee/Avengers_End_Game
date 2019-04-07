@@ -9,16 +9,12 @@ public class Game {
     private Board board;
     private ArrayList<Player> players;
     private int playerTurn;
-<<<<<<< HEAD
     Hexagon selectedHexagon;
     public Board getBoard() {
         return board;
     }
     private List<ModelChangeListener> listeners = new ArrayList<>();
 
-=======
-    private Hexagon selectedHexagon;
->>>>>>> 97aa321dc1ec86e5d23faf618a2e7bf4952ced3b
 
     private Game(int numOfPlayers){
         this.players = new ArrayList<>();
@@ -36,9 +32,6 @@ public class Game {
         return instance;
     }
 
-    public Board getBoard() {
-        return board;
-    }
 
     public Player getPlayer() {
         return players.get(playerTurn);
@@ -77,5 +70,9 @@ public class Game {
 
     private void notifyModelChangedListeners() {
         this.listeners.forEach(listener -> listener.onModelChange());
+    }
+
+    private void addModelChangedListeners(ModelChangeListener listener) {
+        this.listeners.add(listener);
     }
 }
