@@ -15,6 +15,9 @@ public class Game {
     }
     private List<ModelChangeListener> listeners = new ArrayList<>();
 
+    public int getPlayerTurn() {
+        return playerTurn;
+    }
 
     private Game(int numOfPlayers){
         this.players = new ArrayList<>();
@@ -31,7 +34,6 @@ public class Game {
         }
         return instance;
     }
-
 
     public Player getPlayer() {
         return players.get(playerTurn);

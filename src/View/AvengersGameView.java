@@ -1,7 +1,6 @@
 package View;
 
 import Controller.GameController;
-import Model.Hexagon;
 import Model.ModelChangeListener;
 
 import java.awt.*;
@@ -13,6 +12,7 @@ public class AvengersGameView implements ModelChangeListener
 {
 
     private GameController gameController;
+
     DrawingPanel panel = new DrawingPanel();
 
     public AvengersGameView() {
@@ -21,7 +21,7 @@ public class AvengersGameView implements ModelChangeListener
         initGame();
         createAndShowGUI();
     }
-    
+
     //constants and global variables
     final static Color COLOURBACK =  Color.WHITE;
     final static Color COLOURCELL =  Color.ORANGE;
@@ -78,7 +78,9 @@ public class AvengersGameView implements ModelChangeListener
         {
             Graphics2D g2 = (Graphics2D)g;
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+            g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
+            g2.setColor(COLOURONETXT);
+
             super.paintComponent(g2);
             //draw grid
             for (int i=0;i<BSIZE;i++) {
@@ -93,12 +95,20 @@ public class AvengersGameView implements ModelChangeListener
                 }
             }
 
-            g2.drawString("Attacker",350,500);
+            hexmech.drawHex(11,16,g2);
+            hexmech.modelDraw(11,6,"Player",g2);
+            hexmech.drawHex(13,6,g2);
+            hexmech.modelDraw(13,6,Integer.toString(gameController.getGame().getPlayerTurn()+1),g2);
+            hexmech.modelDraw(15,6,"Turn",g2);
+
+//            super.paintComponent(g2);
+
 
         }
 
         class MyMouseListener extends MouseAdapter	{	//inner class inside DrawingPanel
             public void mouseClicked(MouseEvent e) {
+
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
                 if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
 
@@ -111,7 +121,7 @@ public class AvengersGameView implements ModelChangeListener
                     gameController.attackPiece(p.x, p.y);
                 }
 
-                //repaint();
+
             }
         }
     }
