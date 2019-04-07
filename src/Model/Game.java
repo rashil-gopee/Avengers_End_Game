@@ -59,7 +59,7 @@ public class Game {
     }
 
     private void notifyModelChangedListeners() {
-        this.listeners.forEach(listener -> listener.onModelChange());
+        this.listeners.forEach(listener -> listener.onModelChange(this));
     }
 
     public void addModelChangedListeners(ModelChangeListener listener) {

@@ -9,7 +9,7 @@ public class AvengersMain {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new AvengersGameView();
+                new AvengersGameView(Game.getInstance(2));
             }
         });
     }

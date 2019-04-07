@@ -2,5 +2,5 @@ package Model;
 
 public interface ModelChangeListener {
 
-    public void onModelChange();
+    public void onModelChange(Game game);
 }

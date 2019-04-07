@@ -1,6 +1,7 @@
 package View;
 
 import Controller.GameController;
+import Model.Game;
 import Model.ModelChangeListener;
 
 import java.awt.*;
@@ -12,10 +13,11 @@ public class AvengersGameView implements ModelChangeListener
 {
 
     private GameController gameController;
-
+    private Game game;
     DrawingPanel panel = new DrawingPanel();
 
-    public AvengersGameView() {
+    public AvengersGameView(Game game) {
+        this.game=game;
         this.gameController = new GameController();
         gameController.getGame().addModelChangedListeners(this);
         initGame();
@@ -38,7 +40,6 @@ public class AvengersGameView implements ModelChangeListener
 
     void initGame(){
         hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
-
         hexmech.setHeight(HEXSIZE); //Either setHeight or setSize must be run to initialize the hex
         hexmech.setBorders(BORDERS);
     }
@@ -48,8 +49,6 @@ public class AvengersGameView implements ModelChangeListener
         JFrame frame = new JFrame("Avengers End Game");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
-        JLabel lab1 = new JLabel("User Name", JLabel.LEFT);
-        content.add(lab1);
         content.add(panel);
         frame.setSize( (int)(SCRSIZE/1.23), SCRSIZE);
         frame.setResizable(false);
@@ -57,22 +56,19 @@ public class AvengersGameView implements ModelChangeListener
         frame.setVisible(true);
     }
     @Override
-    public void onModelChange() {
+    public void onModelChange(Game game) {
+        this.game=game;
         panel.repaint();
     }
 
     class DrawingPanel extends JPanel
     {
-
-
         public DrawingPanel()
         {
             setBackground(COLOURBACK);
-
             MyMouseListener ml = new MyMouseListener();
             addMouseListener(ml);
         }
-
 
         public void paintComponent(Graphics g)
         {
@@ -80,9 +76,7 @@ public class AvengersGameView implements ModelChangeListener
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
             g2.setColor(COLOURONETXT);
-
             super.paintComponent(g2);
-            //draw grid
             for (int i=0;i<BSIZE;i++) {
                 for (int j=0;j<BSIZE;j++) {
                     hexmech.drawHex(i,j,g2);
@@ -91,22 +85,18 @@ public class AvengersGameView implements ModelChangeListener
 
             for (int i=0;i<BSIZE;i++) {
                 for (int j=0;j<BSIZE;j++) {
-                    hexmech.fillHex(i,j, gameController.getGame().getBoard().getHexagon(i, j), g2);
+                    hexmech.fillHex(i,j, game.getBoard().getHexagon(i, j), g2);
                 }
             }
 
             hexmech.drawHex(11,16,g2);
             hexmech.modelDraw(11,6,"Player",g2);
             hexmech.drawHex(13,6,g2);
-            hexmech.modelDraw(13,6,Integer.toString(gameController.getGame().getPlayerTurn()+1),g2);
+            hexmech.modelDraw(13,6,Integer.toString(game.getPlayerTurn()+1),g2);
             hexmech.modelDraw(15,6,"Turn",g2);
-
-//            super.paintComponent(g2);
-
-
         }
 
-        class MyMouseListener extends MouseAdapter	{	//inner class inside DrawingPanel
+        class MyMouseListener extends MouseAdapter	{
             public void mouseClicked(MouseEvent e) {
 
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
