@@ -9,7 +9,7 @@ public class GameController {
     private Game game;
 
     public GameController(){
-        game = game = new Game(2);
+        game = Game.getInstance(2);
     }
 
     public Game getGame() {
