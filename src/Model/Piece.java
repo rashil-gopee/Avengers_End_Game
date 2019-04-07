@@ -49,7 +49,7 @@ public abstract class Piece {
         {
             return false;
         }
-        target.getPiece().stealth = target.getPiece().stealth - source.getPiece().stealth;
+        target.getPiece().stealth = target.getPiece().stealth - source.getPiece().attackingPower;
         if(target.getPiece().stealth <= 0)
             target.setPiece(null);
         return true;

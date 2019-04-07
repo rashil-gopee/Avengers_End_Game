@@ -6,10 +6,11 @@ public class Game {
     private Board board;
     private ArrayList<Player> players;
     private int playerTurn;
-
+    Hexagon selectedHexagon;
     public Board getBoard() {
         return board;
     }
+
 
     public Game(int numOfPlayers){
         this.players = new ArrayList<>();
@@ -18,6 +19,17 @@ public class Game {
         }
         this.board=new Board(players);
         playerTurn = 0;
+    }
+
+    public Hexagon getSelectedHexagon() {
+        return selectedHexagon;
+    }
+
+    public void setSelectedHexagon(Hexagon selectedHexagon) {
+        if(selectedHexagon==null||selectedHexagon.getPiece()!=null&&selectedHexagon.getPiece().isOwner(players.get(playerTurn))) {
+            this.selectedHexagon = selectedHexagon;
+            return;
+        }
     }
 
     public Player getPlayer() {
