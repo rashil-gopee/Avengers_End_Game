@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Board board;
@@ -10,6 +11,7 @@ public class Game {
     public Board getBoard() {
         return board;
     }
+    private List<ModelChangeListener> listeners = new ArrayList<>();
 
 
     public Game(int numOfPlayers){
@@ -49,10 +51,16 @@ public class Game {
     }
 
     public void changePlayerTurn() {
+
         if (playerTurn == (players.size() - 1)){
             playerTurn = 0;
         }
         else
             playerTurn = playerTurn + 1;
+        this.notifyModelChangedListeners();
+    }
+
+    private void notifyModelChangedListeners() {
+        this.listeners.forEach(listener -> listener.onModelChange());
     }
 }

@@ -2,17 +2,18 @@ package View;
 
 import Controller.GameController;
 import Model.Hexagon;
+import Model.ModelChangeListener;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 
-public class AvengersGameView
+public class AvengersGameView implements ModelChangeListener
 {
-    //	private Game game;
+
     private GameController gameController;
-//	private Hexagon selectedHex;
+    DrawingPanel panel = new DrawingPanel();
 
     public AvengersGameView() {
         this.gameController = new GameController();
@@ -44,7 +45,7 @@ public class AvengersGameView
 
     private void createAndShowGUI()
     {
-        DrawingPanel panel = new DrawingPanel();
+//        DrawingPanel panel = new DrawingPanel();
         //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Avengers End Game");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
@@ -57,7 +58,10 @@ public class AvengersGameView
         frame.setLocationRelativeTo( null );
         frame.setVisible(true);
     }
-
+    @Override
+    public void onModelChange() {
+        panel.repaint();
+    }
 
     class DrawingPanel extends JPanel
     {
@@ -71,6 +75,7 @@ public class AvengersGameView
             MyMouseListener ml = new MyMouseListener();
             addMouseListener(ml);
         }
+
 
         public void paintComponent(Graphics g)
         {
