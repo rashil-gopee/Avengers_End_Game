@@ -1,9 +1,7 @@
 package Controller;
 
 import Model.Game;
-import Model.Hexagon;
 
-import java.awt.event.MouseEvent;
 
 public class GameController {
     private Game game;

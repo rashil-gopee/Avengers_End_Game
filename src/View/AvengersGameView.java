@@ -17,11 +17,11 @@ public class AvengersGameView implements ModelChangeListener
 
     public AvengersGameView() {
         this.gameController = new GameController();
+        gameController.getGame().addModelChangedListeners(this);
         initGame();
         createAndShowGUI();
     }
-
-
+    
     //constants and global variables
     final static Color COLOURBACK =  Color.WHITE;
     final static Color COLOURCELL =  Color.ORANGE;
@@ -45,8 +45,6 @@ public class AvengersGameView implements ModelChangeListener
 
     private void createAndShowGUI()
     {
-//        DrawingPanel panel = new DrawingPanel();
-        //JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("Avengers End Game");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
@@ -65,8 +63,7 @@ public class AvengersGameView implements ModelChangeListener
 
     class DrawingPanel extends JPanel
     {
-        //mouse variables here
-        //Point mPt = new Point(0,0);
+
 
         public DrawingPanel()
         {
@@ -89,7 +86,7 @@ public class AvengersGameView implements ModelChangeListener
                     hexmech.drawHex(i,j,g2);
                 }
             }
-            //fill in hexes
+
             for (int i=0;i<BSIZE;i++) {
                 for (int j=0;j<BSIZE;j++) {
                     hexmech.fillHex(i,j, gameController.getGame().getBoard().getHexagon(i, j), g2);
@@ -114,7 +111,7 @@ public class AvengersGameView implements ModelChangeListener
                     gameController.attackPiece(p.x, p.y);
                 }
 
-                repaint();
+                //repaint();
             }
         }
     }

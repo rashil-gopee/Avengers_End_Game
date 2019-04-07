@@ -60,12 +60,4 @@ public abstract class Piece {
         return owner.equals(player);
     }
 
-//    public int damage(int attack)
-//    {
-//        if(stealth>attack)
-//            stealth=stealth-attack;
-//        else
-//            stealth=0;
-//        return stealth;
-//    }
 }

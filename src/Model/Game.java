@@ -37,18 +37,6 @@ public class Game {
         return players.get(playerTurn);
     }
 
-    public int getPlayerTurn() {
-        return playerTurn;
-    }
-
-    public void setPlayerTurn(int playerTurn) {
-        this.playerTurn = playerTurn;
-    }
-
-    public ArrayList<Player> getPlayers(){
-        return players;
-    }
-
     public Hexagon getSelectedHexagon() {
         return selectedHexagon;
     }
@@ -72,7 +60,7 @@ public class Game {
         this.listeners.forEach(listener -> listener.onModelChange());
     }
 
-    private void addModelChangedListeners(ModelChangeListener listener) {
+    public void addModelChangedListeners(ModelChangeListener listener) {
         this.listeners.add(listener);
     }
 }
