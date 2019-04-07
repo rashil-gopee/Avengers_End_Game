@@ -3,12 +3,6 @@ package View;
 import Model.Hexagon;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.FileOutputStream;
-import java.lang.reflect.Method;
-import java.net.URL;
-import javax.imageio.ImageIO;
-import javax.swing.*;
 
 /* This is a companion class to AvengersGameView.java. It handles all of the mechanics related to hexagon grids. */
 

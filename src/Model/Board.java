@@ -52,5 +52,4 @@ public class Board {
     public Hexagon getHexagon(int i, int j) {
         return hexagons[i][j];
     }
-
 }

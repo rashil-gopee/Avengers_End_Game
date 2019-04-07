@@ -1,8 +1,8 @@
 package Model;
 
 public class Hexagon {
-    int x;
-    int y;
+    private int x;
+    private int y;
     private Piece piece;
 
     public Hexagon(int x,int y) {
@@ -10,7 +10,6 @@ public class Hexagon {
         this.y=y;
         this.piece = null;
     }
-
 
     public int getX() {
         return x;

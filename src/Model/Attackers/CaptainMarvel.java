@@ -16,11 +16,7 @@ public class CaptainMarvel extends Attacker {
 
     public boolean move(Hexagon source,Hexagon target) {
         System.out.println("Move Captain Marvel");
-        if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
-        {
-            return false;
-        }
-        if(target.getPiece()==null) {
+        if(!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);
             return true;

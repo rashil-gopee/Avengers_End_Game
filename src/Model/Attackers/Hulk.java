@@ -16,21 +16,12 @@ public class Hulk extends Attacker {
 
     public boolean move(Hexagon source, Hexagon target) {
         System.out.println("Move Hulk");
-        if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
-        {
-            return false;
-        }
-        if((source.getY()-target.getY())>0)
-        {
-            return false;
-        }
-        if(target.getPiece()==null) {
+        if(!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && !(source.getY()-target.getY()>0) && target.getPiece()==null) {
             target.setPiece(source.getPiece());
             source.setPiece(null);
             return true;
         }
         return false;
-
     }
 
 

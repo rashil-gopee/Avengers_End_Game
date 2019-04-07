@@ -2,19 +2,18 @@ package View;
 
 import Controller.GameController;
 import Model.Game;
-import Model.ModelChangeListener;
+import Model.IModelChangeListener;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
 
-public class AvengersGameView implements ModelChangeListener
+public class AvengersGameView implements IModelChangeListener
 {
-
     private GameController gameController;
     private Game game;
-    DrawingPanel panel = new DrawingPanel();
+    private DrawingPanel panel = new DrawingPanel();
 
     public AvengersGameView(Game game) {
         this.game=game;
@@ -37,8 +36,7 @@ public class AvengersGameView implements ModelChangeListener
     final static int BORDERS = 10;
     final static int SCRSIZE = HEXSIZE * (BSIZE + 10) + BORDERS*3; //screen size (vertical dimension).
 
-
-    void initGame(){
+    private void initGame(){
         hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
         hexmech.setHeight(HEXSIZE); //Either setHeight or setSize must be run to initialize the hex
         hexmech.setBorders(BORDERS);
@@ -61,9 +59,9 @@ public class AvengersGameView implements ModelChangeListener
         panel.repaint();
     }
 
-    class DrawingPanel extends JPanel
+    private class DrawingPanel extends JPanel
     {
-        public DrawingPanel()
+        private DrawingPanel()
         {
             setBackground(COLOURBACK);
             MyMouseListener ml = new MyMouseListener();
@@ -98,7 +96,6 @@ public class AvengersGameView implements ModelChangeListener
 
         class MyMouseListener extends MouseAdapter	{
             public void mouseClicked(MouseEvent e) {
-
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
                 if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
 
@@ -110,8 +107,6 @@ public class AvengersGameView implements ModelChangeListener
                     System.out.println("Right Click!");
                     gameController.attackPiece(p.x, p.y);
                 }
-
-
             }
         }
     }

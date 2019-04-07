@@ -9,11 +9,11 @@ public class Game {
     private Board board;
     private ArrayList<Player> players;
     private int playerTurn;
-    Hexagon selectedHexagon;
+    private Hexagon selectedHexagon;
     public Board getBoard() {
         return board;
     }
-    private List<ModelChangeListener> listeners = new ArrayList<>();
+    private List<IModelChangeListener> listeners = new ArrayList<>();
 
     public int getPlayerTurn() {
         return playerTurn;
@@ -49,7 +49,6 @@ public class Game {
     }
 
     public void changePlayerTurn() {
-
         if (playerTurn == (players.size() - 1)){
             playerTurn = 0;
         }
@@ -62,7 +61,7 @@ public class Game {
         this.listeners.forEach(listener -> listener.onModelChange(this));
     }
 
-    public void addModelChangedListeners(ModelChangeListener listener) {
+    public void addModelChangedListeners(IModelChangeListener listener) {
         this.listeners.add(listener);
     }
 }

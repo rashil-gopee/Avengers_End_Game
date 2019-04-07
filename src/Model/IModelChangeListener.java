@@ -1,6 +1,5 @@
 package Model;
 
-public interface ModelChangeListener {
-
+public interface IModelChangeListener {
     public void onModelChange(Game game);
 }

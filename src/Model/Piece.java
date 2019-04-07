@@ -1,5 +1,8 @@
 package Model;
 
+import com.google.java.contract.Ensures;
+import com.google.java.contract.Requires;
+
 import java.awt.*;
 
 import static java.lang.Math.abs;
@@ -42,8 +45,10 @@ public abstract class Piece {
     public Image getImage() {
         return image;
     }
+
     public abstract boolean move(Hexagon source,Hexagon target);
 
+    @Requires("source.getPiece() != null")
     public  boolean attack(Hexagon source,Hexagon target){
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {
