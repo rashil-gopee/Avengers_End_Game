@@ -48,7 +48,7 @@ public abstract class Piece {
 
     public abstract boolean move(Hexagon source,Hexagon target);
 
-    @Requires("source.getPiece() != null")
+    @Requires("source.getPiece() == null")
     public  boolean attack(Hexagon source,Hexagon target){
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {

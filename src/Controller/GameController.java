@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Game;
+import View.AvengersGameView;
 
 public class GameController {
     private Game game;
@@ -9,39 +10,14 @@ public class GameController {
         game = Game.getInstance(2);
     }
 
-    public Game getGame() {
-        return game;
+    public void click(int x,int y)
+    {
+        game.click(x, y);
     }
 
-    public void movePiece(int x,int y) {
-        boolean move;
-        if(game.getSelectedHexagon()==null)
-        {
-            game.setSelectedHexagon(game.getBoard().getHexagon(x,y));
-        }
-        else
-        {
-            move = game.getSelectedHexagon().getPiece().move(game.getSelectedHexagon(),game.getBoard().getHexagon(x,y));
-            if (move) {
-                game.changePlayerTurn();
-            }
-            game.setSelectedHexagon(null);
-        }
+    public void registerListner(AvengersGameView view){
+        game.addModelChangedListeners(view);
     }
 
-    public void attackPiece(int x,int y) {
-        boolean move;
-        if(game.getSelectedHexagon()==null)
-        {
-            game.setSelectedHexagon(game.getBoard().getHexagon(x,y));
-        }
-        else
-        {
-            move = game.getSelectedHexagon().getPiece().attack(game.getSelectedHexagon(),game.getBoard().getHexagon(x,y));
-            if (move) {
-                game.changePlayerTurn();
-            }
-            game.setSelectedHexagon(null);
-        }
-    }
+
 }

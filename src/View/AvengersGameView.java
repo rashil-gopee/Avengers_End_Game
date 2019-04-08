@@ -18,7 +18,8 @@ public class AvengersGameView implements IModelChangeListener
     public AvengersGameView(Game game) {
         this.game=game;
         this.gameController = new GameController();
-        gameController.getGame().addModelChangedListeners(this);
+//        BSIZE=game.getBoardSize();
+        gameController.registerListner(this);
         initGame();
         createAndShowGUI();
     }
@@ -31,7 +32,7 @@ public class AvengersGameView implements IModelChangeListener
     final static Color COLOURONE = new Color(255,255,255,200);
     final static Color COLOURONETXT = Color.BLUE;
     final static Color COLOURTWOTXT = new Color(255,100,255);
-    final static int BSIZE = 10; //board size.
+    final static int BSIZE=10; //board size.
     final static int HEXSIZE = 60;	//hex size in pixels
     final static int BORDERS = 10;
     final static int SCRSIZE = HEXSIZE * (BSIZE + 10) + BORDERS*3; //screen size (vertical dimension).
@@ -98,15 +99,15 @@ public class AvengersGameView implements IModelChangeListener
             public void mouseClicked(MouseEvent e) {
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
                 if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
-
-                if(e.getButton() == MouseEvent.BUTTON1) {
-                    System.out.println("Left Click!");
-                    gameController.movePiece(p.x, p.y);
-                }
-                else if(e.getButton() == MouseEvent.BUTTON3) {
-                    System.out.println("Right Click!");
-                    gameController.attackPiece(p.x, p.y);
-                }
+                gameController.click(p.x, p.y);
+//                if(e.getButton() == MouseEvent.BUTTON1) {
+//                    System.out.println("Left Click!");
+//                    gameController.movePiece(p.x, p.y);
+//                }
+//                else if(e.getButton() == MouseEvent.BUTTON3) {
+//                    System.out.println("Right Click!");
+//                    gameController.attackPiece(p.x, p.y);
+//                }
             }
         }
     }

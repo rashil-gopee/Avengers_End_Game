@@ -10,6 +10,12 @@ public class Game {
     private ArrayList<Player> players;
     private int playerTurn;
     private Hexagon selectedHexagon;
+    private int boardSize;
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -63,5 +69,28 @@ public class Game {
 
     public void addModelChangedListeners(IModelChangeListener listener) {
         this.listeners.add(listener);
+    }
+
+    public void click(int x, int y) {
+        boolean move=false;
+        if(getSelectedHexagon()==null)
+        {
+            setSelectedHexagon(getBoard().getHexagon(x,y));
+            return;
+        }
+        else
+        {
+            if(getBoard().getHexagon(x,y).getPiece() == null)
+                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn)))
+                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            if (move) {
+                changePlayerTurn();
+            }
+            setSelectedHexagon(null);
+        }
+
+
+
     }
 }
