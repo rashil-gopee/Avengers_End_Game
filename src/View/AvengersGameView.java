@@ -18,8 +18,9 @@ public class AvengersGameView implements IModelChangeListener
     public AvengersGameView(Game game) {
         this.game=game;
         this.gameController = new GameController();
-//        BSIZE=game.getBoardSize();
+        boardSize=game.getBoardSize();
         gameController.registerListner(this);
+        BSIZE=boardSize+10;
         initGame();
         createAndShowGUI();
     }
@@ -32,10 +33,11 @@ public class AvengersGameView implements IModelChangeListener
     final static Color COLOURONE = new Color(255,255,255,200);
     final static Color COLOURONETXT = Color.BLUE;
     final static Color COLOURTWOTXT = new Color(255,100,255);
-    final static int BSIZE=10; //board size.
+    private int boardSize; //board size.
+    static int BSIZE;
     final static int HEXSIZE = 60;	//hex size in pixels
     final static int BORDERS = 10;
-    final static int SCRSIZE = HEXSIZE * (BSIZE + 10) + BORDERS*3; //screen size (vertical dimension).
+    final static int SCRSIZE = HEXSIZE * (BSIZE ) + BORDERS*3; //screen size (vertical dimension).
 
     private void initGame(){
         hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
@@ -100,14 +102,6 @@ public class AvengersGameView implements IModelChangeListener
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
                 if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
                 gameController.click(p.x, p.y);
-//                if(e.getButton() == MouseEvent.BUTTON1) {
-//                    System.out.println("Left Click!");
-//                    gameController.movePiece(p.x, p.y);
-//                }
-//                else if(e.getButton() == MouseEvent.BUTTON3) {
-//                    System.out.println("Right Click!");
-//                    gameController.attackPiece(p.x, p.y);
-//                }
             }
         }
     }

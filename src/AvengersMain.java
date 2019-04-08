@@ -7,9 +7,10 @@ public class AvengersMain {
 
     public static void main(String args[]) throws Exception {
 
+        Game game = Game.getInstance(2,10);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new AvengersGameView(Game.getInstance(2));
+                new AvengersGameView(Game.getInstance());
             }
         });
     }

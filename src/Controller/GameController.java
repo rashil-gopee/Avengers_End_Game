@@ -7,7 +7,7 @@ public class GameController {
     private Game game;
 
     public GameController(){
-        game = Game.getInstance(2);
+        game = Game.getInstance();
     }
 
     public void click(int x,int y)

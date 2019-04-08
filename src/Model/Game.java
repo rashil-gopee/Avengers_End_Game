@@ -25,22 +25,29 @@ public class Game {
         return playerTurn;
     }
 
-    private Game(int numOfPlayers){
+    private Game(int numOfPlayers,int boardSize){
         this.players = new ArrayList<>();
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
         this.board=new Board(players);
+        this.boardSize=boardSize;
         playerTurn = 0;
     }
 
-    public static Game getInstance(int numOfPlayers){
+    public static Game getInstance(int numOfPlayers,int boardSize){
         if (instance == null){
-            instance = new Game(numOfPlayers);
+            instance = new Game(numOfPlayers,boardSize);
         }
         return instance;
     }
 
+    public static Game getInstance(){
+        if (instance != null){
+            return instance;
+        }
+        return null;
+    }
     public Player getPlayer() {
         return players.get(playerTurn);
     }
@@ -89,8 +96,5 @@ public class Game {
             }
             setSelectedHexagon(null);
         }
-
-
-
     }
 }
