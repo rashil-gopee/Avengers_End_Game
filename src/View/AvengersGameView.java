@@ -11,20 +11,6 @@ import java.awt.event.*;
 
 public class AvengersGameView implements IModelChangeListener
 {
-    private GameController gameController;
-    private Game game;
-    private DrawingPanel panel = new DrawingPanel();
-
-    public AvengersGameView(Game game) {
-        this.game=game;
-        this.gameController = new GameController();
-        boardSize=game.getBoardSize();
-        gameController.registerListner(this);
-        BSIZE=boardSize+10;
-        initGame();
-        createAndShowGUI();
-    }
-
     //constants and global variables
     final static Color COLOURBACK =  Color.WHITE;
     final static Color COLOURCELL =  Color.ORANGE;
@@ -33,11 +19,22 @@ public class AvengersGameView implements IModelChangeListener
     final static Color COLOURONE = new Color(255,255,255,200);
     final static Color COLOURONETXT = Color.BLUE;
     final static Color COLOURTWOTXT = new Color(255,100,255);
-    private int boardSize; //board size.
-    static int BSIZE;
     final static int HEXSIZE = 60;	//hex size in pixels
     final static int BORDERS = 10;
-    final static int SCRSIZE = HEXSIZE * (BSIZE ) + BORDERS*3; //screen size (vertical dimension).
+
+    private GameController gameController;
+    private Game game;
+    private DrawingPanel panel = new DrawingPanel();
+    private int screenSize;
+
+    public AvengersGameView(Game game) {
+        this.game=game;
+        this.gameController = new GameController();
+        gameController.registerListener(this);
+        screenSize = HEXSIZE * (game.getBoardSize() + 10 ) + BORDERS*3;
+        initGame();
+        createAndShowGUI();
+    }
 
     private void initGame(){
         hexmech.setXYasVertex(false); //RECOMMENDED: leave this as FALSE.
@@ -51,7 +48,7 @@ public class AvengersGameView implements IModelChangeListener
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
         content.add(panel);
-        frame.setSize( (int)(SCRSIZE/1.23), SCRSIZE);
+        frame.setSize( (int)(screenSize/1.23), screenSize);
         frame.setResizable(false);
         frame.setLocationRelativeTo( null );
         frame.setVisible(true);
@@ -78,14 +75,14 @@ public class AvengersGameView implements IModelChangeListener
             g.setFont(new Font("TimesRoman", Font.PLAIN, 14));
             g2.setColor(COLOURONETXT);
             super.paintComponent(g2);
-            for (int i=0;i<BSIZE;i++) {
-                for (int j=0;j<BSIZE;j++) {
+            for (int i=0;i<game.getBoardSize();i++) {
+                for (int j=0;j<game.getBoardSize();j++) {
                     hexmech.drawHex(i,j,g2);
                 }
             }
 
-            for (int i=0;i<BSIZE;i++) {
-                for (int j=0;j<BSIZE;j++) {
+            for (int i=0;i<game.getBoardSize();i++) {
+                for (int j=0;j<game.getBoardSize();j++) {
                     hexmech.fillHex(i,j, game.getBoard().getHexagon(i, j), g2);
                 }
             }
@@ -100,7 +97,7 @@ public class AvengersGameView implements IModelChangeListener
         class MyMouseListener extends MouseAdapter	{
             public void mouseClicked(MouseEvent e) {
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
-                if (p.x < 0 || p.y < 0 || p.x >= BSIZE || p.y >= BSIZE) return;
+                if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) return;
                 gameController.click(p.x, p.y);
             }
         }

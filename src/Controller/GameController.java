@@ -15,9 +15,8 @@ public class GameController {
         game.click(x, y);
     }
 
-    public void registerListner(AvengersGameView view){
+    public void registerListener(AvengersGameView view){
         game.addModelChangedListeners(view);
     }
-
 
 }

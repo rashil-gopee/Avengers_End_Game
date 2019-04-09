@@ -2,16 +2,16 @@ package Model;
 
 import Model.Attackers.*;
 import Model.Defenders.*;
-import View.AvengersGameView;
 
 import java.util.ArrayList;
 
 public class Board {
-    final static int BSIZE = 10; //board size.
+    private static Board instance = null;
+
     private Hexagon[][] hexagons;
 
-    public Board(ArrayList<Player> players)  {
-        hexagons = new Hexagon[BSIZE][BSIZE];
+    private Board(ArrayList<Player> players, int boardSize)  {
+        hexagons = new Hexagon[boardSize][boardSize];
 
         try {
             Piece blankPanther=new BlackPanther(players.get(0));
@@ -26,9 +26,9 @@ public class Board {
             Piece ultron=new Ultron(players.get(1));
             Piece blackDwarf=new BlackDwarf(players.get(1));
 
-            for (int i = 0; i < BSIZE; i++) {
-                for (int j = 0; j < BSIZE; j++) {
-                        hexagons[i][j] = new Hexagon(i,j);
+            for (int i = 0; i < boardSize; i++) {
+                for (int j = 0; j < boardSize; j++) {
+                    hexagons[i][j] = new Hexagon(i,j);
                 }
             }
             hexagons[0][0].setPiece(blankPanther);
@@ -47,6 +47,20 @@ public class Board {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static Board getInstance(ArrayList<Player> players,int boardSize){
+        if (instance == null){
+            instance = new Board(players,boardSize);
+        }
+        return instance;
+    }
+
+    public static Board getInstance(){
+        if (instance != null){
+            return instance;
+        }
+        return null;
     }
 
     public Hexagon getHexagon(int i, int j) {

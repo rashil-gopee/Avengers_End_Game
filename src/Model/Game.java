@@ -26,12 +26,12 @@ public class Game {
     }
 
     private Game(int numOfPlayers,int boardSize){
+        this.boardSize=boardSize;
         this.players = new ArrayList<>();
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-        this.board=new Board(players);
-        this.boardSize=boardSize;
+        this.board= Board.getInstance(players, boardSize);
         playerTurn = 0;
     }
 
