@@ -3,6 +3,7 @@ package Model.Defenders;
 import Model.Defender;
 import Model.Hexagon;
 import Model.Player;
+import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -15,6 +16,8 @@ public class BlackDwarf extends Defender {
         super(20, 4, 2, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/b/b5/Black_Dwarf.jpg")), owner);
     }
 
+
+    @Requires("source!=null && target!=null")
     public boolean move(Hexagon source, Hexagon target) {
         if (!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null) {
             source.movePiece(target);

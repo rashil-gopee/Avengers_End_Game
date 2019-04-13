@@ -3,6 +3,7 @@ package Model.Defenders;
 import Model.Defender;
 import Model.Hexagon;
 import Model.Player;
+import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -14,6 +15,7 @@ public class KillMonger extends Defender {
         super(20, 4, 2, ImageIO.read(new URL("https://pixel.nymag.com/imgs/daily/vulture/2018/09/17/17-killmonger-movie.w700.h700.jpg")), owner);
     }
 
+    @Requires("source!=null && target!=null")
     public boolean move(Hexagon source,Hexagon target) {
         if(!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null) {
             source.movePiece(target);

@@ -16,7 +16,7 @@ public class BlackPanther extends Attacker {
             super(20, 7, 1, ImageIO.read(new URL("https://blogs.lcms.org/wp-content/uploads/2018/02/Black-Panther-770x514.jpg")), owner);
     }
 
-    @Requires("source==null")
+    @Requires("source!=null && target!=null")
     public boolean move(Hexagon source,Hexagon target) {
         System.out.println("Move Black Panther");
         if(!(abs(source.getX()-target.getX())>getAttackingDistance() || abs(source.getY()-target.getY())>getAttackingDistance()) && !(abs(source.getX()-target.getX())==0) && target.getPiece()==null) {

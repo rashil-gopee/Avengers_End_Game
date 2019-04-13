@@ -3,6 +3,7 @@ package Model.Attackers;
 import Model.Attacker;
 import Model.Hexagon;
 import Model.Player;
+import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -14,6 +15,7 @@ public class Hulk extends Attacker {
         super(20, 7, 1, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/5/59/Hulk_%28comics_character%29.png")), owner);
     }
 
+    @Requires("source!=null && target!=null")
     public boolean move(Hexagon source, Hexagon target) {
         System.out.println("Move Hulk");
         if(!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && !(source.getY()-target.getY()>0) && target.getPiece()==null) {
