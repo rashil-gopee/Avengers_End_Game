@@ -32,7 +32,7 @@ public class Hexagon {
     }
 
     @Requires("piece != null && target.getPiece() == null")
-    @Ensures("target.getPiece != null && piece == null")
+    @Ensures("target.getPiece() != null && piece == null")
     public void movePiece(Hexagon target) {
         target.setPiece(this.piece);
         this.piece = null;
