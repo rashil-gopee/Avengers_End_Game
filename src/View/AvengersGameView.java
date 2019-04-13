@@ -4,9 +4,10 @@ import Controller.GameController;
 import Model.Game;
 import Model.IModelChangeListener;
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class AvengersGameView implements IModelChangeListener

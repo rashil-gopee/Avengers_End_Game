@@ -1,6 +1,5 @@
 package Model;
 
-import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
 import java.awt.*;
@@ -48,8 +47,9 @@ public abstract class Piece {
 
     public abstract boolean move(Hexagon source,Hexagon target);
 
-    @Requires("source.getPiece() == null")
+//    @Requires("source!=null")
     public  boolean attack(Hexagon source,Hexagon target){
+        boolean a=true;
         if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
         {
             return false;

@@ -1,5 +1,7 @@
 package Model;
 
+
+
 public class Hexagon {
     private int x;
     private int y;
