@@ -67,6 +67,10 @@ public class Game {
             this.selectedHexagon = selectedHexagon;
     }
 
+    /**
+     * This method is used to change the player turn to next player
+     * @return void
+     */
     @Ensures("playerTurn<players.size()")
     public void changePlayerTurn() {
         if (playerTurn == (players.size() - 1)){
@@ -77,14 +81,32 @@ public class Game {
         this.notifyModelChangedListeners();
     }
 
+    /**
+     * This method is used to inform all the listeners once the model changes
+     * @return void
+     */
     private void notifyModelChangedListeners() {
         this.listeners.forEach(listener -> listener.onModelChange(this));
     }
 
+
+    /**
+     * This method is used to add the listeners which would be informed once the model changes
+     * @param listener This is the observer.
+     * @return void
+     */
     public void addModelChangedListeners(IModelChangeListener listener) {
         this.listeners.add(listener);
     }
 
+
+    /**
+     * This method is used to decide whether the player has decided to attack or move and accordingly
+     * calls the respective method.
+     * @param x this is x position of the hexagon.
+     * @param y this is y position of the hexagon.
+     * @return void
+     */
     @Requires("x>=0 && x<boardSize && y>=0 && y<boardSize")
     @Ensures("selectedHexagon==null || selectedHexagon== getBoard().getHexagon(x,y)")
     public void click(int x, int y) {
