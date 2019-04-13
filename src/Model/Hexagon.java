@@ -1,6 +1,8 @@
 package Model;
 
 
+import com.google.java.contract.Ensures;
+import com.google.java.contract.Requires;
 
 public class Hexagon {
     private int x;
@@ -29,6 +31,8 @@ public class Hexagon {
         this.piece = piece;
     }
 
+    @Requires("piece != null && target.getPiece() == null")
+    @Ensures("target.getPiece != null && piece == null")
     public void movePiece(Hexagon target) {
         target.setPiece(this.piece);
         this.piece = null;
