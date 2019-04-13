@@ -6,13 +6,14 @@ import Model.Player;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
 public class Ultron extends Defender {
     public Ultron(Player owner) throws Exception {
-        super(20, 6, 1, ImageIO.read(new URL("https://i.kinja-img.com/gawker-media/image/upload/s--fZTexVCk--/c_fit,f_auto,fl_progressive,q_80,w_320/bq2vlrnc6jhxq4wyzlij.jpg")), owner);
+        super(20, 6, 1, ImageIO.read(new File("Images/ultron.jpeg")), owner);
     }
 
     @Requires("source!=null && target!=null")

@@ -6,13 +6,14 @@ import Model.Player;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
 public class Hulk extends Attacker {
     public Hulk(Player owner) throws Exception{
-        super(20, 7, 1, ImageIO.read(new URL("https://upload.wikimedia.org/wikipedia/en/5/59/Hulk_%28comics_character%29.png")), owner);
+        super(20, 7, 1, ImageIO.read(new File("Images/Hulk.png")), owner);
     }
 
     @Requires("source!=null && target!=null")

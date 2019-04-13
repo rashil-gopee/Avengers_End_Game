@@ -6,13 +6,14 @@ import Model.Player;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
 public class DrStrange extends Attacker {
     public DrStrange(Player owner) throws Exception {
-        super(20, 5, 2, ImageIO.read(new URL("https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/2016/12/doctor-strange-2-benedict-cumberbatch.jpg?itok=jeAJwK4P")), owner);
+        super(20, 5, 2, ImageIO.read(new File("Images/DrStrange.jpg")), owner);
     }
 
     @Requires("source!=null && target!=null")

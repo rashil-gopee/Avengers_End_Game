@@ -6,13 +6,14 @@ import Model.Player;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
 public class IronMan extends Attacker {
     public IronMan(Player owner) throws Exception {
-        super(20, 9, 1, ImageIO.read(new URL("https://vignette.wikia.nocookie.net/marvelcinematicuniverse/images/3/39/AoU_Iron_Man_Mk43_art.png/revision/latest?cb=20150310052243")), owner);
+        super(20, 9, 1, ImageIO.read(new File("Images/IronMaN.png")), owner);
     }
 
     @Requires("source!=null && target!=null")

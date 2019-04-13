@@ -6,13 +6,14 @@ import Model.Player;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
+import java.io.File;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
 public class KillMonger extends Defender {
     public KillMonger(Player owner) throws Exception {
-        super(20, 4, 2, ImageIO.read(new URL("https://pixel.nymag.com/imgs/daily/vulture/2018/09/17/17-killmonger-movie.w700.h700.jpg")), owner);
+        super(20, 4, 2, ImageIO.read(new File("Images/KillMonger.jpg")), owner);
     }
 
     @Requires("source!=null && target!=null")
