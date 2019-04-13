@@ -83,7 +83,6 @@ public class Game {
         if(getSelectedHexagon()==null)
         {
             setSelectedHexagon(getBoard().getHexagon(x,y));
-            return;
         }
         else
         {

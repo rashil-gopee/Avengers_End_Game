@@ -20,8 +20,7 @@ public class BlackPanther extends Attacker {
     public boolean move(Hexagon source,Hexagon target) {
         System.out.println("Move Black Panther");
         if(!(abs(source.getX()-target.getX())>getAttackingDistance() || abs(source.getY()-target.getY())>getAttackingDistance()) && !(abs(source.getX()-target.getX())==0) && target.getPiece()==null) {
-            target.setPiece(source.getPiece());
-            source.setPiece(null);
+            source.movePiece(target);
             return true;
         }
         return false;

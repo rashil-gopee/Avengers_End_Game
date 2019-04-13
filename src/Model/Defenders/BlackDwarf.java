@@ -17,8 +17,7 @@ public class BlackDwarf extends Defender {
 
     public boolean move(Hexagon source, Hexagon target) {
         if (!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null) {
-            target.setPiece(source.getPiece());
-            source.setPiece(null);
+            source.movePiece(target);
             return true;
         }
         return false;

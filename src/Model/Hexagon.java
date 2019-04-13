@@ -29,5 +29,9 @@ public class Hexagon {
         this.piece = piece;
     }
 
+    public void movePiece(Hexagon target) {
+        target.setPiece(this.piece);
+        this.piece = null;
+    }
 
 }
