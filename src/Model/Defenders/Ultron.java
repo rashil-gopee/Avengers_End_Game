@@ -14,15 +14,8 @@ public class Ultron extends Defender {
         super(20, 6, 1, ImageIO.read(new URL("https://i.kinja-img.com/gawker-media/image/upload/s--fZTexVCk--/c_fit,f_auto,fl_progressive,q_80,w_320/bq2vlrnc6jhxq4wyzlij.jpg")), owner);
     }
 
-    public boolean move(Hexagon source,Hexagon target) {
-        if(!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null) {
-            target.setPiece(source.getPiece());
-            source.setPiece(null);
-            return true;
-        }
-        return false;
-
+    @Override
+    public boolean canMove(Hexagon source,Hexagon target) {
+        return (!(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance()) && target.getPiece()==null);
     }
-
-
 }

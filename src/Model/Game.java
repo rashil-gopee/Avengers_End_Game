@@ -3,6 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 public class Game {
     private static Game instance = null;
 
@@ -79,22 +81,35 @@ public class Game {
     }
 
     public void click(int x, int y) {
-        boolean move=false;
         if(getSelectedHexagon()==null)
         {
             setSelectedHexagon(getBoard().getHexagon(x,y));
-            return;
         }
         else
         {
-            if(getBoard().getHexagon(x,y).getPiece() == null)
-                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
-            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn)))
-                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
-            if (move) {
-                changePlayerTurn();
+            Hexagon targetedHexagon = getBoard().getHexagon(x, y);
+            if(getBoard().getHexagon(x,y).getPiece() == null) {
+//                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
+                if (getSelectedHexagon().getPiece().canMove(getSelectedHexagon(), targetedHexagon)) {
+                    getSelectedHexagon().movePiece(targetedHexagon);
+                    setSelectedHexagon(null);
+                    changePlayerTurn();
+                }
             }
-            setSelectedHexagon(null);
+            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
+                if (getSelectedHexagon().canAttack(targetedHexagon)) {
+                    targetedHexagon.getPiece().suffer(getSelectedHexagon().getPiece().getAttackingDistance());
+                    if (targetedHexagon.getPiece().getStealth() <= 0) {
+                        setSelectedHexagon(null);
+                    }
+                    changePlayerTurn();
+                }
+//                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            }
+//            if (move) {
+//                changePlayerTurn();
+//            }
+
         }
     }
 }

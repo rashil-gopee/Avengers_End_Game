@@ -46,18 +46,10 @@ public abstract class Piece {
         return image;
     }
 
-    public abstract boolean move(Hexagon source,Hexagon target);
+    public abstract boolean canMove(Hexagon source,Hexagon target);
 
-    @Requires("source.getPiece() == null")
-    public  boolean attack(Hexagon source,Hexagon target){
-        if(abs(source.getX()-target.getX())>getAttackingDistance()||abs(source.getY()-target.getY())>getAttackingDistance())
-        {
-            return false;
-        }
-        target.getPiece().stealth = target.getPiece().stealth - source.getPiece().attackingPower;
-        if(target.getPiece().stealth <= 0)
-            target.setPiece(null);
-        return true;
+    public void suffer(int stealth) {
+        this.stealth = this.stealth - stealth;
     }
 
     public boolean isOwner(Player player)

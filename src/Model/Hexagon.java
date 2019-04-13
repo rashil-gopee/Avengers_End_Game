@@ -1,5 +1,7 @@
 package Model;
 
+import static java.lang.Math.abs;
+
 public class Hexagon {
     private int x;
     private int y;
@@ -27,5 +29,13 @@ public class Hexagon {
         this.piece = piece;
     }
 
+    public boolean canAttack(Hexagon target){
+        return ((abs(this.getX()-target.getX())> this.getPiece().getAttackingDistance() || abs(this.getY()-target.getY()) > this.getPiece().getAttackingDistance()) && this.piece.getAttackingPower() >= target.getPiece().getAttackingPower());
+    }
+
+    public void movePiece(Hexagon target) {
+        target.setPiece(this.piece);
+        this.piece = null;
+    }
 
 }
