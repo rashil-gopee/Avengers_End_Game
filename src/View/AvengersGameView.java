@@ -10,6 +10,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 
+/** 
+ * A utility class hexmech that gives  the ability to map clicks to a particular hexagon was adapted. 
+ * This was adapted from a an open source github  here:
+  * https://gist.github.com/salamander2/4329783
+  */
+
 public class AvengersGameView implements IModelChangeListener
 {
     //constants and global variables
