@@ -129,7 +129,7 @@ public class hexmech
             g2.fillPolygon(hex(x,y));
             try {
                 g2.setClip(hex(x,y));
-                g2.drawImage(hexagon.getPiece().getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT), x, y, null);
+                g2.drawImage(hexagon.getPiece().getImage().getScaledInstance(AvengersGameView.HEXSIZE + 20, AvengersGameView.HEXSIZE + 20, Image.SCALE_AREA_AVERAGING), x, y, null);
             }
             catch (Exception e){
                 e.printStackTrace();

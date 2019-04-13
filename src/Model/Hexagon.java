@@ -31,6 +31,12 @@ public class Hexagon {
         this.piece = piece;
     }
 
+
+    /**
+     * This method is used to move a hexagon's piece to another one
+     * @param target This is the Hexagon where you want to move the piece to.
+     * @return void
+     */
     @Requires("piece != null && target.getPiece() == null")
     @Ensures("target.getPiece() != null && piece == null")
     public void movePiece(Hexagon target) {
