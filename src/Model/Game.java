@@ -1,5 +1,8 @@
 package Model;
 
+import com.google.java.contract.Ensures;
+import com.google.java.contract.Requires;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class Game {
         return playerTurn;
     }
 
+    @Requires("numOfPlayers>0 && boardSize>2")
+    @Ensures("playerTurn==0 && players!=null")
     private Game(int numOfPlayers,int boardSize){
         this.boardSize=boardSize;
         this.players = new ArrayList<>();
@@ -56,11 +61,13 @@ public class Game {
         return selectedHexagon;
     }
 
+
     public void setSelectedHexagon(Hexagon selectedHexagon) {
         if(selectedHexagon==null||selectedHexagon.getPiece()!=null&&selectedHexagon.getPiece().isOwner(players.get(playerTurn)))
             this.selectedHexagon = selectedHexagon;
     }
 
+    @Ensures("playerTurn<players.size()")
     public void changePlayerTurn() {
         if (playerTurn == (players.size() - 1)){
             playerTurn = 0;
@@ -78,6 +85,8 @@ public class Game {
         this.listeners.add(listener);
     }
 
+    @Requires("x>=0 && x<boardSize && y>=0 && y<boardSize")
+    @Ensures("selectedHexagon==null || selectedHexagon== getBoard().getHexagon(x,y)")
     public void click(int x, int y) {
         boolean move=false;
         if(getSelectedHexagon()==null)
