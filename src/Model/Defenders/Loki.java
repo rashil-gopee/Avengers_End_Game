@@ -12,7 +12,7 @@ import static java.lang.Math.abs;
 
 public class Loki extends Defender {
     public Loki(Player owner) throws Exception{
-        super(20, 5, 2, ImageIO.read(new URL("https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/loki_8.jpg?itok=hrqRLL8M")), owner);
+        super(20, 5, 1, ImageIO.read(new URL("https://cdn1us.denofgeek.com/sites/denofgeekus/files/styles/main_wide/public/loki_8.jpg?itok=hrqRLL8M")), owner);
     }
 
     @Requires("source!=null && target!=null")
