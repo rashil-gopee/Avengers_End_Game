@@ -14,7 +14,7 @@ public class Game {
     private int playerTurn;
     private Hexagon selectedHexagon;
     private int boardSize;
-
+    private CommandManager commandManager;
     public int getBoardSize() {
         return boardSize;
     }
@@ -37,6 +37,7 @@ public class Game {
             this.players.add(new Player("Player " + i + 1 ));
         }
         this.board= Board.getInstance(players, boardSize);
+        this.commandManager=new CommandManager();
         playerTurn = 0;
     }
 
@@ -117,14 +118,32 @@ public class Game {
         }
         else
         {
-            if(getBoard().getHexagon(x,y).getPiece() == null)
-                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
-            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn)))
-                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            if(getBoard().getHexagon(x,y).getPiece() == null) {
+                this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+                move=true;
+//                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            }
+            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
+                this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+                move=true;
+//                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
+            }
             if (move) {
                 changePlayerTurn();
             }
             setSelectedHexagon(null);
         }
+    }
+
+    public void undo()
+    {
+        this.commandManager.Undo();
+        this.notifyModelChangedListeners();
+    }
+
+    public void replayAllMoves()
+    {
+        this.commandManager.playMoves();
+
     }
 }

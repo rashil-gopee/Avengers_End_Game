@@ -28,4 +28,9 @@ public class GameController {
         game.addModelChangedListeners(view);
     }
 
+    public void undo()
+    {
+        game.undo();
+    }
+
 }

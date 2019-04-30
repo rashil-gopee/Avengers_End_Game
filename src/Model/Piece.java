@@ -22,6 +22,10 @@ public abstract class Piece {
         this.owner = owner;
     }
 
+    public void setStealth(int stealth) {
+        this.stealth = stealth;
+    }
+
     public int getStealth() {
         return stealth;
     }
@@ -47,6 +51,7 @@ public abstract class Piece {
     }
 
     public abstract boolean move(Hexagon source,Hexagon target);
+
 
     /**
      * This method is used to for attacking a hexagon's piece

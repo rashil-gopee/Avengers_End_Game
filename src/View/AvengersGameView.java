@@ -54,6 +54,7 @@ public class AvengersGameView implements IModelChangeListener
         JFrame frame = new JFrame("Avengers End Game");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
+        JButton b1 = new JButton("Undo");
         content.add(panel);
         frame.setSize( (int)(screenSize/1.23), screenSize);
         frame.setResizable(false);
@@ -104,7 +105,8 @@ public class AvengersGameView implements IModelChangeListener
         class MyMouseListener extends MouseAdapter	{
             public void mouseClicked(MouseEvent e) {
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
-                if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) return;
+                if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) {gameController.undo();}
+                else
                 gameController.click(p.x, p.y);
             }
         }
