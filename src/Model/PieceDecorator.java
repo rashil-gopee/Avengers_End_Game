@@ -1,6 +1,6 @@
 package Model;
 
-public abstract class PieceDecorator{
+public abstract class PieceDecorator {
 
 
 }

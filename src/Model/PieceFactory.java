@@ -39,6 +39,10 @@ public  class PieceFactory {
             Piece thanos=new Thanos(player);
             Piece ultron=new Ultron(player);
             Piece blackDwarf=new BlackDwarf(player);
+
+            Fly fly = new Fly(blackDwarf);
+            fly.fly();
+
             defenders.add(killMonger);
             defenders.add(loki);
             defenders.add(thanos);
