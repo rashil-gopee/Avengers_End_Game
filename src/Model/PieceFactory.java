@@ -16,6 +16,8 @@ public  class PieceFactory {
             Piece drStrange=new DrStrange(player);
             Piece ironMan=new IronMan(player);
             Piece hulk=new Hulk(player);
+            FlyDecorator flyDecorator=new FlyDecorator(ironMan);
+            flyDecorator.fly();
             attackers.add(blankPanther);
             attackers.add(captainMarvel);
             attackers.add(drStrange);
@@ -40,8 +42,7 @@ public  class PieceFactory {
             Piece ultron=new Ultron(player);
             Piece blackDwarf=new BlackDwarf(player);
 
-            Fly fly = new Fly(blackDwarf);
-            fly.fly();
+
 
             defenders.add(killMonger);
             defenders.add(loki);
