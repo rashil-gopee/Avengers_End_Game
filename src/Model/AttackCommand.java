@@ -26,4 +26,9 @@ class AttackCommand extends UndoableCommand
         targetPiece.setStealth ( targetPiece.getStealth() + piece.getAttackingPower());
 
     }
+
+    public  void  redo()
+    {
+
+    }
 }

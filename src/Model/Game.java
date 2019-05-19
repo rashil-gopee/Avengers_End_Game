@@ -10,6 +10,7 @@ public class Game {
     private static Game instance = null;
 
     private Board board;
+    private Board intialState;
     private ArrayList<Player> players;
     private int playerTurn;
     private Hexagon selectedHexagon;
@@ -37,6 +38,7 @@ public class Game {
             this.players.add(new Player("Player " + i + 1 ));
         }
         this.board= Board.getInstance(players, boardSize);
+//        this.intialState=this.board
         this.commandManager=new CommandManager();
         playerTurn = 0;
     }
@@ -86,7 +88,7 @@ public class Game {
      * This method is used to inform all the listeners once the model changes
      * @return void
      */
-    private void notifyModelChangedListeners() {
+    public void notifyModelChangedListeners() {
         this.listeners.forEach(listener -> listener.onModelChange(this));
     }
 
@@ -118,15 +120,13 @@ public class Game {
         }
         else
         {
+            move=true;
             if(getBoard().getHexagon(x,y).getPiece() == null) {
                 this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
-                move=true;
-//                move = getSelectedHexagon().getPiece().move(getSelectedHexagon(), getBoard().getHexagon(x, y));
+
             }
             else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
                 this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
-                move=true;
-//                move = getSelectedHexagon().getPiece().attack(getSelectedHexagon(), getBoard().getHexagon(x, y));
             }
             if (move) {
                 changePlayerTurn();
@@ -138,12 +138,15 @@ public class Game {
     public void undo()
     {
         this.commandManager.Undo();
-        this.notifyModelChangedListeners();
+        this.changePlayerTurn();
     }
 
     public void replayAllMoves()
     {
-        this.commandManager.playMoves();
-
+        board.setBoard(this.players,this.boardSize);
+        this.notifyModelChangedListeners();
+        this.commandManager.playMoves(this);
     }
+
+
 }

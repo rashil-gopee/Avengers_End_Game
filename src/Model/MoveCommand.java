@@ -22,4 +22,10 @@ class MoveCommand extends UndoableCommand
     {
         piece.move(currentLocation,previousPosition);
     }
+
+    public void redo()
+    {
+        System.out.println("Heyyyy");
+        piece.move(previousPosition,currentLocation);
+    }
 }

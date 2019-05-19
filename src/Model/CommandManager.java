@@ -24,12 +24,27 @@ class CommandManager
         }
     }
 
-    public void playMoves() {
+    public void playMoves(Game game) {
         ArrayList replayList = new ArrayList(commandStack);
-        for(int i=replayList.size()-1;i>0;i--)
-        {
-            System.out.println(replayList.get(i).toString());
-        }
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println(replayList.size());
+                for(int i=0;i<replayList.size();i++)
+                {
+                    UndoableCommand cmd = (UndoableCommand)replayList.get(i);
+                    cmd.redo();
+                    game.notifyModelChangedListeners();
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        }).start();
     }
+
 }

@@ -30,7 +30,11 @@ public class GameController {
 
     public void undo()
     {
-        game.undo();
+//        game.undo();
+        game.replayAllMoves();
     }
+
+
+
 
 }
