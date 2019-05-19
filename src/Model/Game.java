@@ -32,13 +32,16 @@ public class Game {
     @Requires("numOfPlayers>0 && boardSize>2")
     @Ensures("playerTurn==0 && players!=null")
     private Game(int numOfPlayers,int boardSize){
+
         this.boardSize=boardSize;
         this.players = new ArrayList<>();
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-        this.board= Board.getInstance(players, boardSize);
-//        this.intialState=this.board
+
+            BoardBuilder boardBuilder=new BoardBuilder();
+            this.board= boardBuilder.buildBoard(players, boardSize);
+
         this.commandManager=new CommandManager();
         playerTurn = 0;
     }
