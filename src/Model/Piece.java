@@ -8,6 +8,7 @@ import java.awt.*;
 import static java.lang.Math.abs;
 
 public abstract class Piece {
+    private boolean isSpecialEffectUsed;
     private int stealth;
     private int attackingPower;
     private int attackingDistance;
@@ -20,6 +21,7 @@ public abstract class Piece {
         this.attackingDistance = attackingDistance;
         this.image = image;
         this.owner = owner;
+        isSpecialEffectUsed = false;
     }
 
     public void setStealth(int stealth) {
@@ -81,5 +83,10 @@ public abstract class Piece {
     {
         return owner.equals(player);
     }
+
+    public void specialEffect() {
+        this.isSpecialEffectUsed = true;
+        System.out.println("Special Effect");
+    };
 
 }

@@ -16,9 +16,13 @@ public  class PieceFactory {
             Piece drStrange=new DrStrange(player);
             Piece ironMan=new IronMan(player);
             Piece hulk=new Hulk(player);
-            Piece flyDecorator=new FlyDecorator(ironMan);
-            ((FlyDecorator)flyDecorator).fly();
-            Piece transpose=new TransportDecorator(flyDecorator);
+//            Piece flyDecorator=new FlyDecorator(ironMan);
+//            ((FlyDecorator)flyDecorator).fly();
+
+            Piece transpose=new TransportDecorator(new FlyDecorator(ironMan));
+
+            ((TransportDecorator) transpose).specialEffect();
+//            transpose.
 
             attackers.add(blankPanther);
             attackers.add(captainMarvel);

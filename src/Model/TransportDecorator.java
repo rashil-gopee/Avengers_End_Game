@@ -11,10 +11,15 @@ public class TransportDecorator extends PieceDecorator{
     {
         super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece);
     }
+
+    @Override
+    public void specialEffect(){
+        piece.specialEffect();
+        transpose();
+    }
+
     public void transpose(){
-
         System.out.println("I can transpose guys");
-
     }
 
 
