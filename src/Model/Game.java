@@ -10,7 +10,6 @@ public class Game {
     private static Game instance = null;
 
     private Board board;
-    private Board intialState;
     private ArrayList<Player> players;
     private int playerTurn;
     private Hexagon selectedHexagon;

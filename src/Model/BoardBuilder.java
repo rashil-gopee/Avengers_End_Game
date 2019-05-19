@@ -7,7 +7,6 @@ public class BoardBuilder {
     PieceFactory pieceFactory=new PieceFactory();
     public Board buildBoard(ArrayList<Player> players,int boardSize)
     {
-
         ArrayList<Piece> attackers = pieceFactory.getAttackers(players.get(0));
         ArrayList<Piece> defenders = pieceFactory.getDefenders(players.get(1));
         Board board=Board.getInstance(boardSize);
@@ -23,7 +22,6 @@ public class BoardBuilder {
             board.getHexagon(i,9).setPiece(defenders.get(j));
             j++;
         }
-
         return board;
     }
 
