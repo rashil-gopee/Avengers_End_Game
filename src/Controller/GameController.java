@@ -3,7 +3,9 @@ package Controller;
 import Model.Game;
 import View.AvengersGameView;
 
-public class GameController {
+import java.io.Serializable;
+
+public class GameController implements Serializable {
     private Game game;
 
     public GameController(){
@@ -30,11 +32,19 @@ public class GameController {
 
     public void undo()
     {
-//        game.undo();
+        game.undo();
+
+    }
+
+    public void replayAllMoves()
+    {
         game.replayAllMoves();
     }
 
-
+    public void saveGame()
+    {
+        game.saveGame();
+    }
 
 
 }

@@ -4,18 +4,19 @@ import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
 import java.awt.*;
+import java.io.Serializable;
 
 import static java.lang.Math.abs;
 
-public abstract class Piece {
+public abstract class Piece implements Serializable {
     private boolean isSpecialEffectUsed;
     private int stealth;
     private int attackingPower;
     private int attackingDistance;
-    private Image image;
+    private String image;
     private Player owner;
 
-    public Piece(int stealth, int attackingPower, int attackingDistance, Image image, Player owner) {
+    public Piece(int stealth, int attackingPower, int attackingDistance, String image, Player owner) {
         this.stealth = stealth;
         this.attackingPower = attackingPower;
         this.attackingDistance = attackingDistance;
@@ -48,7 +49,7 @@ public abstract class Piece {
         this.owner = owner;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 

@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-class CommandManager
+class CommandManager implements Serializable
 {
     private  Stack commandStack = new Stack<>();
 

@@ -1,6 +1,8 @@
 package Model;
 
-class AttackCommand extends UndoableCommand
+import java.io.Serializable;
+
+class AttackCommand extends UndoableCommand implements Serializable
 {
 
     Piece piece;

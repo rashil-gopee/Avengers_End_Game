@@ -1,6 +1,8 @@
 package Model;
 
-class MoveCommand extends UndoableCommand
+import java.io.Serializable;
+
+class MoveCommand extends UndoableCommand implements Serializable
 {
 
     Piece piece;

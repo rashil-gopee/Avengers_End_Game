@@ -7,13 +7,14 @@ import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
-public class Hulk extends Attacker {
+public class Hulk extends Attacker implements Serializable {
     public Hulk(Player owner) throws Exception{
-        super(20, 7, 1, ImageIO.read(new File("Images/Hulk.png")), owner);
+        super(20, 7, 1, "Images/Hulk.png", owner);
     }
 
     @Requires("source!=null && target!=null")

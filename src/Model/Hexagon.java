@@ -4,7 +4,9 @@ package Model;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
-public class Hexagon {
+import java.io.Serializable;
+
+public class Hexagon implements Serializable {
     private int x;
     private int y;
     private Piece piece;

@@ -1,12 +1,13 @@
 package Model;
 
+import Utilities.FileHelper;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class Game {
+import java.io.Serializable;
+public class Game implements Serializable{
     private static Game instance = null;
 
     private Board board;
@@ -18,7 +19,6 @@ public class Game {
     public int getBoardSize() {
         return boardSize;
     }
-
     public Board getBoard() {
         return board;
     }
@@ -57,6 +57,12 @@ public class Game {
             return instance;
         }
         return null;
+    }
+
+
+    public static void setInstance(Game game)
+    {
+        instance=game;
     }
     public Player getPlayer() {
         return players.get(playerTurn);
@@ -137,6 +143,11 @@ public class Game {
         }
     }
 
+    public void saveGame()
+    {
+        FileHelper fileHelper=new FileHelper();
+        fileHelper.WriteObjectToFile(this);
+    }
     public void undo()
     {
         this.commandManager.Undo();

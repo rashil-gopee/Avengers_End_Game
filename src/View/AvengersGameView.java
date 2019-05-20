@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.Serializable;
 
 
 /** 
@@ -16,7 +17,7 @@ import java.awt.event.MouseEvent;
   * https://gist.github.com/salamander2/4329783
   */
 
-public class AvengersGameView implements IModelChangeListener
+public class AvengersGameView implements IModelChangeListener, Serializable
 {
     //constants and global variables
     final static Color COLOURBACK =  Color.WHITE;
@@ -105,7 +106,7 @@ public class AvengersGameView implements IModelChangeListener
         class MyMouseListener extends MouseAdapter	{
             public void mouseClicked(MouseEvent e) {
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
-                if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) {gameController.undo();}
+                if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) {gameController.saveGame();}
                 else
                 gameController.click(p.x, p.y);
             }

@@ -7,13 +7,14 @@ import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
-public class Loki extends Defender {
+public class Loki extends Defender implements Serializable {
     public Loki(Player owner) throws Exception{
-        super(20, 5, 1, ImageIO.read(new File("Images/loki.jpg")), owner);
+        super(20, 5, 1, "Images/loki.jpg", owner);
     }
 
     @Requires("source!=null && target!=null")

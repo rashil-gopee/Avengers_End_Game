@@ -8,13 +8,15 @@ import com.google.java.contract.Requires;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
-public class BlackPanther extends Attacker {
+public class BlackPanther extends Attacker implements Serializable {
+
     public BlackPanther(Player owner) throws Exception{
-             super(20, 7, 1, ImageIO.read(new File("Images/blackPanther.jpg")), owner);
+             super(20, 7, 1,"Images/blackPanther.jpg", owner);
 
     }
 

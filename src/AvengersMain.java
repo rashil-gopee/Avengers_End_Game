@@ -1,4 +1,5 @@
 import Model.Game;
+import Utilities.FileHelper;
 import View.AvengersGameView;
 
 import javax.swing.*;
@@ -9,6 +10,9 @@ public class AvengersMain {
 
 
         Game game = Game.getInstance(2,10);
+//        FileHelper fileHelper=new FileHelper();
+//        Game game=fileHelper.loadObjectToFile();
+//        Game.setInstance(game);
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new AvengersGameView(Game.getInstance());

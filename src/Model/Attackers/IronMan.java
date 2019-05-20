@@ -7,13 +7,14 @@ import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
 import java.io.File;
+import java.io.Serializable;
 import java.net.URL;
 
 import static java.lang.Math.abs;
 
-public class IronMan extends Attacker {
+public class IronMan extends Attacker implements Serializable {
     public IronMan(Player owner) throws Exception {
-        super(20, 9, 1, ImageIO.read(new File("Images/IronMaN.png")), owner);
+        super(20, 9, 1,"Images/IronMaN.png", owner);
     }
 
     @Requires("source!=null && target!=null")
