@@ -22,7 +22,6 @@ public class Board {
         catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void setBoard(ArrayList<Player> players,int boardSize)
@@ -63,7 +62,6 @@ public class Board {
         catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public static Board getInstance(int boardSize){

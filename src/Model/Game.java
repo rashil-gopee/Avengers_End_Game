@@ -15,6 +15,11 @@ public class Game {
     private Hexagon selectedHexagon;
     private int boardSize;
     private CommandManager commandManager;
+
+
+    private AttackersDirectory attackersDirectory;
+    private DefendersDirectory defendersDirectory;
+
     public int getBoardSize() {
         return boardSize;
     }
@@ -38,8 +43,15 @@ public class Game {
             this.players.add(new Player("Player " + i + 1 ));
         }
 
-            BoardBuilder boardBuilder=new BoardBuilder();
-            this.board= boardBuilder.buildBoard(players, boardSize);
+        PieceFactory pieceFactory=new PieceFactory();
+        attackersDirectory = pieceFactory.getAttackers(players.get(0));
+        defendersDirectory = pieceFactory.getDefenders(players.get(1));
+
+        BoardBuilder boardBuilder=new BoardBuilder();
+        this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
+
+        attackersDirectory.suffer(1);
+
 
         this.commandManager=new CommandManager();
         playerTurn = 0;

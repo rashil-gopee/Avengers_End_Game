@@ -7,7 +7,7 @@ import java.awt.*;
 
 import static java.lang.Math.abs;
 
-public abstract class Piece {
+public abstract class Piece extends PieceComposite{
     private boolean isSpecialEffectUsed;
     private int stealth;
     private int attackingPower;
@@ -62,13 +62,13 @@ public abstract class Piece {
      * @return boolean This returns if the player was allowed and succeeded to attack this the targeted hexagon's piece.
      */
     @Requires("source.getPiece() != null && target.getPiece() != null")
-    @Ensures("target.getPiece().getAttackingPower() != old (target.getPiece().getAttackingPower())")
+//    @Ensures("target.getPiece().getAttackingPower() != old (target.getPiece().getAttackingPower())")
     public boolean attack(Hexagon source,Hexagon target){
         if(abs(source.getX()-target.getX()) > getAttackingDistance()||abs(source.getY()-target.getY()) > getAttackingDistance())
         {
             return false;
         }
-        target.getPiece().stealth = target.getPiece().stealth - source.getPiece().attackingPower;
+        target.getPiece().suffer(source.getPiece().attackingPower);
         if(target.getPiece().stealth <= 0)
             target.setPiece(null);
         return true;
@@ -87,6 +87,16 @@ public abstract class Piece {
     public void specialEffect() {
         this.isSpecialEffectUsed = true;
         System.out.println("Special Effect");
-    };
+    }
+
+    @Override
+    public void suffer(int stealth) {
+        this.stealth = this.stealth - stealth;
+    }
+
+    @Override
+    public void heal(int stealth) {
+        this.stealth = this.stealth + stealth;
+    }
 
 }
