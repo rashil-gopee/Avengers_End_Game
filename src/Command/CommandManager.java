@@ -1,10 +1,12 @@
-package Model;
+package Command;
+
+import Model.Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Stack;
 
-class CommandManager implements Serializable
+public class CommandManager implements Serializable
 {
     private  Stack commandStack = new Stack<>();
 
