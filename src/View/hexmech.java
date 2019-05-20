@@ -2,7 +2,9 @@ package View;
 
 import Model.Hexagon;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
 
 /* This is a companion class to AvengersGameView.java. It handles all of the mechanics related to hexagon grids. */
 
@@ -129,7 +131,8 @@ public class hexmech
             g2.fillPolygon(hex(x,y));
             try {
                 g2.setClip(hex(x,y));
-//                g2.drawImage(hexagon.getPiece().getImage().getScaledInstance(AvengersGameView.HEXSIZE + 20, AvengersGameView.HEXSIZE + 20, Image.SCALE_AREA_AVERAGING), x, y, null);
+                Image image= ImageIO.read(new File((hexagon.getPiece().getImage())));
+                g2.drawImage(image.getScaledInstance(AvengersGameView.HEXSIZE + 20, AvengersGameView.HEXSIZE + 20, Image.SCALE_AREA_AVERAGING), x, y, null);
             }
             catch (Exception e){
                 e.printStackTrace();
