@@ -1,10 +1,11 @@
-package Model;
+package Command;
 
 import java.io.Serializable;
+import Model.Hexagon;
+import Model.Piece;
 
-class AttackCommand extends UndoableCommand implements Serializable
+public class AttackCommand extends UndoableCommand implements Serializable
 {
-
     Piece piece;
     Piece targetPiece;
     Hexagon previousPosition;

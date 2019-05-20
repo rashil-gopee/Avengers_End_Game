@@ -1,12 +1,11 @@
-package Model;
+package Decorator;
 
 import static java.lang.Math.abs;
 
-import com.google.java.contract.Requires;
+import Decorator.PieceDecorator;
+import Model.Piece;
 
-import static java.lang.Math.abs;
-
-public class TransportDecorator extends PieceDecorator{
+public class TransportDecorator extends PieceDecorator {
     public TransportDecorator(Piece piece)
     {
         super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece);

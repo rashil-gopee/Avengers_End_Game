@@ -1,6 +1,6 @@
-package Model;
+package Decorator;
 
-import com.google.java.contract.Requires;
+import Model.Piece;
 
 import static java.lang.Math.abs;
 

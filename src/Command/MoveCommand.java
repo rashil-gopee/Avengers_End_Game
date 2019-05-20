@@ -1,10 +1,11 @@
-package Model;
+package Command;
 
 import java.io.Serializable;
+import Command.UndoableCommand;
+import Model.Hexagon;
+import Model.Piece;
 
-class MoveCommand extends UndoableCommand implements Serializable
-{
-
+public class MoveCommand extends UndoableCommand implements Serializable{
     Piece piece;
     Hexagon previousPosition;
     Hexagon currentLocation;
