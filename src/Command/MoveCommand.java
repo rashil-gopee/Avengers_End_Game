@@ -1,6 +1,10 @@
-package Model;
+package Command;
 
-class MoveCommand extends UndoableCommand
+import Command.UndoableCommand;
+import Model.Hexagon;
+import Model.Piece;
+
+public class MoveCommand extends UndoableCommand
 {
 
     Piece piece;

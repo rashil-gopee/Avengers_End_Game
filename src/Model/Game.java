@@ -1,5 +1,11 @@
 package Model;
 
+import Builder.BoardBuilder;
+import Command.AttackCommand;
+import Command.MoveCommand;
+import Command.CommandManager;
+import Factory.PieceFactory;
+import Interface.IModelChangeListener;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
@@ -15,7 +21,6 @@ public class Game {
     private Hexagon selectedHexagon;
     private int boardSize;
     private CommandManager commandManager;
-
 
     private AttackersDirectory attackersDirectory;
     private DefendersDirectory defendersDirectory;
@@ -51,7 +56,6 @@ public class Game {
         this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
 
         attackersDirectory.suffer(1);
-
 
         this.commandManager=new CommandManager();
         playerTurn = 0;

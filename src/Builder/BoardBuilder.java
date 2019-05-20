@@ -1,4 +1,7 @@
-package Model;
+package Builder;
+
+import Factory.PieceFactory;
+import Model.*;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,10 @@
-package Model;
+package Command;
 
-class AttackCommand extends UndoableCommand
+import Model.Hexagon;
+import Model.Piece;
+
+public class AttackCommand extends UndoableCommand
 {
-
     Piece piece;
     Piece targetPiece;
     Hexagon previousPosition;

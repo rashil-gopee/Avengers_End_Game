@@ -2,7 +2,7 @@ package View;
 
 import Controller.GameController;
 import Model.Game;
-import Model.IModelChangeListener;
+import Interface.IModelChangeListener;
 
 import javax.swing.*;
 import java.awt.*;

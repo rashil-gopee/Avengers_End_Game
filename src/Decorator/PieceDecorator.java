@@ -1,13 +1,16 @@
-package Model;
+package Decorator;
 
+import Model.Hexagon;
+import Model.Piece;
+import Model.Player;
 import com.google.java.contract.Requires;
 
 import java.awt.*;
 
-public abstract class PieceDecorator extends Piece{
+public abstract class PieceDecorator extends Piece {
 
     protected Piece piece;
-    public PieceDecorator(int stealth, int attackingPower, int attackingDistance, Image image, Player owner,Piece piece) {
+    public PieceDecorator(int stealth, int attackingPower, int attackingDistance, Image image, Player owner, Piece piece) {
         super(stealth, attackingPower, attackingDistance, image, owner);
         this.piece=piece;
     }

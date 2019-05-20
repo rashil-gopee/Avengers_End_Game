@@ -1,9 +1,11 @@
-package Model;
+package Command;
+
+import Model.Game;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
-class CommandManager
+public class CommandManager
 {
     private  Stack commandStack = new Stack<>();
 
