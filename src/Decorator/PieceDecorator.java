@@ -21,7 +21,7 @@ public abstract class PieceDecorator extends Piece {
     }
 
     @Override
-    public void specialEffect(){
+    public void specialEffect(Hexagon hexagon){
         System.out.println("Special Effect");
     }
 

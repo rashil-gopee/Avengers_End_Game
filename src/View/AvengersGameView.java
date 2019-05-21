@@ -78,10 +78,10 @@ public class AvengersGameView implements IModelChangeListener, Serializable
         menuBar.add(menu);
         JFrame frame = new JFrame("Avengers End Game");
         frame.setJMenuBar(menuBar);
-        JButton b1 = new JButton("Undo");
+//        JButton b1 = new JButton("Undo");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
-        panel.add(b1);
+//        panel.add(b1);
         content.add(panel);
         frame.setSize( (int)(screenSize/1.23), screenSize);
         frame.setResizable(false);
@@ -134,8 +134,15 @@ public class AvengersGameView implements IModelChangeListener, Serializable
                 System.out.println("hi");
                 Point p = new Point( hexmech.pxtoHex(e.getX(),e.getY()) );
                 if (p.x < 0 || p.y < 0 || p.x >= game.getBoardSize() || p.y >= game.getBoardSize()) {gameController.saveGame();}
-                else
-                gameController.click(p.x, p.y);
+                else {
+                    if(e.getButton() == MouseEvent.BUTTON1) {
+                        System.out.println("Left Click!");
+                        gameController.click(p.x, p.y, false);
+                    }
+                    if(e.getButton() == MouseEvent.BUTTON3) {
+                        gameController.click(p.x, p.y, true);
+                    }
+                }
             }
         }
     }

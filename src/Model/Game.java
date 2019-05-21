@@ -136,34 +136,46 @@ public class Game implements Serializable{
      */
     @Requires("x>=0 && x<boardSize && y>=0 && y<boardSize")
     @Ensures("selectedHexagon==null || selectedHexagon== getBoard().getHexagon(x,y)")
-    public void click(int x, int y) {
-        boolean move=false;
-        if(getSelectedHexagon()==null)
+    public void click(int x, int y, boolean specialEffect) {
+        if(getSelectedHexagon()==null && !specialEffect)
         {
             setSelectedHexagon(getBoard().getHexagon(x,y));
         }
         else
         {
-            move=true;
-            if(getBoard().getHexagon(x,y).getPiece() == null) {
-                this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
-
-            }
-            else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
-                this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
-            }
-            if (move) {
-                changePlayerTurn();
-            }
-            setSelectedHexagon(null);
+            performAction(x, y, specialEffect);
         }
     }
+
+    private void performAction(int x, int y, boolean specialEffect){
+        if (selectedHexagon == getBoard().getHexagon(x,y)) {
+            setSelectedHexagon(null);
+        }
+        else if (specialEffect && !getSelectedHexagon().getPiece().isSpecialEffectUsed()) {
+            this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
+        }
+        else if(getBoard().getHexagon(x,y).getPiece() == null) {
+            this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+        }
+        else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
+            this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+        }
+        changePlayerTurn();
+        setSelectedHexagon(null);
+    }
+
+//    public void rightClick(int x,int y)
+//    {
+//        selectedHexagon.getPiece().specialEffect();
+//    }
 
     public void saveGame()
     {
         FileHelper fileHelper=new FileHelper();
         fileHelper.WriteObjectToFile(this);
     }
+
     public void undo()
     {
         this.commandManager.Undo();
@@ -176,6 +188,4 @@ public class Game implements Serializable{
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }
-
-
 }

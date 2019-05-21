@@ -1,8 +1,8 @@
 package Builder;
 
+import Decorator.ProximityAttackDecorator;
 import Model.Attackers.*;
 import Model.Defenders.*;
-import Decorator.FlyDecorator;
 import Model.Piece;
 import Model.Player;
 
@@ -11,7 +11,7 @@ public class PieceBuilder {
     public Piece getIronMan(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new IronMan(player));
+            piece = new ProximityAttackDecorator(new IronMan(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -21,7 +21,7 @@ public class PieceBuilder {
     public Piece getBlackPanther(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new BlackPanther(player));
+            piece = new ProximityAttackDecorator(new BlackPanther(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,7 +31,7 @@ public class PieceBuilder {
     public Piece getCaptainMarvel(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new CaptainMarvel(player));
+            piece = new ProximityAttackDecorator(new CaptainMarvel(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +41,7 @@ public class PieceBuilder {
     public Piece getDrStrange(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new DrStrange(player));
+            piece = new ProximityAttackDecorator(new DrStrange(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class PieceBuilder {
     public Piece getHulk(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new Hulk(player));
+            piece = new ProximityAttackDecorator(new Hulk(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class PieceBuilder {
     public Piece getLoki(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new Loki(player));
+            piece = new ProximityAttackDecorator(new Loki(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,7 +71,7 @@ public class PieceBuilder {
     public Piece getThanos(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new Thanos(player));
+            piece = new ProximityAttackDecorator(new Thanos(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,7 +81,7 @@ public class PieceBuilder {
     public Piece getKillMonger(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new KillMonger(player));
+            piece = new ProximityAttackDecorator(new KillMonger(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,7 +91,7 @@ public class PieceBuilder {
     public Piece getUltron(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new Ultron(player));
+            piece = new ProximityAttackDecorator(new Ultron(player));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,7 +101,7 @@ public class PieceBuilder {
     public Piece getBlackDwarf(Player player) {
         Piece piece = null;
         try {
-            piece = new FlyDecorator(new BlackDwarf(player));
+            piece = new ProximityAttackDecorator(new BlackDwarf(player));
         } catch (Exception e) {
             e.printStackTrace();
         }

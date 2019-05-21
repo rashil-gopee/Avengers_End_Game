@@ -53,6 +53,14 @@ public abstract class Piece extends PieceComposite implements Serializable {
         return image;
     }
 
+    public boolean isSpecialEffectUsed() {
+        return isSpecialEffectUsed;
+    }
+
+    public void setSpecialEffectUsed(boolean specialEffectUsed) {
+        isSpecialEffectUsed = specialEffectUsed;
+    }
+
     public abstract boolean move(Hexagon source,Hexagon target);
 
 
@@ -85,7 +93,7 @@ public abstract class Piece extends PieceComposite implements Serializable {
         return owner.equals(player);
     }
 
-    public void specialEffect() {
+    public void specialEffect(Hexagon hexagon) {
         this.isSpecialEffectUsed = true;
         System.out.println("Special Effect");
     }

@@ -20,11 +20,16 @@ public class GameController implements Serializable {
      * @param y this is y position of the hexagon.
      * @return void
      */
-    public void click(int x,int y)
+    public void click(int x,int y, boolean specialEffect)
     {
-        game.click(x, y);
+        game.click(x, y, specialEffect);
 
     }
+
+//    public void rightClick(int x,int y)
+//    {
+//        game.rightClick(x, y);
+//    }
 
     public void registerListener(AvengersGameView view){
         game.addModelChangedListeners(view);
