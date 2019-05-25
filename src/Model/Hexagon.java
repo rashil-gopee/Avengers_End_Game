@@ -5,6 +5,7 @@ import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Hexagon implements Serializable {
     private int x;
@@ -44,6 +45,19 @@ public class Hexagon implements Serializable {
     public void movePiece(Hexagon target) {
         target.setPiece(this.piece);
         this.piece = null;
+    }
+
+    public ArrayList<Hexagon> getSurroundHexagons(){
+        ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
+
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY()));
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY() + 1));
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY() + 1));
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY()));
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY() - 1));
+        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY() + 1));
+
+        return surroundingHexagons;
     }
 
 }

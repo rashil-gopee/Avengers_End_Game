@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProximityAttackDecorator extends PieceDecorator{
     public ProximityAttackDecorator(Piece piece)
     {
-        super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece);
+        super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece, piece.getAttackStrategy());
     }
 
     @Override
@@ -22,14 +22,7 @@ public class ProximityAttackDecorator extends PieceDecorator{
     public void proximityAttack(Hexagon hexagon) {
         System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
-        ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
-
-        surroundingHexagons.add(new Hexagon(hexagon.getX() - 1, hexagon.getY()));
-        surroundingHexagons.add(new Hexagon(hexagon.getX() - 1, hexagon.getY() + 1));
-        surroundingHexagons.add(new Hexagon(hexagon.getX(), hexagon.getY() + 1));
-        surroundingHexagons.add(new Hexagon(hexagon.getX() + 1, hexagon.getY()));
-        surroundingHexagons.add(new Hexagon(hexagon.getX(), hexagon.getY() - 1));
-        surroundingHexagons.add(new Hexagon(hexagon.getX() + 1, hexagon.getY() + 1));
+        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
 
         for (Hexagon hex : surroundingHexagons) {
             System.out.println(hex.getX() +"," + hex.getY());

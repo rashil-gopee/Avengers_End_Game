@@ -1,5 +1,6 @@
 package Model;
 
+import Strategy.AttackStrategy;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
@@ -16,13 +17,16 @@ public abstract class Piece extends PieceComposite implements Serializable {
     private String image;
     private Player owner;
 
-    public Piece(int stealth, int attackingPower, int attackingDistance, String image, Player owner) {
+    private AttackStrategy attackStrategy;
+
+    public Piece(int stealth, int attackingPower, int attackingDistance, String image, Player owner, AttackStrategy attackStrategy) {
         this.stealth = stealth;
         this.attackingPower = attackingPower;
         this.attackingDistance = attackingDistance;
         this.image = image;
         this.owner = owner;
         isSpecialEffectUsed = false;
+        this.attackStrategy = attackStrategy;
     }
 
     public void setStealth(int stealth) {
@@ -61,6 +65,14 @@ public abstract class Piece extends PieceComposite implements Serializable {
         isSpecialEffectUsed = specialEffectUsed;
     }
 
+    public AttackStrategy getAttackStrategy() {
+        return attackStrategy;
+    }
+
+    public void setAttackStrategy(AttackStrategy attackStrategy) {
+        this.attackStrategy = attackStrategy;
+    }
+
     public abstract boolean move(Hexagon source,Hexagon target);
 
 
@@ -70,18 +82,19 @@ public abstract class Piece extends PieceComposite implements Serializable {
      * @param target  This is the targeted hexagon which contains the piece the player wants to attack
      * @return boolean This returns if the player was allowed and succeeded to attack this the targeted hexagon's piece.
      */
-    @Requires("source.getPiece() != null && target.getPiece() != null")
+//    @Requires("source.getPiece() != null && target.getPiece() != null")
 //    @Ensures("target.getPiece().getAttackingPower() != old (target.getPiece().getAttackingPower())")
-    public boolean attack(Hexagon source,Hexagon target){
-        if(abs(source.getX()-target.getX()) > getAttackingDistance()||abs(source.getY()-target.getY()) > getAttackingDistance())
-        {
-            return false;
-        }
-        target.getPiece().suffer(source.getPiece().attackingPower);
-        if(target.getPiece().stealth <= 0)
-            target.setPiece(null);
-        return true;
-    }
+
+//    public boolean attack(Hexagon source,Hexagon target){
+//        if(abs(source.getX()-target.getX()) > getAttackingDistance()||abs(source.getY()-target.getY()) > getAttackingDistance())
+//        {
+//            return false;
+//        }
+//        target.getPiece().suffer(source.getPiece().attackingPower);
+//        if(target.getPiece().stealth <= 0)
+//            target.setPiece(null);
+//        return true;
+//    }
 
     /**
      * This method is used to for attacking a hexagon's piece

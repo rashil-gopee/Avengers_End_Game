@@ -3,6 +3,7 @@ package Model.Defenders;
 import Model.Defender;
 import Model.Hexagon;
 import Model.Player;
+import Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
@@ -13,8 +14,8 @@ import java.net.URL;
 import static java.lang.Math.abs;
 
 public class Loki extends Defender implements Serializable {
-    public Loki(Player owner) throws Exception{
-        super(20, 5, 1, "Images/loki.jpg", owner);
+    public Loki(Player owner, AttackStrategy attackStrategy) throws Exception{
+        super(10, 5, 1, "Images/loki.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

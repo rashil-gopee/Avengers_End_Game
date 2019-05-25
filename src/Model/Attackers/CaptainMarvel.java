@@ -3,6 +3,7 @@ package Model.Attackers;
 import Model.Attacker;
 import Model.Hexagon;
 import Model.Player;
+import Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
@@ -13,8 +14,8 @@ import java.net.URL;
 import static java.lang.Math.abs;
 
 public class CaptainMarvel extends Attacker implements Serializable {
-    public CaptainMarvel(Player owner) throws Exception {
-        super(20, 4, 2, "Images/CaptainMarvel.jpg", owner);
+    public CaptainMarvel(Player owner, AttackStrategy attackStrategy) throws Exception {
+        super(15, 4, 2, "Images/CaptainMarvel.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

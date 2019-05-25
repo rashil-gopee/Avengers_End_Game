@@ -1,5 +1,8 @@
 package Model;
 
+import Strategy.AttackStrategy;
+import Strategy.PowerAttackStategy;
+import Strategy.StealthDifferenceAttackStrategy;
 import Utilities.FileHelper;
 import Builder.BoardBuilder;
 import Command.AttackCommand;
@@ -25,6 +28,7 @@ public class Game implements Serializable{
 
     private AttackersDirectory attackersDirectory;
     private DefendersDirectory defendersDirectory;
+    private AttackStrategy attackStrategy;
 
     public int getBoardSize() {
         return boardSize;
@@ -49,8 +53,11 @@ public class Game implements Serializable{
         }
 
         PieceFactory pieceFactory=new PieceFactory();
-        attackersDirectory = pieceFactory.getAttackers(players.get(0));
-        defendersDirectory = pieceFactory.getDefenders(players.get(1));
+        
+        AttackStrategy attackStrategy = new StealthDifferenceAttackStrategy();
+
+        attackersDirectory = pieceFactory.getAttackers(players.get(0), attackStrategy);
+        defendersDirectory = pieceFactory.getDefenders(players.get(1), attackStrategy);
 
         BoardBuilder boardBuilder=new BoardBuilder();
         this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
@@ -184,7 +191,7 @@ public class Game implements Serializable{
 
     public void replayAllMoves()
     {
-        board.setBoard(this.players,this.boardSize);
+        board.setBoard(this.players,this.boardSize, this.attackStrategy);
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }

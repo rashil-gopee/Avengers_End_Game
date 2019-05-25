@@ -3,6 +3,7 @@ package Model.Defenders;
 import Model.Defender;
 import Model.Hexagon;
 import Model.Player;
+import Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
@@ -13,8 +14,8 @@ import java.net.URL;
 import static java.lang.Math.abs;
 
 public class Thanos extends Defender implements Serializable {
-    public Thanos(Player owner) throws Exception {
-        super(20, 10, 1,"Images/Thanos.jpg", owner);
+    public Thanos(Player owner, AttackStrategy attackStrategy) throws Exception {
+        super(10, 10, 1,"Images/Thanos.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

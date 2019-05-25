@@ -2,6 +2,7 @@ package Model;
 
 import Model.Attackers.*;
 import Model.Defenders.*;
+import Strategy.AttackStrategy;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Board implements Serializable {
         }
     }
 
-    public void setBoard(ArrayList<Player> players,int boardSize)
+    public void setBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
     {
         System.out.println("I come here");
         try {
@@ -35,17 +36,17 @@ public class Board implements Serializable {
                     hexagons[i][j].setPiece(null);
                 }
             }
-        Piece blankPanther=new BlackPanther(players.get(0));
-        Piece captainMarvel=new CaptainMarvel(players.get(0));
-        Piece drStrange=new DrStrange(players.get(0));
-        Piece ironMan=new IronMan(players.get(0));
-        Piece hulk=new Hulk(players.get(0));
+        Piece blankPanther=new BlackPanther(players.get(0), attackStrategy);
+        Piece captainMarvel=new CaptainMarvel(players.get(0), attackStrategy);
+        Piece drStrange=new DrStrange(players.get(0), attackStrategy);
+        Piece ironMan=new IronMan(players.get(0), attackStrategy);
+        Piece hulk=new Hulk(players.get(0), attackStrategy);
 
-        Piece killMonger=new KillMonger(players.get(1));
-        Piece loki=new Loki(players.get(1));
-        Piece thanos=new Thanos(players.get(1));
-        Piece ultron=new Ultron(players.get(1));
-        Piece blackDwarf=new BlackDwarf(players.get(1));
+        Piece killMonger=new KillMonger(players.get(1), attackStrategy);
+        Piece loki=new Loki(players.get(1), attackStrategy);
+        Piece thanos=new Thanos(players.get(1), attackStrategy);
+        Piece ultron=new Ultron(players.get(1), attackStrategy);
+        Piece blackDwarf=new BlackDwarf(players.get(1), attackStrategy);
 
 
         hexagons[0][0].setPiece(blankPanther);

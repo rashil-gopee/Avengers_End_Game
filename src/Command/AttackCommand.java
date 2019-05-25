@@ -20,7 +20,7 @@ public class AttackCommand extends UndoableCommand implements Serializable
 
     public void Execute()
     {
-        piece.attack(previousPosition,currentLocation);
+        piece.getAttackStrategy().execute(previousPosition,currentLocation);
     }
 
     public void Undo()

@@ -3,6 +3,7 @@ package Model.Defenders;
 import Model.Defender;
 import Model.Hexagon;
 import Model.Player;
+import Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
 
 import javax.imageio.ImageIO;
@@ -14,8 +15,8 @@ import static java.lang.Math.abs;
 
 public class BlackDwarf extends Defender implements Serializable {
 
-    public BlackDwarf(Player owner) throws Exception {
-        super(20, 4, 2,"Images/BlackDwarf.jpg", owner);
+    public BlackDwarf(Player owner, AttackStrategy attackStrategy) throws Exception {
+        super(20, 4, 2,"Images/BlackDwarf.jpg", owner, attackStrategy);
     }
 
 
