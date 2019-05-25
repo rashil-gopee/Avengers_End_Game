@@ -53,7 +53,7 @@ public class Game implements Serializable{
         }
 
         PieceFactory pieceFactory=new PieceFactory();
-        
+
         AttackStrategy attackStrategy = new StealthDifferenceAttackStrategy();
 
         attackersDirectory = pieceFactory.getAttackers(players.get(0), attackStrategy);

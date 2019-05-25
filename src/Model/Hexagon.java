@@ -50,12 +50,23 @@ public class Hexagon implements Serializable {
     public ArrayList<Hexagon> getSurroundHexagons(){
         ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
 
-        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY()));
-        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY() + 1));
-        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY() + 1));
-        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY()));
+        if (this.getX() - 1 >= 0 && this.getY() >= 0)
+            surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY()));
+
+        if (this.getX() - 1 >= 0 && this.getY() + 1 >= 0)
+            surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1, this.getY() + 1));
+
+        if (this.getX() >= 0 && this.getY() + 1 >= 0)
+            surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY() + 1));
+
+        if (this.getX() + 1 >= 0 && this.getY() >= 0)
+            surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY()));
+
+        if (this.getX() >= 0 && this.getY() - 1 >= 0)
         surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY() - 1));
-        surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY() + 1));
+
+        if (this.getX() + 1 >= 0 && this.getY() + 1 >= 0)
+            surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() + 1, this.getY() + 1));
 
         return surroundingHexagons;
     }
