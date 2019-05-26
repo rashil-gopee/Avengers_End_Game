@@ -57,12 +57,13 @@ public class AvengersGameView implements IModelChangeListener, Serializable
     {
         JMenuBar menuBar = new JMenuBar();
         JMenu menu;
+        JFrame frame = new JFrame("Avengers End Game");
+
         JMenuItem item1 = new JMenuItem("Save");
         menu = new JMenu("File");
         menu.add(item1);
         item1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("hiq");
                 gameController.saveGame();
             }
         });
@@ -76,7 +77,21 @@ public class AvengersGameView implements IModelChangeListener, Serializable
             }
         });
         menuBar.add(menu);
-        JFrame frame = new JFrame("Avengers End Game");
+        menu = new JMenu("Undo");
+        item1 = new JMenuItem("Undo Moves");
+        item1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String code = JOptionPane.showInputDialog(
+                        frame,
+                        "Enter the number of moves you need to undo (1-3)",
+                        "Number of moves",
+                        JOptionPane.WARNING_MESSAGE
+                );
+            }
+        });
+        menu.add(item1);
+
+        menuBar.add(menu);
         frame.setJMenuBar(menuBar);
 //        JButton b1 = new JButton("Undo");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
