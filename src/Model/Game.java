@@ -44,7 +44,7 @@ public class Game implements Serializable{
 
     @Requires("numOfPlayers>0 && boardSize>2")
     @Ensures("playerTurn==0 && players!=null")
-    private Game(int numOfPlayers,int boardSize){
+    private Game(int numOfPlayers,int boardSize,String strategy){
 
         this.boardSize=boardSize;
         this.players = new ArrayList<>();
@@ -53,8 +53,13 @@ public class Game implements Serializable{
         }
 
         PieceFactory pieceFactory=new PieceFactory();
-
-        AttackStrategy attackStrategy = new StealthDifferenceAttackStrategy();
+        if(strategy.equals("Power"))
+        {
+            AttackStrategy attackStrategy = new PowerAttackStategy();
+        }
+        else {
+            AttackStrategy attackStrategy = new StealthDifferenceAttackStrategy();
+        }
 
         attackersDirectory = pieceFactory.getAttackers(players.get(0), attackStrategy);
         defendersDirectory = pieceFactory.getDefenders(players.get(1), attackStrategy);
@@ -68,9 +73,9 @@ public class Game implements Serializable{
         playerTurn = 0;
     }
 
-    public static Game getInstance(int numOfPlayers,int boardSize){
+    public static Game getInstance(int numOfPlayers,int boardSize,String strategy){
         if (instance == null){
-            instance = new Game(numOfPlayers,boardSize);
+            instance = new Game(numOfPlayers,boardSize,strategy);
         }
         return instance;
     }
@@ -195,4 +200,6 @@ public class Game implements Serializable{
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }
+
+
 }

@@ -2,9 +2,11 @@ package Strategy;
 
 import Model.Hexagon;
 
+import java.io.Serializable;
+
 import static java.lang.Math.abs;
 
-public class StealthDifferenceAttackStrategy implements AttackStrategy {
+public class StealthDifferenceAttackStrategy implements AttackStrategy , Serializable {
     public boolean execute(Hexagon source, Hexagon target){
         if(abs(source.getX()-target.getX()) > source.getPiece().getAttackingDistance()||abs(source.getY()-target.getY()) > source.getPiece().getAttackingDistance())
         {

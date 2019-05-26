@@ -1,8 +1,10 @@
 package Controller;
 
 import Model.Game;
+import Utilities.FileHelper;
 import View.AvengersGameView;
 
+import javax.swing.*;
 import java.io.Serializable;
 
 public class GameController implements Serializable {
@@ -51,5 +53,24 @@ public class GameController implements Serializable {
         game.saveGame();
     }
 
+    public void loadGame() {
+        FileHelper fileHelper=new FileHelper();
+        Game game=fileHelper.loadObjectToFile();
+        Game.setInstance(game);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new AvengersGameView(Game.getInstance());
+            }
+        });
+       }
 
+       public void startNewGame(String strategy)
+       {
+           Game.getInstance(2,10,strategy);
+           SwingUtilities.invokeLater(new Runnable() {
+               public void run() {
+                   new AvengersGameView(Game.getInstance());
+               }
+           });
+       }
 }
