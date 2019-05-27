@@ -37,9 +37,9 @@ public class GameController implements Serializable {
         game.addModelChangedListeners(view);
     }
 
-    public void undo()
+    public void undo(int undo)
     {
-        game.undo();
+        game.undo(undo);
 
     }
 

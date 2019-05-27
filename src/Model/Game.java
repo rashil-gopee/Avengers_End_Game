@@ -188,9 +188,9 @@ public class Game implements Serializable{
         fileHelper.WriteObjectToFile(this);
     }
 
-    public void undo()
+    public void undo(int undo)
     {
-        this.commandManager.Undo();
+        this.commandManager.Undo(undo);
         this.changePlayerTurn();
     }
 

@@ -18,12 +18,13 @@ public class CommandManager implements Serializable
     }
 
 
-    public void Undo()
+    public void Undo(int undo)
     {
-        if (commandStack.size() > 0)
-        {
-            UndoableCommand cmd = (UndoableCommand)commandStack.pop();
-            cmd.Undo();
+        for(int i=0;i<undo;i++) {
+            if (commandStack.size() > 0) {
+                UndoableCommand cmd = (UndoableCommand) commandStack.pop();
+                cmd.Undo();
+            }
         }
     }
 

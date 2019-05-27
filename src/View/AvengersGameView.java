@@ -87,6 +87,13 @@ public class AvengersGameView implements IModelChangeListener, Serializable
                         "Number of moves",
                         JOptionPane.WARNING_MESSAGE
                 );
+                if(code!=null) {
+                    int undo = Integer.parseInt(code);
+                    if(undo>0&& undo<=3){
+                        gameController.undo(undo);
+                    }
+                }
+
             }
         });
         menu.add(item1);
