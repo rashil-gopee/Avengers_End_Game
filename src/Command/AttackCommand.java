@@ -10,12 +10,14 @@ public class AttackCommand extends UndoableCommand implements Serializable
     Piece targetPiece;
     Hexagon previousPosition;
     Hexagon currentLocation;
+
     public AttackCommand(Piece piece, Hexagon previousPosition,Hexagon currentLocation)
     {
         this.piece=piece;
         this.previousPosition=previousPosition;
         this.currentLocation=currentLocation;
         this.targetPiece=currentLocation.getPiece();
+
     }
 
     public void Execute()
@@ -25,13 +27,16 @@ public class AttackCommand extends UndoableCommand implements Serializable
 
     public void Undo()
     {
-
         targetPiece.setStealth ( targetPiece.getStealth() + piece.getAttackingPower());
+        if(currentLocation.getPiece() == null)
+        {
+            currentLocation.setPiece(targetPiece);
+        }
 
     }
 
     public  void  redo()
     {
-
+        piece.getAttackStrategy().execute(previousPosition,currentLocation);
     }
 }
