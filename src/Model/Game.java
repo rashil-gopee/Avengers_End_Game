@@ -51,14 +51,14 @@ public class Game implements Serializable{
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-
+        AttackStrategy attackStrategy;
         PieceFactory pieceFactory=new PieceFactory();
         if(strategy.equals("Power"))
         {
-            AttackStrategy attackStrategy = new PowerAttackStategy();
+             attackStrategy = new PowerAttackStategy();
         }
         else {
-            AttackStrategy attackStrategy = new StealthDifferenceAttackStrategy();
+             attackStrategy = new StealthDifferenceAttackStrategy();
         }
 
         attackersDirectory = pieceFactory.getAttackers(players.get(0), attackStrategy);
