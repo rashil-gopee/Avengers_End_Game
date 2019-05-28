@@ -12,7 +12,7 @@ public class BoardBuilder {
     {
 //        AttackersDirectory attackersDirectory = pieceFactory.getAttackers(players.get(0));
 //        ArrayList<Piece> defenders = pieceFactory.getDefenders(players.get(1));
-
+        
         Board board=Board.getInstance(boardSize);
         int j=0;
         for(int i=0;i<boardSize;i=i+2)

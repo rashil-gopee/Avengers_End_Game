@@ -28,7 +28,9 @@ public class Board implements Serializable {
 
     public void setBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
     {
+
         System.out.println("I come here");
+        System.out.println(attackStrategy);
         try {
 
             for (int i = 0; i < boardSize; i++) {

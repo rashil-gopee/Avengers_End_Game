@@ -7,7 +7,9 @@ import Model.Piece;
 import Model.Player;
 import Strategy.AttackStrategy;
 
-public class PieceBuilder {
+import java.io.Serializable;
+
+public class PieceBuilder implements Serializable {
 
     public Piece getIronMan(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
