@@ -13,10 +13,10 @@ public class ExchangeStealthDecorator extends PieceDecorator {
     @Override
     public void specialEffect(Hexagon hexagon){
         piece.specialEffect(hexagon);
-        proximityAttack(hexagon);
+        proximityExchangeAttack(hexagon);
     }
 
-    public void proximityAttack(Hexagon hexagon) {
+    public void proximityExchangeAttack(Hexagon hexagon) {
         System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
         ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();

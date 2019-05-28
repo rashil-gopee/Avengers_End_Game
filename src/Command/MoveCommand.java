@@ -28,7 +28,6 @@ public class MoveCommand extends UndoableCommand implements Serializable{
 
     public void redo()
     {
-        System.out.println("Heyyyy");
         piece.move(previousPosition,currentLocation);
     }
 }

@@ -35,7 +35,7 @@ public class AttackCommand extends UndoableCommand implements Serializable
 
     }
 
-    public  void  redo()
+    public void redo()
     {
         piece.getAttackStrategy().execute(previousPosition,currentLocation);
     }
