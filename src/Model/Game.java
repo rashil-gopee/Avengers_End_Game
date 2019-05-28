@@ -195,7 +195,9 @@ public class Game implements Serializable{
 
     public void replayAllMoves()
     {
-        board.setBoard(this.players,this.boardSize, this.attackStrategy);
+//        board.setBoard(this.players,this.boardSize, this.attackStrategy);
+        BoardBuilder boardBuilder=new BoardBuilder();
+        this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }
