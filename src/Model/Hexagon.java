@@ -34,7 +34,10 @@ public class Hexagon implements Serializable {
         this.piece = piece;
     }
 
-
+    public boolean isOwner(Player player)
+    {
+        return this.piece.isOwner(player);
+    }
     /**
      * This method is used to move a hexagon's piece to another one
      * @param target This is the Hexagon where you want to move the piece to.
@@ -47,6 +50,10 @@ public class Hexagon implements Serializable {
         this.piece = null;
     }
 
+    public boolean isSpecialEffectUsed()
+    {
+        return this.piece.isSpecialEffectUsed();
+    }
     public ArrayList<Hexagon> getSurroundHexagons(){
         ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
 
@@ -71,4 +78,7 @@ public class Hexagon implements Serializable {
         return surroundingHexagons;
     }
 
+    public boolean hasPiece() {
+        return this.piece!=null;
+    }
 }

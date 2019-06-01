@@ -68,6 +68,10 @@ public class Board implements Serializable {
         }
     }
 
+    public boolean hexagonHasOwner(int i,int j,Player player)
+    {
+        return getHexagon(i,j).isOwner(player);
+    }
     public static Board getInstance(int boardSize){
         if (instance == null){
             instance = new Board(boardSize);
@@ -90,5 +94,9 @@ public class Board implements Serializable {
 
     public Hexagon getHexagon(int i, int j) {
         return hexagons[i][j];
+    }
+
+    public boolean hexagonHasPiece(int x, int y) {
+        return getHexagon(x,y).hasPiece();
     }
 }

@@ -99,7 +99,7 @@ public class Game implements Serializable{
 
 
     public void setSelectedHexagon(Hexagon selectedHexagon) {
-        if(selectedHexagon==null||selectedHexagon.getPiece()!=null&&selectedHexagon.getPiece().isOwner(players.get(playerTurn)))
+        if(selectedHexagon==null||selectedHexagon.hasPiece()&&selectedHexagon.isOwner(players.get(playerTurn)))
             this.selectedHexagon = selectedHexagon;
     }
 
@@ -161,14 +161,14 @@ public class Game implements Serializable{
         if (selectedHexagon == getBoard().getHexagon(x,y)) {
             setSelectedHexagon(null);
         }
-        else if (specialEffect && !getSelectedHexagon().getPiece().isSpecialEffectUsed()) {
+        else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
             move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
             getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
         }
-        else if(getBoard().getHexagon(x,y).getPiece() == null) {
+        else if(!getBoard().hexagonHasPiece(x,y)) {
             move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
-        else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
+        else if(!getBoard().hexagonHasOwner(x,y,players.get(playerTurn))) {
             move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
         if(move) {
