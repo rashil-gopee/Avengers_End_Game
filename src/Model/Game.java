@@ -161,6 +161,8 @@ public class Game implements Serializable{
         if(getSelectedHexagon()==null && !specialEffect)
         {
             setSelectedHexagon(getBoard().getHexagon(x,y));
+                        this.notifyModelChangedListeners();
+
         }
         else
         {
