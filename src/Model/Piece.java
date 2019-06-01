@@ -78,26 +78,6 @@ public abstract class Piece extends PieceComposite implements Serializable {
 
     /**
      * This method is used to for attacking a hexagon's piece
-     * @param source This is the selected hexagon by the player which contains the piece he wants to move
-     * @param target  This is the targeted hexagon which contains the piece the player wants to attack
-     * @return boolean This returns if the player was allowed and succeeded to attack this the targeted hexagon's piece.
-     */
-//    @Requires("source.getPiece() != null && target.getPiece() != null")
-//    @Ensures("target.getPiece().getAttackingPower() != old (target.getPiece().getAttackingPower())")
-
-//    public boolean attack(Hexagon source,Hexagon target){
-//        if(abs(source.getX()-target.getX()) > getAttackingDistance()||abs(source.getY()-target.getY()) > getAttackingDistance())
-//        {
-//            return false;
-//        }
-//        target.getPiece().suffer(source.getPiece().attackingPower);
-//        if(target.getPiece().stealth <= 0)
-//            target.setPiece(null);
-//        return true;
-//    }
-
-    /**
-     * This method is used to for attacking a hexagon's piece
      * @param player This is the player to check against
      * @return boolean This returns if the player owns this piece.
      */

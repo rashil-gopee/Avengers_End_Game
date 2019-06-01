@@ -31,6 +31,10 @@ public class Game implements Serializable{
            return getInstance().board.getHexagonPiece(x,y);
     }
 
+    public static Hexagon getHexagon(int i, int j) {
+        return getInstance().board.getHexagon(i,j);
+    }
+
     public int getBoardSize() {
         return boardSize;
     }
