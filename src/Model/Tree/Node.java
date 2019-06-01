@@ -2,9 +2,10 @@ package Model.Tree;
 
 import Command.Command;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Node {
+public class Node implements Serializable {
     int id;
     Command command;
     Vector<Node> child;

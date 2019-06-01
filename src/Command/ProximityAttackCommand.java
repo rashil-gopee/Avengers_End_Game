@@ -4,9 +4,10 @@ import Model.Game;
 import Model.Hexagon;
 import Model.Piece;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ProximityAttackCommand extends Command {
+public class ProximityAttackCommand extends Command implements Serializable {
     Hexagon executionLocation;
 
     public ProximityAttackCommand(Hexagon executionLocation) {
