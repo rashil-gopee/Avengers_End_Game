@@ -1,6 +1,9 @@
 package Decorator;
 
+import Command.Command;
+import Composite.CommandComposite;
 import Model.*;
+import Command.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,15 +25,20 @@ public class ProximityAttackDecorator extends PieceDecorator{
     public void proximityAttack(Hexagon hexagon) {
         System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
-        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
+//        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
+//
+//        for (Hexagon hex : surroundingHexagons) {
+//            Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
+//
+//            if (pieceToAttack != null) {
+//                    pieceToAttack.suffer(2);
+//            }
+//        }
 
-        for (Hexagon hex : surroundingHexagons) {
-            Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
-
-            if (pieceToAttack != null) {
-                    pieceToAttack.suffer(2);
-            }
-        }
-
+//        CommandComposite commandComposite = new CommandComposite();
+//        commandComposite.add(new ProximityAttackCommand());
+            CommandComposite commandManager = new CommandComposite();
+            Command command1 = new ProximityAttackCommand(hexagon);
+            commandManager.ExecuteCommand(command1);
     }
 }

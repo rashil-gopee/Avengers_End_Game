@@ -1,6 +1,7 @@
 package Model;
 
 import Command.Command;
+import Composite.CommandComposite;
 import Model.Tree.Node;
 import Strategy.AttackStrategy;
 import Strategy.PowerAttackStategy;
@@ -9,7 +10,7 @@ import Utilities.FileHelper;
 import Builder.BoardBuilder;
 import Command.AttackCommand;
 import Command.MoveCommand;
-import Command.CommandManager;
+import Command.*;
 import Interface.IModelChangeListener;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
@@ -28,7 +29,7 @@ public class Game implements Serializable{
     private int playerTurn;
     private Hexagon selectedHexagon;
     private int boardSize;
-    private CommandManager commandManager;
+    private CommandComposite commandManager;
     private static final String POWER_STRATEGY="Power";
     private AttackStrategy attackStrategy;
     private Node root;
@@ -75,7 +76,7 @@ public class Game implements Serializable{
         BoardBuilder boardBuilder=new BoardBuilder();
         this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
 
-        this.commandManager=new CommandManager();
+        this.commandManager=new CommandComposite();
         playerTurn = 0;
         this.root=null;
         this.selectNode=null;
@@ -174,13 +175,16 @@ public class Game implements Serializable{
             setSelectedHexagon(null);
         }
         else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
+            CommandComposite commands = new CommandComposite();
             Command command=new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y));
 
+            commands.add(command);
             move= this.commandManager.ExecuteCommand(command);
+
             if(move) {
                 getBoard().pieceSpecialEffect(x,y);
-                addTree(command);
-
+//                addTree(command);
+                this.commandManager.ExecuteCommand(commands);
             }
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
@@ -196,11 +200,8 @@ public class Game implements Serializable{
             Stack path=new Stack<Node>();
 
             traverseNode(root,path,2);
-
-
         }
         if(move) {
-
             changePlayerTurn();
         }
         setSelectedHexagon(null);
@@ -229,13 +230,13 @@ public class Game implements Serializable{
     public void saveGame()
     {
         FileHelper fileHelper=new FileHelper();
-        fileHelper.WriteObjectToFile(this);
+        fileHelper.writeObjectToFile(this);
     }
 
     public void undo(int undo)
     {
         if(players.get(playerTurn).canUndo()) {
-            this.commandManager.Undo(undo);
+            this.commandManager.undoCommand(undo);
             players.get(playerTurn).deactivateUndo();
             if(undo!=2)
                 this.changePlayerTurn();

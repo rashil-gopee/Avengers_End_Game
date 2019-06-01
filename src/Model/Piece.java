@@ -1,6 +1,7 @@
 package Model;
 
 import Strategy.AttackStrategy;
+import Composite.CommandComposite;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
@@ -88,6 +89,9 @@ public abstract class Piece extends PieceComposite implements Serializable {
 
     public void specialEffect(Hexagon hexagon) {
         this.isSpecialEffectUsed = true;
+
+        CommandComposite commandComposite = new CommandComposite();
+        commandComposite.add(new CommandComposite());
         System.out.println("Special Effect");
     }
 

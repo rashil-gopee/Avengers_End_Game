@@ -9,7 +9,7 @@ public class FileHelper {
 
     private static final String filepath = "save";
 
-    public void WriteObjectToFile(Object serObj) {
+    public void writeObjectToFile(Object serObj) {
         try {
 
             FileOutputStream fileOut = new FileOutputStream(filepath);

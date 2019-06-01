@@ -5,7 +5,7 @@ import Command.UndoableCommand;
 import Model.Hexagon;
 import Model.Piece;
 
-public class MoveCommand extends UndoableCommand implements Serializable{
+public class MoveCommand extends Command implements Serializable{
     Piece piece;
     Hexagon previousPosition;
     Hexagon currentLocation;
@@ -21,7 +21,7 @@ public class MoveCommand extends UndoableCommand implements Serializable{
         return piece.move(previousPosition,currentLocation);
     }
 
-    public  void Undo()
+    public  void undo()
     {
         piece.move(currentLocation,previousPosition);
     }

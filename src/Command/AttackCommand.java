@@ -4,7 +4,7 @@ import java.io.Serializable;
 import Model.Hexagon;
 import Model.Piece;
 
-public class AttackCommand extends UndoableCommand implements Serializable
+public class AttackCommand extends Command implements Serializable
 {
     Piece piece;
     Piece targetPiece;
@@ -24,7 +24,7 @@ public class AttackCommand extends UndoableCommand implements Serializable
        return piece.getAttackStrategy().execute(previousPosition,currentLocation);
     }
 
-    public void Undo()
+    public void undo()
     {
         targetPiece.setStealth ( targetPiece.getStealth() + piece.getAttackingPower());
         if(currentLocation.getPiece() == null)
