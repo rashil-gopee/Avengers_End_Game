@@ -81,6 +81,17 @@ public class hexmech
         return new Polygon(cx,cy,6);
 
     }
+      public static void drawHexPink(int i, int j, Graphics2D g2) {
+        int x = i * (s+t);
+        int y = j * h + (i%2) * h/2;
+        Polygon poly = hex(x,y);
+
+        g2.setColor(AvengersGameView.COLOURTWOTXT);
+        g2.fillPolygon(poly);
+        g2.setColor(AvengersGameView.COLOURGRID);
+        g2.drawPolygon(poly);
+    }
+
 
     /********************************************************************
      Name: drawHex()
