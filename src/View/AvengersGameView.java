@@ -96,7 +96,26 @@ public class AvengersGameView implements IModelChangeListener, Serializable
             }
         });
         menu.add(item1);
+        menuBar.add(menu);
+        menu = new JMenu("Tree");
+        item1 = new JMenuItem("Go to Node");
+        item1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String id = JOptionPane.showInputDialog(
+                        frame,
+                        "Enter the node)",
+                        "Node",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                if(id!=null) {
+                    int nodeId = Integer.parseInt(id);
+                    gameController.goToNode(nodeId);
 
+                }
+
+            }
+        });
+        menu.add(item1);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );

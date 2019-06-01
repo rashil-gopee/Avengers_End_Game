@@ -54,4 +54,13 @@ public class CommandManager implements Serializable
         }).start();
     }
 
+    public void playNodeMoves(ArrayList commands) {
+        for(int i=0;i<commands.size();i++)
+        {
+            UndoableCommand cmd = (UndoableCommand)commands.get(i);
+            cmd.redo();
+        }
+
+    }
+
 }

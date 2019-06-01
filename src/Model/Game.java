@@ -1,5 +1,7 @@
 package Model;
 
+import Command.Command;
+import Model.Tree.Node;
 import Strategy.AttackStrategy;
 import Strategy.PowerAttackStategy;
 import Strategy.StealthDifferenceAttackStrategy;
@@ -15,6 +17,9 @@ import com.google.java.contract.Requires;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
+import java.util.Stack;
+import java.util.Vector;
+
 public class Game implements Serializable{
     private static Game instance = null;
 
@@ -24,9 +29,12 @@ public class Game implements Serializable{
     private Hexagon selectedHexagon;
     private int boardSize;
     private CommandManager commandManager;
-    private static final String POWER_STRATEGY="POWER";
+    private static final String POWER_STRATEGY="Power";
     private AttackStrategy attackStrategy;
-
+    private Node root;
+    private Node selectNode;
+    private int nodeId;
+    private ArrayList<Command> res;
     public static Piece getHexagonPiece(int x, int y) {
            return getInstance().board.getHexagonPiece(x,y);
     }
@@ -69,6 +77,9 @@ public class Game implements Serializable{
 
         this.commandManager=new CommandManager();
         playerTurn = 0;
+        this.root=null;
+        this.selectNode=null;
+        this.nodeId=0;
     }
 
     public static Game getInstance(int numOfPlayers,int boardSize,String strategy){
@@ -163,25 +174,58 @@ public class Game implements Serializable{
             setSelectedHexagon(null);
         }
         else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
+            Command command=new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y));
+
+            move= this.commandManager.ExecuteCommand(command);
             if(move) {
                 getBoard().pieceSpecialEffect(x,y);
+                addTree(command);
 
             }
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
+            Command command=new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y));
+            addTree(command);
+            move= this.commandManager.ExecuteCommand(command);
         }
         else if(!getBoard().hexagonHasOwner(x,y,players.get(playerTurn))) {
-            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon(),board.getHexagon(x, y)));
+            Command command=new AttackCommand(getSelectedHexagon(),board.getHexagon(x, y));
+            move= this.commandManager.ExecuteCommand(command);
+            if(move)
+                addTree(command);
+            Stack path=new Stack<Node>();
+
+            traverseNode(root,path,2);
+
+
         }
         if(move) {
+
             changePlayerTurn();
         }
         setSelectedHexagon(null);
     }
 
+    private void addTree(Command command) {
+        if(root==null) {
+            root = new Node(nodeId,command);
+            selectNode=root;
+        }
+        else
+        {
+            Node node=new Node(nodeId,command);
+            selectNode.addChild(node);
+            selectNode=node;
+        }
+        this.nodeId++;
+    }
 
+    public void goToNode(int id)
+    {
+        Stack path=new Stack<Node>();
+        traverseNode(root, path,id);
+        playNode();
+    }
     public void saveGame()
     {
         FileHelper fileHelper=new FileHelper();
@@ -195,7 +239,64 @@ public class Game implements Serializable{
             players.get(playerTurn).deactivateUndo();
             if(undo!=2)
                 this.changePlayerTurn();
+            else
+                this.notifyModelChangedListeners();
+
         }
+    }
+
+    public Stack<Node> traverseNode(Node root, Stack<Node> path,int search)
+    {
+
+        path.add(root);
+        if(root.getId()==search)
+        {
+            this.selectNode=root;
+            res=new ArrayList<Command>();
+            for(int i=0;i<path.size();i++)
+            {
+                res.add(path.get(i).getCommand());
+            }
+            return path;
+        }
+        if(root.childCount() == 0) {
+            path.pop();
+            return null;
+        }
+        else {
+            for(int i=0;i<root.childCount();i++)
+            {
+                traverseNode(root.getChild(i),path,search);
+            }
+        }
+        path.pop();
+        return null;
+
+//        Node node = root;
+//
+//        while (node.childCount() != 0)
+//        {
+//            if (node)
+//        }
+//
+//        if (root.getId() == search)
+//        {
+//            path.add(root);
+//            return path;
+//        }
+//        else {
+//            for(int i=0;i<root.childCount();i++)
+//            {
+//                if (traverseNode(root.getChild(i), search, path) == null) {
+//                    continue;
+//                }
+//                else {
+//                    path.add(root.getChild(i));
+//                }
+//            }
+//        }
+
+//        return null;
     }
 
     public void replayAllMoves()
@@ -206,5 +307,12 @@ public class Game implements Serializable{
         this.commandManager.playMoves(this);
     }
 
+    public void playNode()
+    {
+        BoardBuilder boardBuilder=new BoardBuilder();
+        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
+        this.commandManager.playNodeMoves(res);
+        this.notifyModelChangedListeners();
 
+    }
 }

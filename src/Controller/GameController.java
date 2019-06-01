@@ -1,11 +1,13 @@
 package Controller;
 
 import Model.Game;
+import Model.Tree.Node;
 import Utilities.FileHelper;
 import View.AvengersGameView;
 
 import javax.swing.*;
 import java.io.Serializable;
+import java.util.Stack;
 
 public class GameController implements Serializable {
     private Game game;
@@ -38,7 +40,10 @@ public class GameController implements Serializable {
         game.undo(undo);
 
     }
-
+    public void goToNode(int id)
+    {
+      game.goToNode(id);
+    }
     public void replayAllMoves()
     {
         game.replayAllMoves();

@@ -11,7 +11,7 @@ public class AvengersMainView {
 
     public static void main(String[] args) {
 
-        JFrame f = new JFrame("Text Field Examples");
+        JFrame f = new JFrame("Avengers:End Game");
         f.getContentPane().setLayout(new FlowLayout());
         JButton loadGame=new JButton("Load Game");
         JButton startGame=new JButton("Start New Game");
