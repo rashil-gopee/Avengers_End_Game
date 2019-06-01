@@ -11,9 +11,9 @@ public class AttackCommand extends UndoableCommand implements Serializable
     Hexagon previousPosition;
     Hexagon currentLocation;
 
-    public AttackCommand(Piece piece, Hexagon previousPosition,Hexagon currentLocation)
+    public AttackCommand(Hexagon previousPosition,Hexagon currentLocation)
     {
-        this.piece=piece;
+        this.piece=previousPosition.getPiece();
         this.previousPosition=previousPosition;
         this.currentLocation=currentLocation;
         this.targetPiece=currentLocation.getPiece();

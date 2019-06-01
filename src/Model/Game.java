@@ -162,14 +162,14 @@ public class Game implements Serializable{
             setSelectedHexagon(null);
         }
         else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
             getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
         else if(!getBoard().hexagonHasOwner(x,y,players.get(playerTurn))) {
-            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
         if(move) {
             changePlayerTurn();

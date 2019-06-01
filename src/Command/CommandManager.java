@@ -38,14 +38,13 @@ public class CommandManager implements Serializable
         new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println(replayList.size());
                 for(int i=0;i<replayList.size();i++)
                 {
                     UndoableCommand cmd = (UndoableCommand)replayList.get(i);
                     cmd.redo();
                     game.notifyModelChangedListeners();
                     try {
-                        Thread.sleep(3000);
+                        Thread.sleep(2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

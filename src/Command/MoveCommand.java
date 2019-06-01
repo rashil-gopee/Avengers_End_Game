@@ -9,9 +9,9 @@ public class MoveCommand extends UndoableCommand implements Serializable{
     Piece piece;
     Hexagon previousPosition;
     Hexagon currentLocation;
-    public MoveCommand(Piece piece, Hexagon previousPosition,Hexagon currentLocation)
+    public MoveCommand( Hexagon previousPosition,Hexagon currentLocation)
     {
-        this.piece=piece;
+        this.piece=previousPosition.getPiece();
         this.previousPosition=previousPosition;
         this.currentLocation=currentLocation;
     }
