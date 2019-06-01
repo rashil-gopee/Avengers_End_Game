@@ -23,13 +23,6 @@ public class ExchangeStealthDecorator extends PieceDecorator {
 
         Piece highestStealthPiece = null;
         for (Hexagon hex : surroundingHexagons) {
-//            System.out.println(hex.getX() + "," + hex.getY());
-//            Piece pieceToAttack = Game.getInstance().getBoard().getHexagon(hex.getX(), hex.getY()).getPiece();
-//            if (pieceToAttack != null) {
-//                System.out.println((piece instanceof Attacker && pieceToAttack instanceof Defender) || (piece instanceof Defender && pieceToAttack instanceof Attacker));
-////                if ((piece instanceof Attacker && pieceToAttack instanceof Defender) || (piece instanceof Defender && pieceToAttack instanceof Attacker))
-//                pieceToAttack.suffer(2);
-//            }
             if (highestStealthPiece == null || (hex.getPiece() != null && hex.getPiece().getStealth() > highestStealthPiece.getStealth()))
                 highestStealthPiece = hex.getPiece();
         }
