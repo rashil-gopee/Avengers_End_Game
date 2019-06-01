@@ -89,4 +89,74 @@ public class Hexagon implements Serializable {
     public void pieceSpecialEffect() {
         piece.specialEffect(this);
     }
+    
+    public ArrayList<Hexagon> getSurroundHexagonsView() {
+        ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
+        try {
+            for (int i =0; i < Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()).getPiece().getAttackingDistance(); i++) {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() +1+ i, this.getY()));
+            }
+        }catch (Exception ex){
+        }
+        try {
+            for (int i =0; i < Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()).getPiece().getAttackingDistance(); i++) {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX() - 1 - i, this.getY()));
+            }
+        }catch (Exception ex){
+        }
+        try {
+            for (int i =0; i < Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()).getPiece().getAttackingDistance(); i++) {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()-1 -i));
+            }
+        }catch (Exception ex){
+        }
+        try {
+            for (int i =0; i < Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()).getPiece().getAttackingDistance(); i++) {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()+1 +i));
+            }
+        }catch (Exception ex){
+        }
+        try {
+            for (int i =0; i < Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()).getPiece().getAttackingDistance(); i++) {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX(), this.getY()-1 -i));
+            }
+        }catch (Exception ex){
+        }
+        // left top even
+        if ((getX() % 2 == 0)) {
+            try {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX()-1, this.getY() - 1));
+                System.out.println("cudnt left top even");
+
+            } catch (Exception ex) {
+            }
+        }
+        // right top even
+        if ((getX() % 2 == 0)) {
+            try {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX()+1, this.getY() - 1));
+                System.out.println("cudnt right top even");
+
+            } catch (Exception ex) {
+            }
+        }
+        if ((getX() % 2 != 0)) {
+            try {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX()-1, this.getY() + 1));
+                System.out.println("cudnt left bottom odd");
+
+            } catch (Exception ex) {
+            }
+        }
+        // right top even
+        if ((getX() % 2 != 0)) {
+            try {
+                surroundingHexagons.add(Game.getInstance().getBoard().getHexagon(this.getX()+1, this.getY() +1));
+                System.out.println("cudnt right top odd");
+            } catch (Exception ex) {
+            }
+        }
+        return surroundingHexagons;
+
+    }
 }
