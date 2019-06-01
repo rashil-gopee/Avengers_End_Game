@@ -1,6 +1,8 @@
 package Builder;
 
-import Factory.PieceFactory;
+import Factory.AbstractPieceFactory;
+import Factory.AttackersPieceFactory;
+import Factory.DefendersPeiceFactory;
 import Model.*;
 import Strategy.AttackStrategy;
 
@@ -10,11 +12,13 @@ public class BoardBuilder {
     final static int ATTACKERS_COLUMN=0;
     final static int DEFENDERS_COLUMN=9;
 
-    PieceFactory pieceFactory=new PieceFactory();
+    AbstractPieceFactory attackersPieceFactory=new AttackersPieceFactory();
+    AbstractPieceFactory defendersPieceFactory=new DefendersPeiceFactory();
+
     public Board buildBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
     {
-        AttackersDirectory attackersDirectory = pieceFactory.getAttackers(players.get(0),attackStrategy);
-        DefendersDirectory defendersDirectory = pieceFactory.getDefenders(players.get(1),attackStrategy);
+        Directory attackersDirectory = attackersPieceFactory.getPieces(players.get(0),attackStrategy);
+        Directory defendersDirectory = defendersPieceFactory.getPieces(players.get(1),attackStrategy);
 
         Board board=Board.getInstance(boardSize);
 

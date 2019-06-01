@@ -2,7 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
-public class AttackersDirectory extends PieceComposite implements Serializable {
+public class AttackersDirectory extends Directory implements Serializable {
     @Override
     public void suffer(int i) {
         pieces.forEach((piece) -> piece.suffer(i + 1));

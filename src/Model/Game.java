@@ -8,7 +8,6 @@ import Builder.BoardBuilder;
 import Command.AttackCommand;
 import Command.MoveCommand;
 import Command.CommandManager;
-import Factory.PieceFactory;
 import Interface.IModelChangeListener;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
@@ -49,7 +48,6 @@ public class Game implements Serializable{
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-        PieceFactory pieceFactory=new PieceFactory();
         if(strategy.equals("Power"))
         {
             this.attackStrategy = new PowerAttackStategy();
