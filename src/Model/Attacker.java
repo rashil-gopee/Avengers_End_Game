@@ -2,7 +2,7 @@ package Model;
 
 import Strategy.AttackStrategy;
 
-import java.awt.*;
+
 import java.io.Serializable;
 
 public abstract class Attacker extends Piece implements Serializable {

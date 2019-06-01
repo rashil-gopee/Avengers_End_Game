@@ -90,7 +90,7 @@ public class CommandComposite extends Command implements Serializable {
     public void playNodeMoves(ArrayList commands) {
         for(int i=0;i<commands.size();i++)
         {
-            UndoableCommand cmd = (UndoableCommand)commands.get(i);
+            Command cmd = (Command)commands.get(i);
             cmd.redo();
         }
 
