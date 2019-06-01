@@ -3,7 +3,9 @@ package View;
 import Controller.GameController;
 import Model.Game;
 import Interface.IModelChangeListener;
+import Model.Hexagon;
 
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -151,6 +153,17 @@ public class AvengersGameView implements IModelChangeListener, Serializable
             for (int i=0;i<game.getBoardSize();i++) {
                 for (int j=0;j<game.getBoardSize();j++) {
                     hexmech.drawHex(i,j,g2);
+                }
+            }
+            
+             if (game.getSelectedHexagon()!=null) {
+                try {
+                    ArrayList<Hexagon> surroundingHexas = game.getSelectedHexagon().getSurroundHexagonsView();
+                    for (Hexagon optionalHexa: surroundingHexas){
+                        hexmech.drawHexPink(optionalHexa.getX(), optionalHexa.getY(), g2);
+
+                    }
+                }catch (Exception exception){
                 }
             }
 
