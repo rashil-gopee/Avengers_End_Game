@@ -17,12 +17,12 @@ public class ProximityAttackDecorator extends PieceDecorator{
     }
 
     @Override
-    public void specialEffect(Hexagon hexagon){
-        piece.specialEffect(hexagon);
-        proximityAttack(hexagon);
+    public void specialEffect(Hexagon hexagon, CommandComposite commands){
+        piece.specialEffect(hexagon, commands);
+        proximityAttack(hexagon, commands);
     }
 
-    public void proximityAttack(Hexagon hexagon) {
+    public void proximityAttack(Hexagon hexagon, CommandComposite commands) {
         System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
 //        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
@@ -37,8 +37,9 @@ public class ProximityAttackDecorator extends PieceDecorator{
 
 //        CommandComposite commandComposite = new CommandComposite();
 //        commandComposite.add(new ProximityAttackCommand());
-            CommandComposite commandManager = new CommandComposite();
+//            CommandComposite commandManager = new CommandComposite();
             Command command1 = new ProximityAttackCommand(hexagon);
-            commandManager.ExecuteCommand(command1);
+//            commandManager.ExecuteCommand(command1);
+        commands.add(command1);
     }
 }

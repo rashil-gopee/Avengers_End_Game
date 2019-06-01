@@ -87,7 +87,7 @@ public abstract class Piece extends PieceComposite implements Serializable {
         return owner.equals(player);
     }
 
-    public void specialEffect(Hexagon hexagon) {
+    public void specialEffect(Hexagon hexagon, CommandComposite commands) {
         this.isSpecialEffectUsed = true;
 
         CommandComposite commandComposite = new CommandComposite();

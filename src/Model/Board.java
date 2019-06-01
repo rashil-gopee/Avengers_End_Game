@@ -50,7 +50,7 @@ public class Board implements Serializable {
         return getHexagon(x,y).getPiece();
     }
 
-    public void pieceSpecialEffect(int x, int y) {
-        getHexagon(x,y).pieceSpecialEffect();
-    }
+//    public void pieceSpecialEffect(int x, int y) {
+//        getHexagon(x,y).pieceSpecialEffect();
+//    }
 }

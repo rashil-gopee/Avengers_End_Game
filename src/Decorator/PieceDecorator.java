@@ -5,6 +5,7 @@ import Model.Piece;
 import Model.Player;
 import Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
+import Composite.*;
 
 import java.awt.*;
 
@@ -22,7 +23,7 @@ public abstract class PieceDecorator extends Piece {
     }
 
     @Override
-    public void specialEffect(Hexagon hexagon){
+    public void specialEffect(Hexagon hexagon, CommandComposite commands){
         System.out.println("Special Effect");
     }
 

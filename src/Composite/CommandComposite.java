@@ -6,6 +6,7 @@ import Model.Game;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Stack;
 
 public class CommandComposite extends Command implements Serializable {
@@ -84,8 +85,8 @@ public class CommandComposite extends Command implements Serializable {
 
     @Override
     public void undo() {
-        for (Command command: commandStack) {
-            command.undo();
+        for (int i = commandStack.size(); i-- > 0; ) {
+           (commandStack.get(i)).undo();
         }
     }
 

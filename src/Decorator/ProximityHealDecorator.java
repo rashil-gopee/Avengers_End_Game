@@ -1,5 +1,6 @@
 package Decorator;
 
+import Composite.CommandComposite;
 import Model.*;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class ProximityHealDecorator extends PieceDecorator {
     }
 
     @Override
-    public void specialEffect(Hexagon hexagon){
-        piece.specialEffect(hexagon);
+    public void specialEffect(Hexagon hexagon, CommandComposite commands){
+        piece.specialEffect(hexagon, commands);
         proximityHeal(hexagon);
     }
 

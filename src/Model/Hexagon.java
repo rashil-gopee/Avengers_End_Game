@@ -86,7 +86,7 @@ public class Hexagon implements Serializable {
         return piece.getStealth()>highestStealthPiece.getStealth();
     }
 
-    public void pieceSpecialEffect() {
-        piece.specialEffect(this);
-    }
+//    public void pieceSpecialEffect() {
+//        piece.specialEffect(this);
+//    }
 }
