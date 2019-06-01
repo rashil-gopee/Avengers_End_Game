@@ -54,6 +54,11 @@ public class Hexagon implements Serializable {
     {
         return this.piece.isSpecialEffectUsed();
     }
+
+    /**
+     * This method is used to find all the 6 surrounding hexagons around any hexagon on the board.
+     * @return ArrayList<Hexagon> This is an arraylist of at max 6 surrounding hexagon.
+     */
     public ArrayList<Hexagon> getSurroundHexagons(){
         ArrayList<Hexagon> surroundingHexagons = new ArrayList<>();
 

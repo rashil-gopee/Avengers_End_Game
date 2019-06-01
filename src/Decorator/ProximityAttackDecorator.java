@@ -22,6 +22,13 @@ public class ProximityAttackDecorator extends PieceDecorator{
         proximityAttack(hexagon, commands);
     }
 
+    /**
+     * This method is used to do create a special proximity attack. This move attacks
+     * all the opponent pieces which are in the surrounding hexagons.
+     * @param hexagon this is hexagon around which the attack takes place .
+     * @param commands this is the instance for command stack.
+     * @return void
+     */
     public void proximityAttack(Hexagon hexagon, CommandComposite commands) {
         System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
@@ -40,6 +47,6 @@ public class ProximityAttackDecorator extends PieceDecorator{
 //            CommandComposite commandManager = new CommandComposite();
             Command command1 = new ProximityAttackCommand(hexagon);
 //            commandManager.ExecuteCommand(command1);
-        commands.add(command1);
+         commands.add(command1);
     }
 }

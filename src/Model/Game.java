@@ -149,10 +149,11 @@ public class Game implements Serializable{
 
 
     /**
-     * This method is used to decide whether the player has decided to attack or move and accordingly
-     * calls the respective method.
+     * This method is used to decide whether the player selected a piece or
+     * has selected a hexagon to perform an action.
      * @param x this is x position of the hexagon.
      * @param y this is y position of the hexagon.
+     * @param specialEffect this represents if the player has played a specialEffect.
      * @return void
      */
     @Requires("x>=0 && x<boardSize && y>=0 && y<boardSize")
@@ -168,6 +169,15 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * This method is used to decide whether the player has decided to attack , move  or
+     * perform special attack and accordingly calls the respective method. It is also responsible
+     * for changing the player turn.
+     * @param x this is x position of the hexagon.
+     * @param y this is y position of the hexagon.
+     * @param specialEffect this represents if the player has played a specialEffect.
+     * @return void
+     */
     private void performAction(int x, int y, boolean specialEffect){
         boolean move=false;
         if (selectedHexagon == getBoard().getHexagon(x,y)) {
@@ -205,6 +215,13 @@ public class Game implements Serializable{
         setSelectedHexagon(null);
     }
 
+
+    /**
+     * This method is used to add every command to the tree as a node so that
+     * the player can decide to move back to any node and continue a new game from there.
+     * @param command this is command to be added into the tree
+     * @return void
+     */
     private void addTree(Command command) {
         if(root==null) {
             root = new Node(nodeId,command);
@@ -219,18 +236,32 @@ public class Game implements Serializable{
         this.nodeId++;
     }
 
+
+    /**
+     * This method is used to find the node the player wants to go to and then
+     * change the board setting based on those commands.
+     * @param id this is unique id of the node the player want's to move to.
+     * @return void
+     */
     public void goToNode(int id)
     {
         Stack path=new Stack<Node>();
         traverseNode(root, path,id);
         playNode();
     }
+
     public void saveGame()
     {
         FileHelper fileHelper=new FileHelper();
         fileHelper.writeObjectToFile(this);
     }
 
+    /**
+     * This method is used to undo the commands for both players. Each player
+     * can undo only once during the game. It then notifies to refresh the board.
+     * @param undo this is number of undo commands the player wants to do.
+     * @return void
+     */
     public void undo(int undo)
     {
         if(players.get(playerTurn).canUndo()) {
@@ -244,6 +275,15 @@ public class Game implements Serializable{
         }
     }
 
+    /**
+     * This is a recursive function which is used to find the path from root node
+     * of the tree to a particular unique id. Each node represents command played
+     * by the player. This is done so as to reduce the memory footprint.
+     * @param root this is root node of the tree.
+     * @param path this is a stack of path from root node to the destination node.
+     * @param search this is unique id of the node to be searched.
+     * @return Stack<Node> this is the path to be traversed.
+     */
     public Stack<Node> traverseNode(Node root, Stack<Node> path,int search)
     {
 
@@ -272,6 +312,11 @@ public class Game implements Serializable{
         return null;
     }
 
+    /**
+     * This method is used to replay all the moves from the start of
+     * the game to the present setup for the player to replay the game at any time.
+     * @return void
+     */
     public void replayAllMoves()
     {
         BoardBuilder boardBuilder=new BoardBuilder();
@@ -280,6 +325,11 @@ public class Game implements Serializable{
         this.commandManager.playMoves(this);
     }
 
+    /**
+     * This method is used to setup the initial board and then redo the moves from starting
+     * to the particular node the user wants to go to.
+     * @return void
+     */
     public void playNode()
     {
         BoardBuilder boardBuilder=new BoardBuilder();

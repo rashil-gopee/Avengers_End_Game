@@ -15,6 +15,16 @@ public class BoardBuilder {
     AbstractPieceFactory attackersPieceFactory=new AttackersPieceFactory();
     AbstractPieceFactory defendersPieceFactory=new DefendersPieceFactory();
 
+
+    /**
+     * This method is used to build the board for the game. This method calls Piece Factory for
+     * both attackers and defenders and then setups up the board with those pieces. It then returns
+     * the board back to the caller function
+     * @param players this is list of players.
+     * @param boardSize this is board size to be setup.
+     * @param attackStrategy this represents the strategy the player has chosen to play.
+     * @return Board
+     */
     public Board buildBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
     {
         Directory attackersDirectory = attackersPieceFactory.getPieces(players.get(0),attackStrategy);

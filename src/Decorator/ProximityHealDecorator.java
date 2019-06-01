@@ -17,6 +17,12 @@ public class ProximityHealDecorator extends PieceDecorator {
         proximityHeal(hexagon);
     }
 
+    /**
+     * This method is used to do create a special proximity heal. This move heals
+     * all your pieces which are in the surrounding hexagons.
+     * @param hexagon this is hexagon around which the heal takes place .
+     * @return void
+     */
     public void proximityHeal(Hexagon hexagon) {
 
         ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();

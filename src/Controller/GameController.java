@@ -21,6 +21,7 @@ public class GameController implements Serializable {
      * calls the respective method.
      * @param x this is x position of the hexagon.
      * @param y this is y position of the hexagon.
+     * @param specialEffect this is to represent if the player played a special move.
      * @return void
      */
     public void click(int x,int y, boolean specialEffect)
@@ -53,6 +54,11 @@ public class GameController implements Serializable {
         game.saveGame();
     }
 
+    /**
+     * This method is used to load an existing game. Once the game is loaded
+     * it calls the main view.
+     * @return void
+     */
     public void loadGame() {
         FileHelper fileHelper=new FileHelper();
         Game game=fileHelper.loadObjectToFile();
@@ -64,6 +70,12 @@ public class GameController implements Serializable {
         });
        }
 
+    /**
+     * This method is used to setup a new game based on the strategy the player
+     * has decided.
+     * @param strategy this is game strategy the player wants to play.
+     * @return void
+     */
        public void startNewGame(String strategy)
        {
            Game.getInstance(2,10,strategy);

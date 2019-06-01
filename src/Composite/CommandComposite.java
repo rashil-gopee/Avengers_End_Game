@@ -21,8 +21,13 @@ public class CommandComposite extends Command implements Serializable {
         if (lastCommand instanceof CommandComposite)
             ((CommandComposite)lastCommand).add(command);
     }
-//    public void
 
+    /**
+     * This method is used to execute the command and push the command in
+     * a stack so as to undo later.
+     * @param cmd this is the command to be executed
+     * @return boolean This returns if the command was successfully executed or not.
+     */
     public boolean ExecuteCommand(Command cmd)
     {
         boolean move=cmd.execute();
@@ -34,7 +39,11 @@ public class CommandComposite extends Command implements Serializable {
 
     }
 
-
+    /**
+     * This method is used to undo the commands both players have played.
+     * @param undo this is the number of commands to be undone.
+     * @return void
+     */
     public void undoCommand(int undo)
     {
         for(int i=0;i<undo;i++) {
@@ -45,6 +54,11 @@ public class CommandComposite extends Command implements Serializable {
         }
     }
 
+    /**
+     * This method is used to undo the commands both players have played.
+     * @param game this is the number of commands to be undone.
+     * @return void
+     */
     public void playMoves(Game game) {
         ArrayList<Command> replayList = new ArrayList(commandStack);
 
@@ -67,6 +81,12 @@ public class CommandComposite extends Command implements Serializable {
         }).start();
     }
 
+    /**
+     * This method is used to redo a list of commands from the start setup
+     * to allow user to move to any gameplay position at any time.
+     * @param commands this is arraylist of commands to be redone.
+     * @return void
+     */
     public void playNodeMoves(ArrayList commands) {
         for(int i=0;i<commands.size();i++)
         {

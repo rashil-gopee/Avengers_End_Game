@@ -43,7 +43,6 @@ public class ProximityAttackCommand extends Command implements Serializable {
     }
 
     public void redo(){
-//        piece.move(oldLocation,newLocation);
 
         ArrayList<Hexagon> surroundingHexagons = executionLocation.getSurroundHexagons();
 

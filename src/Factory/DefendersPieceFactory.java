@@ -10,6 +10,13 @@ public class DefendersPieceFactory extends AbstractPieceFactory{
 
     private PieceBuilder pieceBuilder = new PieceBuilder();
 
+    /**
+     * This method is used to generate the defenders pieces for the game. This method calls PieceBuilder for
+     * to generate the defenders pieces. This returns a list of defenders for the game.
+     * @param player this is player to which the pieces belong to.
+     * @param attackStrategy this represents the strategy the player has chosen to play.
+     * @return DefendersDirectory
+     */
     public DefendersDirectory getPieces(Player player, AttackStrategy attackStrategy)
     {
         DefendersDirectory defendersDirectory=new DefendersDirectory();
