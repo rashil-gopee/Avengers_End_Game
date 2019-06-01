@@ -160,7 +160,10 @@ public class Game implements Serializable{
         }
         else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
             move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
-            getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
+            if(move) {
+                getBoard().pieceSpecialEffect(x,y);
+
+            }
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
             move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
