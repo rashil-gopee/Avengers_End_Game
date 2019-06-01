@@ -16,9 +16,9 @@ public class MoveCommand extends UndoableCommand implements Serializable{
         this.currentLocation=currentLocation;
     }
 
-    public void Execute()
+    public boolean execute()
     {
-        piece.move(previousPosition,currentLocation);
+        return piece.move(previousPosition,currentLocation);
     }
 
     public  void Undo()

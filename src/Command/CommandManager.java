@@ -10,10 +10,14 @@ public class CommandManager implements Serializable
 {
     private  Stack commandStack = new Stack<>();
 
-    public void ExecuteCommand(Command cmd)
+    public boolean ExecuteCommand(Command cmd)
     {
-        cmd.Execute();
-        commandStack.push(cmd);
+        boolean move=cmd.execute();
+        if(move) {
+            commandStack.push(cmd);
+            return true;
+        }
+        return false;
 
     }
 

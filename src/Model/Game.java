@@ -66,8 +66,6 @@ public class Game implements Serializable{
         BoardBuilder boardBuilder=new BoardBuilder();
         this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
 
-        attackersDirectory.suffer(1);
-
         this.commandManager=new CommandManager();
         playerTurn = 0;
     }
@@ -159,20 +157,23 @@ public class Game implements Serializable{
     }
 
     private void performAction(int x, int y, boolean specialEffect){
+        boolean move=false;
         if (selectedHexagon == getBoard().getHexagon(x,y)) {
             setSelectedHexagon(null);
         }
         else if (specialEffect && !getSelectedHexagon().getPiece().isSpecialEffectUsed()) {
-            this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
             getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
         }
         else if(getBoard().getHexagon(x,y).getPiece() == null) {
-            this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
         else if(!getBoard().getHexagon(x,y).getPiece().isOwner(players.get(playerTurn))) {
-            this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon().getPiece(),getSelectedHexagon(),getBoard().getHexagon(x, y)));
         }
-        changePlayerTurn();
+        if(move) {
+            changePlayerTurn();
+        }
         setSelectedHexagon(null);
     }
 

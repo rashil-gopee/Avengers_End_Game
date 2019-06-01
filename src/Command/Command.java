@@ -2,5 +2,5 @@ package Command;
 
 public abstract class Command
 {
-    public abstract void Execute();
+    public abstract boolean execute();
 }
