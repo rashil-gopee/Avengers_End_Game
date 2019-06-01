@@ -2,7 +2,6 @@ package Model;
 
 import Strategy.AttackStrategy;
 
-import java.awt.*;
 import java.io.Serializable;
 
 public abstract class Defender extends Piece implements Serializable {

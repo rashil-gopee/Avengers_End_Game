@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import java.util.Stack;
-import java.util.Vector;
 
 public class Game implements Serializable{
     private static Game instance = null;
@@ -182,8 +181,6 @@ public class Game implements Serializable{
             move= this.commandManager.ExecuteCommand(command);
 
             if(move) {
-//                getSelectedHexagon().getPiece().specialEffect(board.getHexagon(x,y), commands);
-//                addTree(command);
                 getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x,y), commands);
                 this.commandManager.ExecuteCommand(commands);
             }
@@ -273,32 +270,6 @@ public class Game implements Serializable{
         }
         path.pop();
         return null;
-
-//        Node node = root;
-//
-//        while (node.childCount() != 0)
-//        {
-//            if (node)
-//        }
-//
-//        if (root.getId() == search)
-//        {
-//            path.add(root);
-//            return path;
-//        }
-//        else {
-//            for(int i=0;i<root.childCount();i++)
-//            {
-//                if (traverseNode(root.getChild(i), search, path) == null) {
-//                    continue;
-//                }
-//                else {
-//                    path.add(root.getChild(i));
-//                }
-//            }
-//        }
-
-//        return null;
     }
 
     public void replayAllMoves()
