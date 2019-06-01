@@ -6,7 +6,7 @@ import Model.Piece;
 import Model.Player;
 import Strategy.AttackStrategy;
 
-public class DefendersPeiceFactory extends AbstractPieceFactory{
+public class DefendersPieceFactory extends AbstractPieceFactory{
 
     private PieceBuilder pieceBuilder = new PieceBuilder();
 

@@ -2,7 +2,7 @@ package Builder;
 
 import Factory.AbstractPieceFactory;
 import Factory.AttackersPieceFactory;
-import Factory.DefendersPeiceFactory;
+import Factory.DefendersPieceFactory;
 import Model.*;
 import Strategy.AttackStrategy;
 
@@ -13,7 +13,7 @@ public class BoardBuilder {
     final static int DEFENDERS_COLUMN=9;
 
     AbstractPieceFactory attackersPieceFactory=new AttackersPieceFactory();
-    AbstractPieceFactory defendersPieceFactory=new DefendersPeiceFactory();
+    AbstractPieceFactory defendersPieceFactory=new DefendersPieceFactory();
 
     public Board buildBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
     {
