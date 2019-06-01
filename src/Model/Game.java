@@ -24,7 +24,7 @@ public class Game implements Serializable{
     private Hexagon selectedHexagon;
     private int boardSize;
     private CommandManager commandManager;
-
+    private static final String POWER_STRATEGY="POWER";
     private AttackStrategy attackStrategy;
 
     public static Piece getHexagonPiece(int x, int y) {
@@ -52,7 +52,7 @@ public class Game implements Serializable{
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-        if(strategy.equals("Power"))
+        if(strategy.equals(POWER_STRATEGY))
         {
             this.attackStrategy = new PowerAttackStategy();
         }
@@ -183,8 +183,12 @@ public class Game implements Serializable{
 
     public void undo(int undo)
     {
-        this.commandManager.Undo(undo);
-        this.changePlayerTurn();
+        if(players.get(playerTurn).canUndo()) {
+            this.commandManager.Undo(undo);
+            players.get(playerTurn).deactivateUndo();
+            if(undo!=2)
+                this.changePlayerTurn();
+        }
     }
 
     public void replayAllMoves()

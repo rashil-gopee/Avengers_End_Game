@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
-import java.nio.file.FileSystems;
 
 
 /** 
@@ -100,10 +99,8 @@ public class AvengersGameView implements IModelChangeListener, Serializable
 
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
-//        JButton b1 = new JButton("Undo");
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         Container content = frame.getContentPane();
-//        panel.add(b1);
         content.add(panel);
         frame.setSize( (int)(screenSize/1.23), screenSize);
         frame.setResizable(false);

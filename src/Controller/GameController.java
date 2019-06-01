@@ -28,10 +28,6 @@ public class GameController implements Serializable {
 
     }
 
-//    public void rightClick(int x,int y)
-//    {
-//        game.rightClick(x, y);
-//    }
 
     public void registerListener(AvengersGameView view){
         game.addModelChangedListeners(view);

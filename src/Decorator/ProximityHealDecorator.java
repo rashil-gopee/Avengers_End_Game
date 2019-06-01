@@ -17,12 +17,10 @@ public class ProximityHealDecorator extends PieceDecorator {
     }
 
     public void proximityHeal(Hexagon hexagon) {
-        System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
         ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
 
         for (Hexagon hex : surroundingHexagons) {
-            System.out.println(hex.getX() +"," + hex.getY());
             Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
             if (pieceToAttack != null) {
                 pieceToAttack.heal(2);
