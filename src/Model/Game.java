@@ -26,8 +26,6 @@ public class Game implements Serializable{
     private int boardSize;
     private CommandManager commandManager;
 
-    private AttackersDirectory attackersDirectory;
-    private DefendersDirectory defendersDirectory;
     private AttackStrategy attackStrategy;
 
     public int getBoardSize() {
@@ -60,11 +58,8 @@ public class Game implements Serializable{
              this.attackStrategy = new StealthDifferenceAttackStrategy();
         }
 
-        attackersDirectory = pieceFactory.getAttackers(players.get(0), this.attackStrategy);
-        defendersDirectory = pieceFactory.getDefenders(players.get(1), this.attackStrategy);
-
         BoardBuilder boardBuilder=new BoardBuilder();
-        this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
+        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
 
         this.commandManager=new CommandManager();
         playerTurn = 0;
@@ -162,14 +157,14 @@ public class Game implements Serializable{
             setSelectedHexagon(null);
         }
         else if (specialEffect && !getSelectedHexagon().isSpecialEffectUsed()) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
             getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x, y));
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
-            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y)));
         }
         else if(!getBoard().hexagonHasOwner(x,y,players.get(playerTurn))) {
-            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon(),getBoard().getHexagon(x, y)));
+            move= this.commandManager.ExecuteCommand(new AttackCommand(getSelectedHexagon(),board.getHexagon(x, y)));
         }
         if(move) {
             changePlayerTurn();
@@ -177,10 +172,6 @@ public class Game implements Serializable{
         setSelectedHexagon(null);
     }
 
-//    public void rightClick(int x,int y)
-//    {
-//        selectedHexagon.getPiece().specialEffect();
-//    }
 
     public void saveGame()
     {
@@ -196,9 +187,8 @@ public class Game implements Serializable{
 
     public void replayAllMoves()
     {
-//        board.setBoard(this.players,this.boardSize, this.attackStrategy);
         BoardBuilder boardBuilder=new BoardBuilder();
-        this.board= boardBuilder.buildBoard(players, attackersDirectory, defendersDirectory, boardSize);
+        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }

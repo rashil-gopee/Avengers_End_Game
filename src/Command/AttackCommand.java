@@ -17,7 +17,6 @@ public class AttackCommand extends UndoableCommand implements Serializable
         this.previousPosition=previousPosition;
         this.currentLocation=currentLocation;
         this.targetPiece=currentLocation.getPiece();
-
     }
 
     public boolean execute()
