@@ -17,7 +17,6 @@ public class ExchangeStealthDecorator extends PieceDecorator {
     }
 
     public void proximityExchangeAttack(Hexagon hexagon) {
-        System.out.println("This: " + hexagon.getX() + "," + hexagon.getY());
 
         ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
 
