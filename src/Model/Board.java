@@ -99,4 +99,8 @@ public class Board implements Serializable {
     public boolean hexagonHasPiece(int x, int y) {
         return getHexagon(x,y).hasPiece();
     }
+
+    public Piece getHexagonPiece(int x, int y) {
+        return getHexagon(x,y).getPiece();
+    }
 }

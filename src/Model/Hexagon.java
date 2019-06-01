@@ -81,4 +81,8 @@ public class Hexagon implements Serializable {
     public boolean hasPiece() {
         return this.piece!=null;
     }
+
+    public boolean hasGreaterStealth(Piece highestStealthPiece) {
+        return piece.getStealth()>highestStealthPiece.getStealth();
+    }
 }

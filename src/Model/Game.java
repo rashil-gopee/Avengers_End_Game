@@ -27,6 +27,10 @@ public class Game implements Serializable{
 
     private AttackStrategy attackStrategy;
 
+    public static Piece getHexagonPiece(int x, int y) {
+           return getInstance().board.getHexagonPiece(x,y);
+    }
+
     public int getBoardSize() {
         return boardSize;
     }

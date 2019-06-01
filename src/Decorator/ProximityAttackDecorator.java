@@ -25,7 +25,8 @@ public class ProximityAttackDecorator extends PieceDecorator{
         ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
 
         for (Hexagon hex : surroundingHexagons) {
-            Piece pieceToAttack = Game.getInstance().getBoard().getHexagon(hex.getX(), hex.getY()).getPiece();
+            Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
+
             if (pieceToAttack != null) {
                     pieceToAttack.suffer(2);
             }

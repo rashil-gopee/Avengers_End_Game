@@ -23,7 +23,7 @@ public class ExchangeStealthDecorator extends PieceDecorator {
 
         Piece highestStealthPiece = null;
         for (Hexagon hex : surroundingHexagons) {
-            if (highestStealthPiece == null || (hex.getPiece() != null && hex.getPiece().getStealth() > highestStealthPiece.getStealth()))
+            if (highestStealthPiece == null || (hex.getPiece() != null && hex.hasGreaterStealth( highestStealthPiece)))
                 highestStealthPiece = hex.getPiece();
         }
 

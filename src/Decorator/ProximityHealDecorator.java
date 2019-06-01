@@ -23,9 +23,8 @@ public class ProximityHealDecorator extends PieceDecorator {
 
         for (Hexagon hex : surroundingHexagons) {
             System.out.println(hex.getX() +"," + hex.getY());
-            Piece pieceToAttack = Game.getInstance().getBoard().getHexagon(hex.getX(), hex.getY()).getPiece();
+            Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
             if (pieceToAttack != null) {
-                System.out.println((piece instanceof Attacker && pieceToAttack instanceof Defender) || (piece instanceof Defender && pieceToAttack instanceof Attacker));
                 pieceToAttack.heal(2);
             }
         }
