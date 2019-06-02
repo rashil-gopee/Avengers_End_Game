@@ -178,6 +178,8 @@ public class Game implements Serializable{
      * @param specialEffect this represents if the player has played a specialEffect.
      * @return void
      */
+    @Requires("x>=0 && x<boardSize && y>=0 && y<boardSize")
+    @Ensures("selectedHexagon==null || selectedHexagon== getBoard().getHexagon(x,y)")
     private void performAction(int x, int y, boolean specialEffect){
         boolean move=false;
         if (selectedHexagon == getBoard().getHexagon(x,y)) {
@@ -224,6 +226,8 @@ public class Game implements Serializable{
      * @param command this is command to be added into the tree
      * @return void
      */
+    @Requires("command!=null")
+    @Ensures("root!=null")
     private void addTree(Command command) {
         if(root==null) {
             root = new Node(nodeId,command);
@@ -245,6 +249,7 @@ public class Game implements Serializable{
      * @param id this is unique id of the node the player want's to move to.
      * @return void
      */
+    @Requires("id>=0")
     public void goToNode(int id)
     {
         Stack path=new Stack<Node>();
@@ -264,6 +269,7 @@ public class Game implements Serializable{
      * @param undo this is number of undo commands the player wants to do.
      * @return void
      */
+    @Requires("undo>0&&undo<=3")
     public void undo(int undo)
     {
         if(players.get(playerTurn).canUndo()) {
