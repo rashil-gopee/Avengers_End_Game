@@ -7,7 +7,7 @@ import View.AvengersGameView;
 import javax.swing.*;
 import java.io.Serializable;
 
-public class GameController implements Serializable {
+public class GameController implements Serializable  {
     private Game game;
 
     public GameController(){
@@ -58,7 +58,7 @@ public class GameController implements Serializable {
      * it calls the main view.
      * @return void
      */
-    public void loadGame() {
+    public void loadGame() throws Exception {
         FileHelper fileHelper=new FileHelper();
         Game game=fileHelper.loadObjectToFile();
         Game.setInstance(game);
