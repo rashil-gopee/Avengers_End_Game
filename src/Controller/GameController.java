@@ -1,12 +1,11 @@
 package Controller;
 
 import Model.Game;
-import Utilities.FileHelper;
+import Model.Utilities.FileHelper;
 import View.AvengersGameView;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.Stack;
 
 public class GameController implements Serializable {
     private Game game;

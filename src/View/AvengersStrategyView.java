@@ -12,10 +12,10 @@ public class AvengersStrategyView {
 
     public AvengersStrategyView()
     {
-        JFrame f = new JFrame("Strategy View");
+        JFrame f = new JFrame("Model.Strategy View");
         f.getContentPane().setLayout(new FlowLayout());
-        JButton powerStrategy=new JButton("Power Strategy");
-        JButton stealthStrategy=new JButton("Stealth Strategy");
+        JButton powerStrategy=new JButton("Power Model.Strategy");
+        JButton stealthStrategy=new JButton("Stealth Model.Strategy");
         f.getContentPane().add(powerStrategy);
         f.getContentPane().add(stealthStrategy);
         f.pack();

@@ -1,6 +1,6 @@
 package Model.Tree;
 
-import Command.Command;
+import Model.Command.Command;
 
 import java.io.Serializable;
 import java.util.Vector;

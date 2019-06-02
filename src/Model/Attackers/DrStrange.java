@@ -3,13 +3,10 @@ package Model.Attackers;
 import Model.Attacker;
 import Model.Hexagon;
 import Model.Player;
-import Strategy.AttackStrategy;
+import Model.Strategy.AttackStrategy;
 import com.google.java.contract.Requires;
 
-import javax.imageio.ImageIO;
-import java.io.File;
 import java.io.Serializable;
-import java.net.URL;
 
 import static java.lang.Math.abs;
 

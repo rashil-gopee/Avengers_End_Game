@@ -1,6 +1,6 @@
 package Model;
 
-import Strategy.AttackStrategy;
+import Model.Strategy.AttackStrategy;
 
 
 import java.io.Serializable;

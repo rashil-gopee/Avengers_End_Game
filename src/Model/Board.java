@@ -1,9 +1,5 @@
 package Model;
 
-import Model.Attackers.*;
-import Model.Defenders.*;
-import Strategy.AttackStrategy;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 

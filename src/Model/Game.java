@@ -1,17 +1,13 @@
 package Model;
 
-import Command.Command;
-import Composite.CommandComposite;
+import Model.Command.Command;
+import Model.Composite.CommandComposite;
 import Model.Tree.Node;
-import Strategy.AttackStrategy;
-import Strategy.PowerAttackStategy;
-import Strategy.StealthDifferenceAttackStrategy;
-import Utilities.FileHelper;
-import Builder.BoardBuilder;
-import Command.AttackCommand;
-import Command.MoveCommand;
-import Command.*;
-import Interface.IModelChangeListener;
+import Model.Utilities.FileHelper;
+import Model.Builder.BoardBuilder;
+import Model.Command.AttackCommand;
+import Model.Command.MoveCommand;
+import Model.Interface.IModelChangeListener;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 

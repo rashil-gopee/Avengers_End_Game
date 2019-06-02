@@ -1,11 +1,9 @@
 package Model;
 
-import Strategy.AttackStrategy;
-import Composite.CommandComposite;
-import com.google.java.contract.Ensures;
-import com.google.java.contract.Requires;
+import Model.Composite.PieceComposite;
+import Model.Strategy.AttackStrategy;
+import Model.Composite.CommandComposite;
 
-import java.awt.*;
 import java.io.Serializable;
 
 import static java.lang.Math.abs;
