@@ -22,7 +22,7 @@ import java.util.Stack;
 
 public class Game implements Serializable{
     private static Game instance = null;
-
+    private Player playerWon=null;
     private Board board;
     private ArrayList<Player> players;
     private int playerTurn;
@@ -166,6 +166,14 @@ public class Game implements Serializable{
         else
         {
             performAction(x, y, specialEffect);
+        }
+        checkPlayerWon();
+    }
+
+    private void checkPlayerWon() {
+        Player player=board.getPlayerWon(boardSize);
+        if(player!=null){
+         this.playerWon=playerWon;
         }
     }
 
