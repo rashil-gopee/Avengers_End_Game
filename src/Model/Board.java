@@ -50,6 +50,24 @@ public class Board implements Serializable {
         return getHexagon(x,y).getPiece();
     }
 
+    public Player getPlayerWon(int boardSize) {
+        ArrayList<Player> playerWon=new ArrayList<>();
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                if(hexagonHasPiece(i,j))
+                {
+                    playerWon.add(getHexagon(i,j).getOwner());
+                }
+
+            }
+        }
+        if(playerWon.size()==1)
+        {
+            return playerWon.get(0);
+        }
+        return null;
+    }
+
 //    public void pieceSpecialEffect(int x, int y) {
 //        getHexagon(x,y).pieceSpecialEffect();
 //    }

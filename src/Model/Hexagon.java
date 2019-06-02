@@ -38,6 +38,11 @@ public class Hexagon implements Serializable {
     {
         return this.piece.isOwner(player);
     }
+
+    public Player getOwner()
+    {
+        return this.piece.getOwner();
+    }
     /**
      * This method is used to move a hexagon's piece to another one
      * @param target This is the Hexagon where you want to move the piece to.
