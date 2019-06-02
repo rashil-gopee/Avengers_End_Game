@@ -38,6 +38,7 @@ public class CommandComposite extends Command implements Serializable {
      */
     public void undoCommand(int undo)
     {
+        undo=undo*2;
         for(int i=0;i<undo;i++) {
             if (commandStack.size() > 0) {
                 Command cmd = commandStack.pop();

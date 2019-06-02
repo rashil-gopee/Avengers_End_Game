@@ -317,10 +317,7 @@ public class Game implements Serializable{
         if(players.get(playerTurn).canUndo()) {
             this.commandManager.undoCommand(undo);
             players.get(playerTurn).deactivateUndo();
-            if(undo!=2)
-                this.changePlayerTurn();
-            else
-                this.notifyModelChangedListeners();
+            this.notifyModelChangedListeners();
 
         }
     }
