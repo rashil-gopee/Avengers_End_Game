@@ -8,34 +8,54 @@ import Model.Defenders.*;
 import Model.Piece;
 import Model.Player;
 import Strategy.AttackStrategy;
+import Strategy.PowerAttackStategy;
+import Strategy.StealthDifferenceAttackStrategy;
 
 import java.io.Serializable;
 
 public class PieceBuilder implements Serializable {
 
-    public Piece getIronMan(Player player, AttackStrategy attackStrategy) {
+    public Piece getIronMan(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new IronMan(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(1);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityAttackDecorator(new ExchangeStealthDecorator(new IronMan(player, attackStrategy)));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getBlackPanther(Player player, AttackStrategy attackStrategy) {
+    public Piece getBlackPanther(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new BlackPanther(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(2);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityAttackDecorator(new ExchangeStealthDecorator(new BlackPanther(player, attackStrategy)));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getCaptainMarvel(Player player, AttackStrategy attackStrategy) {
+    public Piece getCaptainMarvel(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(3);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
             piece = new ExchangeStealthDecorator(new CaptainMarvel(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,59 +63,95 @@ public class PieceBuilder implements Serializable {
         return piece;
     }
 
-    public Piece getDrStrange(Player player, AttackStrategy attackStrategy) {
+    public Piece getDrStrange(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new DrStrange(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(4);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityAttackDecorator(new DrStrange(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getHulk(Player player, AttackStrategy attackStrategy) {
+    public Piece getHulk(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new Hulk(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(5);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityHealDecorator(new Hulk(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getLoki(Player player, AttackStrategy attackStrategy) {
+    public Piece getLoki(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new Loki(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(1);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityAttackDecorator(new Loki(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getThanos(Player player, AttackStrategy attackStrategy) {
+    public Piece getThanos(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new Thanos(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(2);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityHealDecorator(new ExchangeStealthDecorator(new Thanos(player, attackStrategy)));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getKillMonger(Player player, AttackStrategy attackStrategy) {
+    public Piece getKillMonger(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new KillMonger(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(3);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityAttackDecorator(new ExchangeStealthDecorator(new KillMonger(player, attackStrategy)));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return piece;
     }
 
-    public Piece getUltron(Player player, AttackStrategy attackStrategy) {
+    public Piece getUltron(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(4);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
             piece = new ExchangeStealthDecorator(new Ultron(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,10 +159,16 @@ public class PieceBuilder implements Serializable {
         return piece;
     }
 
-    public Piece getBlackDwarf(Player player, AttackStrategy attackStrategy) {
+    public Piece getBlackDwarf(Player player, boolean isPowerStrategy) {
         Piece piece = null;
         try {
-            piece = new ExchangeStealthDecorator(new BlackDwarf(player, attackStrategy));
+            AttackStrategy attackStrategy;
+            if (isPowerStrategy)
+                attackStrategy = new PowerAttackStategy(5);
+            else
+                attackStrategy = new StealthDifferenceAttackStrategy();
+
+            piece = new ProximityHealDecorator(new BlackDwarf(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }

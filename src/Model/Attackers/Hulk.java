@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class Hulk extends Attacker implements Serializable {
     public Hulk(Player owner, AttackStrategy attackStrategy) throws Exception{
-        super(10, 7, 1, "Images/Hulk.png", owner, attackStrategy);
+        super(10, 1, "Images/Hulk.png", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

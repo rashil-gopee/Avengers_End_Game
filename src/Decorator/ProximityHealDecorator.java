@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ProximityHealDecorator extends PieceDecorator {
     public ProximityHealDecorator(Piece piece)
     {
-        super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece, piece.getAttackStrategy());
+        super(piece.getStealth(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece, piece.getAttackStrategy());
     }
 
     @Override

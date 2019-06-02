@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class IronMan extends Attacker implements Serializable {
     public IronMan(Player owner, AttackStrategy attackStrategy) throws Exception {
-        super(5, 9, 1,"Images/IronMaN.png", owner, attackStrategy);
+        super(5,1,"Images/IronMaN.png", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

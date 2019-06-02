@@ -3,6 +3,8 @@ package Command;
 import java.io.Serializable;
 import Model.Hexagon;
 import Model.Piece;
+import Strategy.AttackStrategy;
+import Strategy.PowerAttackStategy;
 
 public class AttackCommand extends Command implements Serializable
 {
@@ -26,7 +28,7 @@ public class AttackCommand extends Command implements Serializable
 
     public void undo()
     {
-        targetPiece.setStealth ( targetPiece.getStealth() + piece.getAttackingPower());
+        targetPiece.setStealth ( targetPiece.getStealth() + ((PowerAttackStategy)piece.getAttackStrategy()).getAttackingPower());
         if(currentLocation.getPiece() == null)
         {
             currentLocation.setPiece(targetPiece);

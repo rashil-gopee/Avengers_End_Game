@@ -12,8 +12,8 @@ import java.awt.*;
 public abstract class PieceDecorator extends Piece {
     protected Piece piece;
 
-    public PieceDecorator(int stealth, int attackingPower, int attackingDistance, String image, Player owner, Piece piece, AttackStrategy attackStrategy) {
-        super(stealth, attackingPower, attackingDistance, image, owner, attackStrategy);
+    public PieceDecorator(int stealth, int attackingDistance, String image, Player owner, Piece piece, AttackStrategy attackStrategy) {
+        super(stealth, attackingDistance, image, owner, attackStrategy);
         this.piece=piece;
     }
 

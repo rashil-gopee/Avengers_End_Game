@@ -22,13 +22,13 @@ public class BoardBuilder {
      * the board back to the caller function
      * @param players this is list of players.
      * @param boardSize this is board size to be setup.
-     * @param attackStrategy this represents the strategy the player has chosen to play.
+     * @param isPowerStrategy this represents the strategy the player has chosen to play.
      * @return Board
      */
-    public Board buildBoard(ArrayList<Player> players, int boardSize, AttackStrategy attackStrategy)
+    public Board buildBoard(ArrayList<Player> players, int boardSize, boolean isPowerStrategy)
     {
-        Directory attackersDirectory = attackersPieceFactory.getPieces(players.get(0),attackStrategy);
-        Directory defendersDirectory = defendersPieceFactory.getPieces(players.get(1),attackStrategy);
+        Directory attackersDirectory = attackersPieceFactory.getPieces(players.get(0),isPowerStrategy);
+        Directory defendersDirectory = defendersPieceFactory.getPieces(players.get(1),isPowerStrategy);
 
         Board board=Board.getInstance(boardSize);
 

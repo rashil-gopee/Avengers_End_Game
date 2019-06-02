@@ -13,16 +13,16 @@ import static java.lang.Math.abs;
 public abstract class Piece extends PieceComposite implements Serializable {
     private boolean isSpecialEffectUsed;
     private int stealth;
-    private int attackingPower;
+//    private int attackingPower;
     private int attackingDistance;
     private String image;
     private Player owner;
 
     private AttackStrategy attackStrategy;
 
-    public Piece(int stealth, int attackingPower, int attackingDistance, String image, Player owner, AttackStrategy attackStrategy) {
+    public Piece(int stealth, int attackingDistance, String image, Player owner, AttackStrategy attackStrategy) {
         this.stealth = stealth;
-        this.attackingPower = attackingPower;
+//        this.attackingPower = attackingPower;
         this.attackingDistance = attackingDistance;
         this.image = image;
         this.owner = owner;
@@ -38,10 +38,10 @@ public abstract class Piece extends PieceComposite implements Serializable {
         return stealth;
     }
 
-    public int getAttackingPower() {
-        return attackingPower;
-    }
-
+//    public int getAttackingPower() {
+//        return attackingPower;
+//    }
+//
     public int getAttackingDistance() {
         return attackingDistance;
     }

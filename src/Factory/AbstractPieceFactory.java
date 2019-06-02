@@ -6,6 +6,6 @@ import Strategy.AttackStrategy;
 
 public abstract class AbstractPieceFactory {
 
-  public abstract Directory getPieces(Player player, AttackStrategy attackStrategy);
+  public abstract Directory getPieces(Player player, boolean isPowerStrategy);
 
 }

@@ -14,18 +14,18 @@ public class DefendersPieceFactory extends AbstractPieceFactory{
      * This method is used to generate the defenders pieces for the game. This method calls PieceBuilder for
      * to generate the defenders pieces. This returns a list of defenders for the game.
      * @param player this is player to which the pieces belong to.
-     * @param attackStrategy this represents the strategy the player has chosen to play.
+     * @param isPowerStrategy this represents the strategy the player has chosen to play.
      * @return DefendersDirectory
      */
-    public DefendersDirectory getPieces(Player player, AttackStrategy attackStrategy)
+    public DefendersDirectory getPieces(Player player, boolean isPowerStrategy)
     {
         DefendersDirectory defendersDirectory=new DefendersDirectory();
         try {
-            Piece killMonger= pieceBuilder.getKillMonger(player, attackStrategy);
-            Piece loki= pieceBuilder.getLoki(player, attackStrategy);
-            Piece thanos= pieceBuilder.getThanos(player, attackStrategy);
-            Piece ultron= pieceBuilder.getUltron(player, attackStrategy);
-            Piece blackDwarf= pieceBuilder.getBlackDwarf(player, attackStrategy);
+            Piece killMonger= pieceBuilder.getKillMonger(player, isPowerStrategy);
+            Piece loki= pieceBuilder.getLoki(player, isPowerStrategy);
+            Piece thanos= pieceBuilder.getThanos(player, isPowerStrategy);
+            Piece ultron= pieceBuilder.getUltron(player, isPowerStrategy);
+            Piece blackDwarf= pieceBuilder.getBlackDwarf(player, isPowerStrategy);
 
             defendersDirectory.add(killMonger);
             defendersDirectory.add(loki);

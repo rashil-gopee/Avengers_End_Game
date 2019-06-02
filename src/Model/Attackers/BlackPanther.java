@@ -17,7 +17,7 @@ import static java.lang.Math.abs;
 public class BlackPanther extends Attacker implements Serializable {
 
     public BlackPanther(Player owner, AttackStrategy attackStrategy) throws Exception{
-             super(20, 7, 1,"Images/blackPanther.jpg", owner, attackStrategy);
+             super(20, 1,"Images/blackPanther.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

@@ -13,7 +13,7 @@ import java.util.Map;
 public class ProximityAttackDecorator extends PieceDecorator{
     public ProximityAttackDecorator(Piece piece)
     {
-        super(piece.getStealth(),piece.getAttackingPower(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece, piece.getAttackStrategy());
+        super(piece.getStealth(),piece.getAttackingDistance(),piece.getImage(),piece.getOwner(),piece, piece.getAttackStrategy());
     }
 
     @Override

@@ -16,7 +16,7 @@ import static java.lang.Math.abs;
 public class BlackDwarf extends Defender implements Serializable {
 
     public BlackDwarf(Player owner, AttackStrategy attackStrategy) throws Exception {
-        super(20, 4, 2,"Images/BlackDwarf.jpg", owner, attackStrategy);
+        super(20, 2,"Images/BlackDwarf.jpg", owner, attackStrategy);
     }
 
 

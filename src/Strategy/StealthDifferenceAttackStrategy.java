@@ -14,7 +14,7 @@ public class StealthDifferenceAttackStrategy implements AttackStrategy , Seriali
         }
 
         if (target.getPiece().getStealth() < source.getPiece().getStealth()) {
-            target.getPiece().suffer(source.getPiece().getAttackingPower());
+            target.getPiece().suffer(source.getPiece().getStealth());
             if (target.getPiece().getStealth() <= 0)
                 target.setPiece(null);
             return true;

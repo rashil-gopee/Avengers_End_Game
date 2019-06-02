@@ -29,8 +29,8 @@ public class Game implements Serializable{
     private Hexagon selectedHexagon;
     private int boardSize;
     private CommandComposite commandManager;
-    private static final String POWER_STRATEGY="Power";
-    private AttackStrategy attackStrategy;
+    private static final String POWER_STRATEGY = "Power";
+    private boolean isPowerAttackStrategy;
     private Node root;
     private Node selectNode;
     private int nodeId;
@@ -64,16 +64,18 @@ public class Game implements Serializable{
         for (int i =0; i < numOfPlayers; i++) {
             this.players.add(new Player("Player " + i + 1 ));
         }
-        if(strategy.equals(POWER_STRATEGY))
-        {
-            this.attackStrategy = new PowerAttackStategy();
-        }
-        else {
-             this.attackStrategy = new StealthDifferenceAttackStrategy();
-        }
+
+//        if(strategy.equals(POWER_STRATEGY))
+//        {
+//            this.attackStrategy = new PowerAttackStategy();
+//        }
+//        else {
+//             this.attackStrategy = new StealthDifferenceAttackStrategy();
+//        }
+        this.isPowerAttackStrategy = strategy.equals(POWER_STRATEGY);
 
         BoardBuilder boardBuilder=new BoardBuilder();
-        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
+        this.board= boardBuilder.buildBoard(players, boardSize,isPowerAttackStrategy);
 
         this.commandManager=new CommandComposite();
         playerTurn = 0;
@@ -328,7 +330,7 @@ public class Game implements Serializable{
     public void replayAllMoves()
     {
         BoardBuilder boardBuilder=new BoardBuilder();
-        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
+        this.board= boardBuilder.buildBoard(players, boardSize, isPowerAttackStrategy);
         this.notifyModelChangedListeners();
         this.commandManager.playMoves(this);
     }
@@ -341,7 +343,7 @@ public class Game implements Serializable{
     public void playNode()
     {
         BoardBuilder boardBuilder=new BoardBuilder();
-        this.board= boardBuilder.buildBoard(players, boardSize,this.attackStrategy);
+        this.board= boardBuilder.buildBoard(players, boardSize,isPowerAttackStrategy);
         this.commandManager.playNodeMoves(res);
         this.notifyModelChangedListeners();
 

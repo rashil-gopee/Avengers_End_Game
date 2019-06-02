@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class KillMonger extends Defender implements Serializable {
     public KillMonger(Player owner, AttackStrategy attackStrategy) throws Exception {
-        super(15, 4, 2,"Images/KillMonger.jpg", owner, attackStrategy);
+        super(15, 2,"Images/KillMonger.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

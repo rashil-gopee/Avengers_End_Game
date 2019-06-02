@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class CaptainMarvel extends Attacker implements Serializable {
     public CaptainMarvel(Player owner, AttackStrategy attackStrategy) throws Exception {
-        super(15, 4, 2, "Images/CaptainMarvel.jpg", owner, attackStrategy);
+        super(15, 2, "Images/CaptainMarvel.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

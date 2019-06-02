@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class Loki extends Defender implements Serializable {
     public Loki(Player owner, AttackStrategy attackStrategy) throws Exception{
-        super(10, 5, 1, "Images/loki.jpg", owner, attackStrategy);
+        super(10, 1, "Images/loki.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")

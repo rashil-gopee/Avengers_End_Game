@@ -15,18 +15,18 @@ public class AttackersPieceFactory extends AbstractPieceFactory{
      * This method is used to generate the attacker pieces for the game. This method calls PieceBuilder for
      * to generate the attackers pieces. This returns a list of attackers for the game.
      * @param player this is player to which the pieces belong to.
-     * @param attackStrategy this represents the strategy the player has chosen to play.
+     * @param isPowerStrategy this represents the strategy the player has chosen to play.
      * @return AttackersDirectory
      */
-    public AttackersDirectory getPieces(Player player, AttackStrategy attackStrategy)
+    public AttackersDirectory getPieces(Player player, boolean isPowerStrategy)
     {
         AttackersDirectory attackersDirectory=new AttackersDirectory();
         try {
-            Piece blankPanther=pieceBuilder.getBlackPanther(player, attackStrategy);
-            Piece captainMarvel=pieceBuilder.getCaptainMarvel(player, attackStrategy);
-            Piece drStrange= pieceBuilder.getDrStrange(player, attackStrategy);
-            Piece ironMan = pieceBuilder.getIronMan(player, attackStrategy);
-            Piece hulk= pieceBuilder.getHulk(player, attackStrategy);
+            Piece blankPanther=pieceBuilder.getBlackPanther(player, isPowerStrategy);
+            Piece captainMarvel=pieceBuilder.getCaptainMarvel(player, isPowerStrategy);
+            Piece drStrange= pieceBuilder.getDrStrange(player, isPowerStrategy);
+            Piece ironMan = pieceBuilder.getIronMan(player, isPowerStrategy);
+            Piece hulk= pieceBuilder.getHulk(player, isPowerStrategy);
 
             attackersDirectory.add(blankPanther);
             attackersDirectory.add(captainMarvel);

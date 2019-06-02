@@ -15,7 +15,7 @@ import static java.lang.Math.abs;
 
 public class Thanos extends Defender implements Serializable {
     public Thanos(Player owner, AttackStrategy attackStrategy) throws Exception {
-        super(10, 10, 1,"Images/Thanos.jpg", owner, attackStrategy);
+        super(10, 1,"Images/Thanos.jpg", owner, attackStrategy);
     }
 
     @Requires("source!=null && target!=null")
