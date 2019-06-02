@@ -1,14 +1,14 @@
 package Command;
 
 import java.io.Serializable;
-import Command.UndoableCommand;
+
 import Model.Hexagon;
 import Model.Piece;
 
 public class MoveCommand extends Command implements Serializable{
-    Piece piece;
-    Hexagon previousPosition;
-    Hexagon currentLocation;
+    private Piece piece;
+    private Hexagon previousPosition;
+    private Hexagon currentLocation;
     public MoveCommand( Hexagon previousPosition,Hexagon currentLocation)
     {
         this.piece=previousPosition.getPiece();

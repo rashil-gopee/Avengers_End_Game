@@ -65,13 +65,6 @@ public class Game implements Serializable{
             this.players.add(new Player("Player " + i + 1 ));
         }
 
-//        if(strategy.equals(POWER_STRATEGY))
-//        {
-//            this.attackStrategy = new PowerAttackStategy();
-//        }
-//        else {
-//             this.attackStrategy = new StealthDifferenceAttackStrategy();
-//        }
         this.isPowerAttackStrategy = strategy.equals(POWER_STRATEGY);
 
         BoardBuilder boardBuilder=new BoardBuilder();
@@ -200,23 +193,23 @@ public class Game implements Serializable{
             Command command=new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y));
 
             commands.add(command);
-            move= this.commandManager.ExecuteCommand(command);
+            move= this.commandManager.executeCommand(command);
 
             if(move) {
                 addTree(command);
                 getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x,y), commands);
-                this.commandManager.ExecuteCommand(commands);
+                this.commandManager.executeCommand(commands);
             }
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
             Command command=new MoveCommand(getSelectedHexagon(),board.getHexagon(x, y));
-            move= this.commandManager.ExecuteCommand(command);
+            move= this.commandManager.executeCommand(command);
             if(move)
                 addTree(command);
         }
         else if(!getBoard().hexagonHasOwner(x,y,players.get(playerTurn))) {
             Command command=new AttackCommand(getSelectedHexagon(),board.getHexagon(x, y));
-            move= this.commandManager.ExecuteCommand(command);
+            move= this.commandManager.executeCommand(command);
             if(move)
                 addTree(command);
             Stack path=new Stack<Node>();

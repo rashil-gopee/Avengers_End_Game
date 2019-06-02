@@ -8,10 +8,10 @@ import Strategy.PowerAttackStategy;
 
 public class AttackCommand extends Command implements Serializable
 {
-    Piece piece;
-    Piece targetPiece;
-    Hexagon previousPosition;
-    Hexagon currentLocation;
+    private Piece piece;
+    private Piece targetPiece;
+    private Hexagon previousPosition;
+    private Hexagon currentLocation;
 
     public AttackCommand(Hexagon previousPosition,Hexagon currentLocation)
     {

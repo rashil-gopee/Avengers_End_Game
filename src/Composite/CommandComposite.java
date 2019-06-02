@@ -22,7 +22,7 @@ public class CommandComposite extends Command implements Serializable {
      * @param cmd this is the command to be executed
      * @return boolean This returns if the command was successfully executed or not.
      */
-    public boolean ExecuteCommand(Command cmd)
+    public boolean executeCommand(Command cmd)
     {
         boolean move=cmd.execute();
         if(move) {
