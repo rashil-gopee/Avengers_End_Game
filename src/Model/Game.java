@@ -56,7 +56,6 @@ public class Game implements Serializable{
     @Requires("numOfPlayers>0 && boardSize>2")
     @Ensures("playerTurn==0 && players!=null")
     private Game(int numOfPlayers,int boardSize,String strategy){
-
         this.boardSize=boardSize;
         this.players = new ArrayList<>();
         for (int i =0; i < numOfPlayers; i++) {
@@ -89,7 +88,6 @@ public class Game implements Serializable{
         return null;
     }
 
-
     public static void setInstance(Game game)
     {
         instance=game;
@@ -101,7 +99,6 @@ public class Game implements Serializable{
     public Hexagon getSelectedHexagon() {
         return selectedHexagon;
     }
-
 
     public void setSelectedHexagon(Hexagon selectedHexagon) {
         if(selectedHexagon==null||selectedHexagon.hasPiece()&&selectedHexagon.isOwner(players.get(playerTurn)))
@@ -129,7 +126,6 @@ public class Game implements Serializable{
     public void notifyModelChangedListeners() {
         this.listeners.forEach(listener -> listener.onModelChange(this));
     }
-
 
     /**
      * This method is used to add the listeners which would be informed once the model changes
@@ -195,9 +191,9 @@ public class Game implements Serializable{
             move= this.commandManager.executeCommand(command);
 
             if(move) {
-                addTree(command);
                 getBoard().getHexagon(x,y).getPiece().specialEffect(getBoard().getHexagon(x,y), commands);
                 this.commandManager.executeCommand(commands);
+                addTree(commands);
             }
         }
         else if(!getBoard().hexagonHasPiece(x,y)) {
@@ -243,7 +239,6 @@ public class Game implements Serializable{
         }
         this.nodeId++;
     }
-
 
     public String printTree()
     {
