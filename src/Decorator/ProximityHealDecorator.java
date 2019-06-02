@@ -1,5 +1,6 @@
 package Decorator;
 
+import Command.*;
 import Composite.CommandComposite;
 import Model.*;
 
@@ -14,7 +15,7 @@ public class ProximityHealDecorator extends PieceDecorator {
     @Override
     public void specialEffect(Hexagon hexagon, CommandComposite commands){
         piece.specialEffect(hexagon, commands);
-        proximityHeal(hexagon);
+        proximityHeal(hexagon, commands);
     }
 
     /**
@@ -23,15 +24,8 @@ public class ProximityHealDecorator extends PieceDecorator {
      * @param hexagon this is hexagon around which the heal takes place .
      * @return void
      */
-    public void proximityHeal(Hexagon hexagon) {
-
-        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
-
-        for (Hexagon hex : surroundingHexagons) {
-            Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
-            if (pieceToAttack != null) {
-                pieceToAttack.heal(2);
-            }
-        }
+    public void proximityHeal(Hexagon hexagon, CommandComposite commands) {
+        Command command = new ProximityHealCommand(hexagon);
+        commands.add(command);
     }
 }

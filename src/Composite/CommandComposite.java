@@ -16,12 +16,6 @@ public class CommandComposite extends Command implements Serializable {
         commandStack.push(command);
     }
 
-    public void addChild(Command command){
-        Command lastCommand = commandStack.lastElement();
-        if (lastCommand instanceof CommandComposite)
-            ((CommandComposite)lastCommand).add(command);
-    }
-
     /**
      * This method is used to execute the command and push the command in
      * a stack so as to undo later.

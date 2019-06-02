@@ -1,6 +1,8 @@
 package Builder;
 
+import Decorator.ExchangeStealthDecorator;
 import Decorator.ProximityAttackDecorator;
+import Decorator.ProximityHealDecorator;
 import Model.Attackers.*;
 import Model.Defenders.*;
 import Model.Piece;
@@ -14,7 +16,7 @@ public class PieceBuilder implements Serializable {
     public Piece getIronMan(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new IronMan(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new IronMan(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -24,7 +26,7 @@ public class PieceBuilder implements Serializable {
     public Piece getBlackPanther(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new BlackPanther(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new BlackPanther(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,7 +36,7 @@ public class PieceBuilder implements Serializable {
     public Piece getCaptainMarvel(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new CaptainMarvel(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new CaptainMarvel(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +46,7 @@ public class PieceBuilder implements Serializable {
     public Piece getDrStrange(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new DrStrange(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new DrStrange(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,7 +56,7 @@ public class PieceBuilder implements Serializable {
     public Piece getHulk(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new Hulk(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new Hulk(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,7 +66,7 @@ public class PieceBuilder implements Serializable {
     public Piece getLoki(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new Loki(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new Loki(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,7 +76,7 @@ public class PieceBuilder implements Serializable {
     public Piece getThanos(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new Thanos(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new Thanos(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +86,7 @@ public class PieceBuilder implements Serializable {
     public Piece getKillMonger(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new KillMonger(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new KillMonger(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +96,7 @@ public class PieceBuilder implements Serializable {
     public Piece getUltron(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new Ultron(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new Ultron(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -104,7 +106,7 @@ public class PieceBuilder implements Serializable {
     public Piece getBlackDwarf(Player player, AttackStrategy attackStrategy) {
         Piece piece = null;
         try {
-            piece = new ProximityAttackDecorator(new BlackDwarf(player, attackStrategy));
+            piece = new ExchangeStealthDecorator(new BlackDwarf(player, attackStrategy));
         } catch (Exception e) {
             e.printStackTrace();
         }

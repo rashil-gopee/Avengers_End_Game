@@ -1,5 +1,6 @@
 package Decorator;
 
+import Command.*;
 import Composite.CommandComposite;
 import Model.*;
 
@@ -14,23 +15,12 @@ public class ExchangeStealthDecorator extends PieceDecorator {
     @Override
     public void specialEffect(Hexagon hexagon, CommandComposite commands){
         piece.specialEffect(hexagon, commands);
-        proximityExchangeAttack(hexagon);
+        proximityExchangeAttack(hexagon, commands);
     }
 
 
-    public void proximityExchangeAttack(Hexagon hexagon) {
-
-        ArrayList<Hexagon> surroundingHexagons = hexagon.getSurroundHexagons();
-
-        Piece highestStealthPiece = null;
-        for (Hexagon hex : surroundingHexagons) {
-            if (highestStealthPiece == null || (hex.getPiece() != null && hex.hasGreaterStealth( highestStealthPiece)))
-                highestStealthPiece = hex.getPiece();
-        }
-
-        int currentStealth = getStealth();
-        piece.setStealth(highestStealthPiece.getStealth());
-        highestStealthPiece.setStealth(currentStealth);
-
+    public void proximityExchangeAttack(Hexagon hexagon, CommandComposite commands) {
+        Command command = new ExchangeStealthCommand(hexagon);
+        commands.add(command);
     }
 }

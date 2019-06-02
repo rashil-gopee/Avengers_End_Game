@@ -6,10 +6,10 @@ import Model.Piece;
 
 import java.util.ArrayList;
 
-public class ProximityAttackCommand extends Command {
+public class ProximityHealCommand extends Command {
     private Hexagon executionLocation;
 
-    public ProximityAttackCommand(Hexagon executionLocation) {
+    public ProximityHealCommand(Hexagon executionLocation) {
         this.executionLocation = executionLocation;
     }
 
@@ -21,7 +21,7 @@ public class ProximityAttackCommand extends Command {
             Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
 
             if (pieceToAttack != null) {
-                pieceToAttack.suffer(2);
+                pieceToAttack.heal(2);
             }
         }
         return true;
@@ -34,7 +34,7 @@ public class ProximityAttackCommand extends Command {
             Piece pieceToAttack = Game.getHexagonPiece(hex.getX(), hex.getY());
 
             if (pieceToAttack != null) {
-                pieceToAttack.heal(2);
+                pieceToAttack.suffer(2);
             }
         }
     }
