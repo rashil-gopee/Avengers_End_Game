@@ -116,6 +116,14 @@ public class AvengersGameView implements IModelChangeListener, Serializable
             }
         });
         menu.add(item1);
+
+        JMenuItem item2 = new JMenuItem("View Tree Structure");
+        item2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                TreeView treeView=new TreeView();
+            }
+        });
+        menu.add(item2);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
         frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );

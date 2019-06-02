@@ -30,4 +30,6 @@ public class MoveCommand extends Command implements Serializable{
     {
         piece.move(previousPosition,currentLocation);
     }
+
+
 }

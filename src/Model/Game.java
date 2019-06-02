@@ -242,6 +242,49 @@ public class Game implements Serializable{
     }
 
 
+    public String printTree()
+    {
+       Node tree=root;
+        String res="";
+        if(root==null)
+            return res;
+        ArrayList<Node> firstStack = new ArrayList<Node>();
+        firstStack.add(tree);
+
+        ArrayList<ArrayList<Node>> childListStack = new ArrayList<>();
+        childListStack.add(firstStack);
+
+        while (childListStack.size() > 0)
+        {
+            ArrayList<Node> childStack = childListStack.get(childListStack.size() - 1);
+
+            if (childStack.size() == 0)
+            {
+                childListStack.remove(childListStack.size() - 1);
+            }
+            else
+            {
+                tree = childStack.get(0);
+                childStack.remove(0);
+
+                String indent = "";
+                for (int i = 0; i < childListStack.size() - 1; i++)
+                {
+                    indent += (childListStack.get(i).size() > 0) ? "|  " : "   ";
+                }
+
+                res+=indent + "+- " + tree.getId() + " "+tree.getDescription();
+                res+='\n';
+
+                if (tree.childCount() > 0)
+                {
+                    childListStack.add(new ArrayList<>(tree.getChild()));
+                }
+            }
+        }
+        return res;
+    }
+
     /**
      * This method is used to find the node the player wants to go to and then
      * change the board setting based on those commands.

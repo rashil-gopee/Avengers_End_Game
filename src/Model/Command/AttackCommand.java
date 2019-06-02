@@ -35,8 +35,11 @@ public class AttackCommand extends Command implements Serializable
 
     }
 
+
     public void redo()
     {
         piece.getAttackStrategy().execute(previousPosition,currentLocation);
     }
+
+
 }

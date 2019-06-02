@@ -39,6 +39,7 @@ public class ProximityHealCommand extends Command {
         }
     }
 
+
     public void redo(){
         execute();
     }
