@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class AvengersMainView {
 
@@ -23,7 +24,16 @@ public class AvengersMainView {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 GameController gameController=new GameController();
-                gameController.loadGame();
+                try {
+                    gameController.loadGame();
+                }
+                catch (FileNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null, "No previous saved game found! Starting a new game.");
+                    new AvengersStrategyView();
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 f.setVisible(false);
             }
         });
@@ -31,7 +41,7 @@ public class AvengersMainView {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                AvengersStrategyView avengersStrategyView=new AvengersStrategyView();
+                new AvengersStrategyView();
                 f.setVisible(false);
             }
         });
