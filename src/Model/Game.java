@@ -8,9 +8,12 @@ import Model.Builder.BoardBuilder;
 import Model.Command.AttackCommand;
 import Model.Command.MoveCommand;
 import Model.Interface.IModelChangeListener;
+import View.AvengersMainView;
+import View.AvengersStrategyView;
 import com.google.java.contract.Ensures;
 import com.google.java.contract.Requires;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
@@ -32,7 +35,7 @@ public class Game implements Serializable{
     private int nodeId;
     private ArrayList<Command> res;
     public static Piece getHexagonPiece(int x, int y) {
-           return getInstance().board.getHexagonPiece(x,y);
+        return getInstance().board.getHexagonPiece(x,y);
     }
 
     public static Hexagon getHexagon(int i, int j) {
@@ -162,9 +165,10 @@ public class Game implements Serializable{
     }
 
     private void checkPlayerWon() {
-        Player player=board.getPlayerWon(boardSize);
-        if(player!=null){
-         this.playerWon=playerWon;
+        Player winner=board.getPlayerWon(boardSize);
+        if(winner!=null){
+            JOptionPane.showMessageDialog(null, winner.getName() + " won the game!");
+            new AvengersMainView();
         }
     }
 
@@ -242,49 +246,6 @@ public class Game implements Serializable{
     }
 
 
-    public String printTree()
-    {
-       Node tree=root;
-        String res="";
-        if(root==null)
-            return res;
-        ArrayList<Node> firstStack = new ArrayList<Node>();
-        firstStack.add(tree);
-
-        ArrayList<ArrayList<Node>> childListStack = new ArrayList<>();
-        childListStack.add(firstStack);
-
-        while (childListStack.size() > 0)
-        {
-            ArrayList<Node> childStack = childListStack.get(childListStack.size() - 1);
-
-            if (childStack.size() == 0)
-            {
-                childListStack.remove(childListStack.size() - 1);
-            }
-            else
-            {
-                tree = childStack.get(0);
-                childStack.remove(0);
-
-                String indent = "";
-                for (int i = 0; i < childListStack.size() - 1; i++)
-                {
-                    indent += (childListStack.get(i).size() > 0) ? "|  " : "   ";
-                }
-
-                res+=indent + "+- " + tree.getId() + " "+tree.getDescription();
-                res+='\n';
-
-                if (tree.childCount() > 0)
-                {
-                    childListStack.add(new ArrayList<>(tree.getChild()));
-                }
-            }
-        }
-        return res;
-    }
-
     /**
      * This method is used to find the node the player wants to go to and then
      * change the board setting based on those commands.
@@ -317,7 +278,10 @@ public class Game implements Serializable{
         if(players.get(playerTurn).canUndo()) {
             this.commandManager.undoCommand(undo);
             players.get(playerTurn).deactivateUndo();
-            this.notifyModelChangedListeners();
+            if(undo!=2)
+                this.changePlayerTurn();
+            else
+                this.notifyModelChangedListeners();
 
         }
     }

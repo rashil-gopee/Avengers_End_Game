@@ -11,6 +11,10 @@ public class Player implements Serializable {
         this.undo=true;
     }
 
+    public String getName(){
+        return name;
+    }
+
     public boolean canUndo(){return this.undo;}
 
     public void deactivateUndo() {
